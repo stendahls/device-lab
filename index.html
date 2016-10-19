@@ -28,7 +28,7 @@
   <script>
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-      queryAllReports();
+      retrieve.queryAllReports();
       document.querySelector('html').classList.add('logged-in');
     }
     function onFailure(error) {
@@ -74,8 +74,9 @@
         
         <h3>Google API</h3>
     
-        <div id="my-signin2" data-onsuccess="queryAllReports"></div>
-        <button class="control__manual" onclick="queryAllReports()">manual run</button>
+        <div id="my-signin2" data-onsuccess="retrieve.queryAllReports"></div>
+        <button class="control__manual" onclick="retrieve.queryAllReports()" data-js-control-manual>manual run</button>
+        <div class="control__manual abcRioButtonBlue" style="display:none" data-js-control-none>no data or connection</div>
         
       </div>
         
@@ -84,13 +85,14 @@
         <h3>Time period</h3>
     
         <select data-js-control-time>
-          <option value="0">Previous week</option>
+          <option value="0">Most recent full week</option>
+          <option value="-1">The week 1 month ago</option>
+          <option value="-3">The week 3 months ago</option>
+          <option value="-6">The week 6 months ago</option>
+          <option value="-12">The week 12 months ago</option>
           <option value="week">This week so far</option>
           <option value="7days">Last seven days</option>
-          <option value="day">Today</option>
-          <option value="-3">Previous week - 3 months</option>
-          <option value="-6">Previous week - 6 months</option>
-          <option value="-12">Previous week - 12 months</option>
+          <option value="today">Today</option>
         </select>
         
       </div>

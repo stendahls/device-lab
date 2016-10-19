@@ -10014,9 +10014,32 @@ this.Element && function(ElementPrototype) {
 }(Element.prototype);
 
 
-Date.prototype.getWeek = function() {
-  var onejan = new Date(this.getFullYear(), 0, 1);
-  return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+Date.prototype.getWeek = function(dowOffset) {
+  /*getWeek() was developed by Nick Baicoianu at MeanFreePath: http://www.meanfreepath.com */
+
+  dowOffset = typeof(dowOffset) == 'int' ? dowOffset : 0; //default dowOffset to zero
+  var newYear = new Date(this.getFullYear(),0,1);
+  var day = newYear.getDay() - dowOffset; //the day of week the year begins on
+  day = (day >= 0 ? day : day + 7);
+  var daynum = Math.floor((this.getTime() - newYear.getTime() - 
+  (this.getTimezoneOffset()-newYear.getTimezoneOffset())*60000)/86400000) + 1;
+  var weeknum;
+  //if the year starts before the middle of a week
+  if(day < 4) {
+      weeknum = Math.floor((daynum+day-1)/7) + 1;
+      if(weeknum > 52) {
+          nYear = new Date(this.getFullYear() + 1,0,1);
+          nday = nYear.getDay() - dowOffset;
+          nday = nday >= 0 ? nday : nday + 7;
+          /*if the next year starts before the middle of
+            the week, it is week #1 of that year*/
+          weeknum = nday < 4 ? 1 : 53;
+      }
+  }
+  else {
+      weeknum = Math.floor((daynum+day-1)/7);
+  }
+  return weeknum;
 };
 function getDateOfISOWeek(w, y) {
   var simple = new Date(y, 0, 1 + (w - 1) * 7);
@@ -10592,7 +10615,7 @@ var ballpit = function() {
   "use strict";
   
   var radius = viewConfig.radius;
-  var step = 5;
+  var step = 3;
   var go = false;
   var balls = {};
   var pitDims = [];
@@ -11188,6 +11211,9 @@ var display = function() {
   var calcMaxAmount = function() {
     maxAmount = 0;
     for (var key in radar) {
+      if (key === 'TOTAL') {
+        continue;
+      }
       if (radar[key].TOTAL[valueKey] > maxAmount) {
         maxAmount = radar[key].TOTAL[valueKey];
       }
@@ -11306,6 +11332,10 @@ var control = function() {
     for(var i=0; i<controlValues.length; i++) {
       controlValues[i].addEventListener('change',setValue);
     } 
+    
+    document.querySelector('[data-js-control-time]').addEventListener('change',function() {
+      retrieve.queryAllReports();
+    });
   };
   
   var setValue = function() {
@@ -11358,135 +11388,180 @@ oAuthMetaClientId.setAttribute('content',OAUTH_CLIENT_ID);
 var $oAuthMetaScope = $('meta[name="google-signin-scope"]');
 
 document.head.insertBefore(oAuthMetaClientId,$oAuthMetaScope[0]);
-
-
-document.querySelector('[data-js-control-time]').addEventListener('change',function() {
-  queryAllReports();
-});
-
-var setDateRange = function () {
-  var dateInput = document.querySelector('[data-js-control-time]');
-  var dateOptionSelected = dateInput.options[dateInput.selectedIndex];
-  var dateVal = dateOptionSelected.value;
-  var dateNow = new Date();
-  var dateYr = dateNow.getYear();
-  var dateWk = dateNow.getWeek();
+var retrieve = function() {
+  "use strict";
   
   var configStart = null;
   var configEnd = null;
-  
-  console.warn(getMonday(dateNow).toISOString().substring(0, 10))
-  
-  switch (dateVal) {
-    case 'week':
-      var mon = getMonday(dateNow);
-      var monDate = new Date(mon);
-      var friDate = monDate.setDate(monDate.getDate() + 7);
-      configStart = mon.slice(0,10);
-      configEnd = friDate.toISOString().slice(0,10);
-      break;
-    case '7days':
-      configStart = '7daysAgo';
-      configEnd = 'today';
-    case 'today':
-      configStart = 'yesterday';
-      configEnd = 'today';
-      break;
-    default:
-      
-  }
-  console.log('****' + configStart);
-  console.log('****' + configEnd);
-  gaConfig.reportRequests.dateRanges = [
-    {
-      startDate: '7daysAgo',
-      endDate: 'today'
-    }
-  ];
-}();
+  var configYr = null;
+  var configWk = null;
+  var configSuffix = null;
+  var configNoStorage = false;
+  var localStorageTrue = false;
+  var gaRequest = {};
 
-var gaRequest = {
-  path: '/v4/reports:batchGet',
-  root: 'https://analyticsreporting.googleapis.com/',
-  method: 'POST',
-  body: {
-    reportRequests: gaConfig.reportRequests
-  }
-};
-
-var localStorageTrue = testForLocalStorage();
-
-
-// Query the API and print the results to the page.
-function queryAllReports() {
-  display.killAll();
-  console.log('**** RUN ALL ****');
-  
-  ballpit.start(); 
-  
-  queryAllReportsLoop().then(function() {
-    
-    console.log('**** RADAR: ****');
-    console.log(radar);
-    
-    whoAmI();
-  });
-
-}
-
-
-// query all the reports sequentially
-function queryAllReportsLoop() {
-  
-  return new Promise(function(resolve, reject) {
-    
-    var queryAllReportsCycle = function (reportIndex) {
-      
-      reportIndex = reportIndex || 0;
-      var reportNode = gaConfig.views[reportIndex];
-      queryReports(reportNode).then(function() {
-        
-        
-        /* CAN'T BUILD A BALL AS SOON AS THE DATA IS HERE - we need to know the maximum amounts before we start resizing */
-        // build a ball and drop into the ballpit
-        //console.log(reportIndex)
-        //display.buildPie(reportIndex);
-        //console.log(reportNode.abbr)
-        //ballpit.addBall(reportNode.abbr);
-        
-        // run again?
-        reportIndex++;
-        if (reportIndex < gaConfig.views.length) {
-          queryAllReportsCycle(reportIndex);
-        } else {
-          resolve(true);
-        }
-      });
-      
+  var init = function() {
+    localStorageTrue = testForLocalStorage();
+    gaRequest = {
+      path: '/v4/reports:batchGet',
+      root: 'https://analyticsreporting.googleapis.com/',
+      method: 'POST',
+      body: {
+        reportRequests: gaConfig.reportRequests
+      }
     };
-    queryAllReportsCycle();
+    setDateRange();
+    // check to see if any local storage is available
+    var testAbbr = gaConfig.views[0].abbr;
+    var localStorageKey = storageKey(testAbbr);
+    if (!localStorageTrue || storageGet(localStorageKey) === null) {
+      document.querySelector('[data-js-control-manual]').style.display = 'none';
+      if (typeof(gapi) === 'undefined') {
+        document.querySelector('[data-js-control-none]').style.display = 'block';
+      }
+    }
+  };
+
+  var setDateRange = function () {
+    var dateInput = document.querySelector('[data-js-control-time]');
+    var dateOptionSelected = dateInput.options[dateInput.selectedIndex];
+    var dateVal = dateOptionSelected.value;
+    var dateNow = new Date();
+    var dateYr = dateNow.getYear();
+    var dateWk = dateNow.getWeek();
     
-  });
-  
-}
-  
-// Query the API and print the results to the page.
-function queryReports(reportNode) {
-
-  var dateNow = new Date();
-  var dateWk = dateNow.getWeek();
-  var localStorageKey = reportNode.abbr + '-w' + dateWk;
-  
-  return new Promise(function(resolve, reject) {
-
-    // if in local storage, use that
-    if (localStorageTrue && storageGet(localStorageKey) !== null) {
-      console.log('**** run '  + reportNode.name + ': ' + reportNode.view + ' from local storage ****');
-      var response = JSON.parse(storageGet(localStorageKey));
-      processData(response,reportNode);
-      resolve(true);
-    // else retrieve via web and store in local storage
+    var reportStartDate = null;
+    var reportEndDate = null;
+    
+    configNoStorage = false;
+    configSuffix = '';
+    
+    // week so far (monday 00:00 to right now)
+    if (dateVal === 'week') {
+        reportStartDate = getMonday(dateNow);
+        reportEndDate = dateNow;
+        configStart = reportStartDate.toISOString().slice(0,10);
+        configEnd = reportEndDate.toISOString().slice(0,10);
+        configNoStorage = true;
+    // the last 7 days up to right now
+    } else if (dateVal === '7days') {
+        reportStartDate = new Date(dateNow.setDate(dateNow.getDate() - 7));
+        reportEndDate = dateNow;
+        configStart = '7daysAgo';
+        configEnd = 'today';
+        configSuffix = '7d';
+        configNoStorage = true;
+    // today only up to right now
+    } else if (dateVal === 'today') {
+        reportStartDate = dateNow;
+        reportEndDate = dateNow;
+        configStart = 'yesterday';
+        configEnd = 'today';
+        configSuffix = 'd' + dateNow.toISOString().slice(5,10);
+        configNoStorage = true;
+    // if we're looking at a full week an amount of months ago
+    } else if (dateVal.substring(0,1) === '-') {
+        var monthsAgo = parseInt(dateVal.substring(1));
+        reportStartDate = new Date(dateNow.setDate(dateNow.getDate() - (30 * monthsAgo) ));
+        reportStartDate = getMonday(reportStartDate);
+        configStart = reportStartDate.toISOString().slice(0,10);
+        reportEndDate = new Date();
+        reportEndDate = new Date(reportStartDate.setDate(reportStartDate.getDate() + 7));
+        configEnd = reportEndDate.toISOString().slice(0,10);
+    // default - the most recent full week of data
     } else {
+        reportStartDate = getMonday(dateNow);
+        reportStartDate = new Date(reportStartDate.setDate(reportStartDate.getDate() - 7));
+        configStart = reportStartDate.toISOString().slice(0,10);
+        reportEndDate = getMonday(dateNow);
+        configEnd = reportEndDate.toISOString().slice(0,10);
+    }
+    configYr = reportStartDate.toISOString().slice(0,4) || dateYr;
+    configWk = reportStartDate.getWeek() || dateWk;
+    gaRequest.body.reportRequests[0].dateRanges = [{
+      startDate: configStart,
+      endDate: configEnd
+    }];
+  };
+
+
+  // Query the API and print the results to the page.
+  var queryAllReports = function () {
+    display.killAll();
+    console.log('**** RUN ALL ****');
+    
+    setDateRange();
+    
+    ballpit.start(); 
+    
+    queryAllReportsLoop().then(function() {
+      
+      console.log('**** RADAR: ****');
+      console.log(radar);
+      
+      whoAmI();
+    });
+
+  };
+
+
+  // query all the reports sequentially
+  var queryAllReportsLoop = function () {
+    
+    return new Promise(function(resolve, reject) {
+      
+      var queryAllReportsCycle = function (reportIndex) {
+        
+        reportIndex = reportIndex || 0;
+        var reportNode = gaConfig.views[reportIndex];
+        queryReports(reportNode).then(function() {
+          
+          
+          /* CAN'T BUILD A BALL AS SOON AS THE DATA IS HERE - we need to know the maximum amounts before we start resizing */
+          // build a ball and drop into the ballpit
+          //console.log(reportIndex)
+          //display.buildPie(reportIndex);
+          //console.log(reportNode.abbr)
+          //ballpit.addBall(reportNode.abbr);
+          
+          // run again?
+          reportIndex++;
+          if (reportIndex < gaConfig.views.length) {
+            queryAllReportsCycle(reportIndex);
+          } else {
+            resolve(true);
+          }
+        });
+        
+      };
+      queryAllReportsCycle();
+      
+    });
+    
+  };
+    
+  // Query the API and print the results to the page.
+  var queryReports = function (reportNode) {
+
+    var localStorageKey = storageKey(reportNode.abbr);
+    
+    return new Promise(function(resolve, reject) {
+
+      // if in local storage, use that
+      if (localStorageTrue && storageGet(localStorageKey) !== null && !configNoStorage) {
+        // check the datestamp on the data to make sure it's up to date info (ie, it was collected after the week end)
+        if (2 > 1 /* FIX THIS! */) {
+          console.log('**** run '  + reportNode.name + ': ' + reportNode.view + ' from local storage ****');
+          var response = JSON.parse(storageGet(localStorageKey));
+          processData(response,reportNode);
+          resolve(true);
+          return;
+        }
+      } else {
+        document.querySelector('[data-js-control-manual]').style.display = 'none';
+      }
+      
+      // else retrieve via web and store in local storage
       console.log('**** run '  + reportNode.name + ': ' + reportNode.view + ' from online ****');
       gaRequest.body.reportRequests[0].viewId = reportNode.view;
       gapi.client.request(gaRequest).then(
@@ -11494,24 +11569,31 @@ function queryReports(reportNode) {
           queryResponse(response,reportNode);
           resolve(true);
         }, console.error.bind(console));
-    }
+      
+    });
     
-  });
-  
-}
+  };
 
-function queryResponse(response,reportNode) {
-  processData(response,reportNode);
+  var queryResponse = function (response,reportNode) {
+    processData(response,reportNode);
+    // save the response to local storage
+    if (localStorageTrue && !configNoStorage) {
+      var localStorageKey = storageKey(reportNode.abbr);
+      storageSet(localStorageKey,JSON.stringify(response));
+    }
+  };
   
-  var dateNow = new Date();
-  var dateWk = dateNow.getWeek();
-    
-  // save the response to local storage
-  if (localStorageTrue) {
-    var localStorageKey = reportNode.abbr + '-w' + dateWk;
-    storageSet(localStorageKey,JSON.stringify(response));
-  }
-}
+  var storageKey = function(abbr) {
+    var newKey = abbr + '-y' + configYr + '-w' + configWk + (configSuffix ? '-' + configSuffix : '');
+    return newKey;
+  };
+
+  return {
+    init: init(),
+    queryAllReports: queryAllReports
+  };
+  
+}();
 
 var columns       = [];
 var data          = [];
@@ -11833,6 +11915,8 @@ var lookmeUp = function(whoiam) {
     var viewId = key;
     var viewNode = lookUpView(viewId);
     
+    //console.error(key + ' : ' + whoiam.device.category + ' : ' + whoiam.browser.name);
+    
     // sessions
     slides.push({
       'device'  : whoiam.device.category,
@@ -11841,7 +11925,7 @@ var lookmeUp = function(whoiam) {
       'view'    : viewNode,
       'total'   : radar[viewId].TOTAL[0],
       'category': radar[viewId][whoiam.device.category].TOTAL[0],
-      'value'   : radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[0]
+      'value'   : (radar[viewId][whoiam.device.category][whoiam.browser.name] ? radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[0] : 0 )
     });
     
     // revenue
@@ -11853,7 +11937,7 @@ var lookmeUp = function(whoiam) {
         'view'    : viewNode,
         'total'   : radar[viewId].TOTAL[1],
         'category': radar[viewId][whoiam.device.category].TOTAL[1],
-        'value'   : radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[1]
+        'value'   : (radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[1] ? radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[1] : 0 )
       });
     }
     
