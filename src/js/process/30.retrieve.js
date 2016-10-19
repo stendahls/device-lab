@@ -5,9 +5,31 @@ var retrieve = function() {
   var configEnd = null;
   var configYr = null;
   var configWk = null;
+  var configSuffix = null;
+  var configNoStorage = false;
+  var localStorageTrue = false;
+  var gaRequest = {};
 
   var init = function() {
+    localStorageTrue = testForLocalStorage();
+    gaRequest = {
+      path: '/v4/reports:batchGet',
+      root: 'https://analyticsreporting.googleapis.com/',
+      method: 'POST',
+      body: {
+        reportRequests: gaConfig.reportRequests
+      }
+    };
     setDateRange();
+    // check to see if any local storage is available
+    var testAbbr = gaConfig.views[0].abbr;
+    var localStorageKey = storageKey(testAbbr);
+    if (!localStorageTrue || storageGet(localStorageKey) === null) {
+      document.querySelector('[data-js-control-manual]').style.display = 'none';
+      if (typeof(gapi) === 'undefined') {
+        document.querySelector('[data-js-control-none]').style.display = 'block';
+      }
+    }
   };
 
   var setDateRange = function () {
@@ -21,54 +43,60 @@ var retrieve = function() {
     var reportStartDate = null;
     var reportEndDate = null;
     
-    switch (dateVal) {
-      case 'week':
+    configNoStorage = false;
+    configSuffix = '';
+    
+    // week so far (monday 00:00 to right now)
+    if (dateVal === 'week') {
         reportStartDate = getMonday(dateNow);
         reportEndDate = dateNow;
-        break;
-      case '7days':
+        configStart = reportStartDate.toISOString().slice(0,10);
+        configEnd = reportEndDate.toISOString().slice(0,10);
+        configNoStorage = true;
+    // the last 7 days up to right now
+    } else if (dateVal === '7days') {
+        reportStartDate = new Date(dateNow.setDate(dateNow.getDate() - 7));
+        reportEndDate = dateNow;
         configStart = '7daysAgo';
         configEnd = 'today';
-      case 'today':
+        configSuffix = '7d';
+        configNoStorage = true;
+    // today only up to right now
+    } else if (dateVal === 'today') {
+        reportStartDate = dateNow;
+        reportEndDate = dateNow;
         configStart = 'yesterday';
         configEnd = 'today';
-        break;
-      default:
+        configSuffix = 'd' + dateNow.toISOString().slice(5,10);
+        configNoStorage = true;
+    // if we're looking at a full week an amount of months ago
+    } else if (dateVal.substring(0,1) === '-') {
+        var monthsAgo = parseInt(dateVal.substring(1));
+        reportStartDate = new Date(dateNow.setDate(dateNow.getDate() - (30 * monthsAgo) ));
+        reportStartDate = getMonday(reportStartDate);
+        configStart = reportStartDate.toISOString().slice(0,10);
+        reportEndDate = new Date();
+        reportEndDate = new Date(reportStartDate.setDate(reportStartDate.getDate() + 7));
+        configEnd = reportEndDate.toISOString().slice(0,10);
+    // default - the most recent full week of data
+    } else {
         reportStartDate = getMonday(dateNow);
         reportStartDate = new Date(reportStartDate.setDate(reportStartDate.getDate() - 7));
+        configStart = reportStartDate.toISOString().slice(0,10);
         reportEndDate = getMonday(dateNow);
-        break;
+        configEnd = reportEndDate.toISOString().slice(0,10);
     }
-    configStart = reportStartDate.toISOString().slice(0,10);
-    configEnd = reportEndDate.toISOString().slice(0,10);
     configYr = reportStartDate.toISOString().slice(0,4) || dateYr;
     configWk = reportStartDate.getWeek() || dateWk;
-    console.warn(configStart)
-    console.warn(configEnd)
-    console.warn(configYr)
-    console.warn(configWk)
-    gaConfig.reportRequests.dateRanges = [
-      {
-        startDate: configStart,
-        endDate: configEnd
-      }
-    ];
+    gaRequest.body.reportRequests[0].dateRanges = [{
+      startDate: configStart,
+      endDate: configEnd
+    }];
   };
-
-  var gaRequest = {
-    path: '/v4/reports:batchGet',
-    root: 'https://analyticsreporting.googleapis.com/',
-    method: 'POST',
-    body: {
-      reportRequests: gaConfig.reportRequests
-    }
-  };
-
-  var localStorageTrue = testForLocalStorage();
 
 
   // Query the API and print the results to the page.
-  function queryAllReports() {
+  var queryAllReports = function () {
     display.killAll();
     console.log('**** RUN ALL ****');
     
@@ -84,11 +112,11 @@ var retrieve = function() {
       whoAmI();
     });
 
-  }
+  };
 
 
   // query all the reports sequentially
-  function queryAllReportsLoop() {
+  var queryAllReportsLoop = function () {
     
     return new Promise(function(resolve, reject) {
       
@@ -120,17 +148,17 @@ var retrieve = function() {
       
     });
     
-  }
+  };
     
   // Query the API and print the results to the page.
-  function queryReports(reportNode) {
+  var queryReports = function (reportNode) {
 
-    var localStorageKey = reportNode.abbr+ '-y' + configYr + '-w' + configWk;
+    var localStorageKey = storageKey(reportNode.abbr);
     
     return new Promise(function(resolve, reject) {
 
       // if in local storage, use that
-      if (localStorageTrue && storageGet(localStorageKey) !== null) {
+      if (localStorageTrue && storageGet(localStorageKey) !== null && !configNoStorage) {
         // check the datestamp on the data to make sure it's up to date info (ie, it was collected after the week end)
         if (2 > 1 /* FIX THIS! */) {
           console.log('**** run '  + reportNode.name + ': ' + reportNode.view + ' from local storage ****');
@@ -139,6 +167,8 @@ var retrieve = function() {
           resolve(true);
           return;
         }
+      } else {
+        document.querySelector('[data-js-control-manual]').style.display = 'none';
       }
       
       // else retrieve via web and store in local storage
@@ -152,19 +182,22 @@ var retrieve = function() {
       
     });
     
-  }
+  };
 
-  function queryResponse(response,reportNode) {
+  var queryResponse = function (response,reportNode) {
     processData(response,reportNode);
-      
     // save the response to local storage
-    if (localStorageTrue) {
-      var localStorageKey = reportNode.abbr + '-y' + configYr + '-w' + configWk;
+    if (localStorageTrue && !configNoStorage) {
+      var localStorageKey = storageKey(reportNode.abbr);
       storageSet(localStorageKey,JSON.stringify(response));
     }
-  }
-
+  };
   
+  var storageKey = function(abbr) {
+    var newKey = abbr + '-y' + configYr + '-w' + configWk + (configSuffix ? '-' + configSuffix : '');
+    return newKey;
+  };
+
   return {
     init: init(),
     queryAllReports: queryAllReports
