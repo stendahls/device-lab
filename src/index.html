@@ -28,7 +28,7 @@
   <script>
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-      queryAllReports();
+      retrieve.queryAllReports();
       document.querySelector('html').classList.add('logged-in');
     }
     function onFailure(error) {
@@ -74,8 +74,8 @@
         
         <h3>Google API</h3>
     
-        <div id="my-signin2" data-onsuccess="queryAllReports"></div>
-        <button class="control__manual" onclick="queryAllReports()">manual run</button>
+        <div id="my-signin2" data-onsuccess="retrieve.queryAllReports"></div>
+        <button class="control__manual" onclick="retrieve.queryAllReports()">manual run</button>
         
       </div>
         
@@ -88,6 +88,7 @@
           <option value="week">This week so far</option>
           <option value="7days">Last seven days</option>
           <option value="day">Today</option>
+          <option value="-1">Previous week - 1 month</option>
           <option value="-3">Previous week - 3 months</option>
           <option value="-6">Previous week - 6 months</option>
           <option value="-12">Previous week - 12 months</option>

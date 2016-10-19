@@ -9,6 +9,10 @@ var control = function() {
     for(var i=0; i<controlValues.length; i++) {
       controlValues[i].addEventListener('change',setValue);
     } 
+    
+    document.querySelector('[data-js-control-time]').addEventListener('change',function() {
+      retrieve.queryAllReports();
+    });
   };
   
   var setValue = function() {
