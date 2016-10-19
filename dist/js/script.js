@@ -11833,6 +11833,8 @@ var lookmeUp = function(whoiam) {
     var viewId = key;
     var viewNode = lookUpView(viewId);
     
+    //console.error(key + ' : ' + whoiam.device.category + ' : ' + whoiam.browser.name);
+    
     // sessions
     slides.push({
       'device'  : whoiam.device.category,
@@ -11841,7 +11843,7 @@ var lookmeUp = function(whoiam) {
       'view'    : viewNode,
       'total'   : radar[viewId].TOTAL[0],
       'category': radar[viewId][whoiam.device.category].TOTAL[0],
-      'value'   : radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[0]
+      'value'   : (radar[viewId][whoiam.device.category][whoiam.browser.name] ? radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[0] : 0 )
     });
     
     // revenue
@@ -11853,7 +11855,7 @@ var lookmeUp = function(whoiam) {
         'view'    : viewNode,
         'total'   : radar[viewId].TOTAL[1],
         'category': radar[viewId][whoiam.device.category].TOTAL[1],
-        'value'   : radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[1]
+        'value'   : (radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[1] ? radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[1] : 0 )
       });
     }
     
