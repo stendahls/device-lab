@@ -332,6 +332,9 @@ var display = function() {
   var calcMaxAmount = function() {
     maxAmount = 0;
     for (var key in radar) {
+      if (key === 'TOTAL') {
+        continue;
+      }
       if (radar[key].TOTAL[valueKey] > maxAmount) {
         maxAmount = radar[key].TOTAL[valueKey];
       }
