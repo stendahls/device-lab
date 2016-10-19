@@ -1,0 +1,116 @@
+@import url(https://fonts.googleapis.com/css?family=Comfortaa);
+
+@font-face {
+  font-family: 'Comfortaa', serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  @include typo-regular();
+  font-size: $font-size-p-default;
+}
+
+@media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio: 0) {
+  body {
+    font-family: "Comfortaa","roboto condensed",sans-serif-condensed,sans-serif;
+    letter-spacing: -.03em;
+  }
+}
+
+strong {
+  @include typo-bold();
+}
+
+// HEADINGS
+.head {
+
+  @include typo-bold();
+  margin: 1em 0;
+  font-size: $font-size-h-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  line-height: 1.2;
+  @include respond-to(xxs-only) {
+    font-size: $font-size-h-small;
+  }
+
+  &--jumbo {
+    margin: 0.5em 0;
+    font-size: $font-size-h-jumbo;
+    @include respond-to(xxs-only) {
+      font-size: $font-size-h-large;
+    }
+  }
+
+  &--large {
+    margin: 0.75em 0;
+    font-size: $font-size-h-large;
+    @include respond-to(xxs-only) {
+      font-size: $font-size-h-medium;
+    }
+  }
+
+  &--medium {
+    font-size: $font-size-h-small;
+    @include respond-to(xxs-only) {
+      font-size: $font-size-h-medium;
+    }
+  }
+
+  &--small {
+    font-size: $font-size-h-small;
+    // @include respond-to(xxs-only) {
+    //   font-size: $font-size-h-tiny;
+    // }
+  }
+
+  &--tiny {
+    font-size: $font-size-h-tiny;
+  }
+
+  &--alone {
+    margin: 0;
+  }
+  
+  &--top {
+    margin-top: 0;
+  }
+
+  &__note {
+    @include typo-regular();
+    display: inline-block;
+    text-transform: none;
+  }
+
+}
+
+.type {
+  
+  &__strong {
+    @include typo-bold();
+  }
+  
+  &__preamble {
+    font-size: $font-size-p-large;
+  }
+
+  /* quick-fix hypahenate class */
+
+  &__hyphenate {
+    @include hyphenate();
+  }
+
+  /* quick-fix ellipsis class (you may need to set block/inline-block and a width) */
+
+  &__ellipsis {
+    @include ellipsis();
+  }
+
+  /* quick-fix ellipsis - single line class (you may need to set block/inline-block and a width) */
+
+  &__ellipsis--nowrap {
+    @include ellipsis-nowrap();
+  }
+
+}

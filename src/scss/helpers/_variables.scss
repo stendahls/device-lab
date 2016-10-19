@@ -1,0 +1,65 @@
+
+//////////////////////
+// Font
+//////////////////////
+
+$line-height-base: 1.3;
+
+$font-family-headline: 'Comfortaa', sans-serif;
+$font-family-default:  'Comfortaa', sans-serif;
+$font-family-bold:     'Comfortaa', sans-serif;
+
+$font-size-p-default: 16px;
+$font-size-p-large: 20px;
+$font-size-p-small: 11px;
+
+$font-size-h-tiny: 1rem;
+$font-size-h-small: 1.3rem;
+$font-size-h-medium: 2rem;
+$font-size-h-large: 8rem;
+$font-size-h-jumbo: 15rem;
+
+//////////////////////
+// Media Queries
+//////////////////////
+
+$screen-xs:                  600px;
+$screen-sm:                  768px;
+$screen-md:                  992px;
+$screen-lg:                  1200px;
+
+$screen-xs-min:              $screen-xs;
+$screen-sm-min:              $screen-sm;
+$screen-md-min:              $screen-md;
+$screen-lg-min:              $screen-lg;
+
+$screen-xxs-max:             ($screen-xs-min - 1);
+$screen-xs-max:              ($screen-sm-min - 1);
+$screen-sm-max:              ($screen-md-min - 1);
+$screen-md-max:              ($screen-lg-min - 1);
+
+$container-xs:               600px;
+
+$breakpoints: (
+  xxs: $screen-xxs-max,
+  xs: $screen-xs,
+  sm: $screen-sm,
+  md: $screen-md,
+  lg: $screen-lg
+);
+
+$breakpointsMax: (
+  xxs: $screen-xxs-max,
+  xs: $screen-xs-max,
+  sm: $screen-sm-max,
+  md: $screen-md-max,
+  lg: $screen-lg
+);
+
+$breakpointsMin: (
+  xxs: $screen-xxs-max,
+  xs: $screen-xs-min,
+  sm: $screen-sm-min,
+  md: $screen-md-min,
+  lg: $screen-lg-min
+);

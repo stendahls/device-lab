@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="{{ meta.description }}" />
+  <meta name="keywords" content="{{ meta.keywords }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, max-scale=1" />
+  <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
+  
+  <meta name="msapplication-tap-highlight" content="no" />
+  
+  <title>🎯 DEVICE RADAR</title>
+
+  <link rel="stylesheet" href="css/main.css"/>
+  
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="{{ globals 'site.themeColor' }}" />
+  <meta name="application-name" content="{{ yep }}" />
+  <link rel="icon" href="{{ globals 'site.meta.favIconPath' }}" type="image/x-icon" />
+  <link rel="icon" sizes="192x192" href="{{ globals 'site.meta.icon192Url' }}" />
+  <meta name="apple-mobile-web-app-title" content="{{ globals 'site.title' }}">
+  <link rel="apple-touch-icon" href="{{ globals 'site.meta.appleTouchIconiPhoneUrl' }}"/>
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ globals 'site.meta.appleTouchIconiPhone2Url' }}"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ globals 'site.meta.appleTouchIconiPad2Url' }}"/>
+  <meta name="msapplication-TileImage" content="{{ globals 'site.meta.appleTouchIconiPad2Url' }}" />
+  <meta name="msapplication-TileColor" content="{{ globals 'site.themeColor' }}" />
+  
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      queryAllReports();
+      document.querySelector('html').classList.add('logged-in');
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+  
+  <script src="https://apis.google.com/js/client:platform.js?onload=renderButton"></script>
+  
+  </head>
+  <body data-js-background-click>
+    
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <filter id="darkenSVG">
+      <feColorMatrix type="matrix" values=".3  0   0   0   0
+                                           0  .3   0   0   0
+                                           0   0  .3   0   0
+                                           0   0   0   1   0" />
+    </filter>
+  </svg>
+    
+  <input type="checkbox" id="control-close" class="control__check" style="display:none;" />
+  <nav class="control">
+    
+    <h1 class="control__title">device radar</h1>
+    
+    <label class="control__close" for="control-close"></label>
+    
+    <div class="control__row">
+      
+      <div class="control__cell">
+        
+        <h3>Google API</h3>
+    
+        <div id="my-signin2" data-onsuccess="queryAllReports"></div>
+        <button class="control__manual" onclick="queryAllReports()">manual run</button>
+        
+      </div>
+        
+      <div class="control__cell">
+        
+        <h3>Time period</h3>
+    
+        <select data-js-control-time>
+          <option value="0">Previous week</option>
+          <option value="week">This week so far</option>
+          <option value="7days">Last seven days</option>
+          <option value="day">Today</option>
+          <option value="-3">Previous week - 3 months</option>
+          <option value="-6">Previous week - 6 months</option>
+          <option value="-12">Previous week - 12 months</option>
+        </select>
+        
+      </div>
+        
+      <div class="control__cell">
+        
+        <h3>Numbers</h3>
+    
+        <label><input type="radio" name="values" value="0" data-js-control-value checked /> Sessions</label>
+        <label><input type="radio" name="values" value="1" data-js-control-value  /> Revenue</label>
+        
+      </div>
+      
+    </div>
+    
+  </nav>
+  
+  <div class="container" data-js-container></div>
+  <script src="js/script.js"></script>
+  </body>
+</html>

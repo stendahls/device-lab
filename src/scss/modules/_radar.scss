@@ -1,0 +1,151 @@
+$radius: 150px;
+
+.radar {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -$radius;
+  margin-left: -$radius;
+  transition: all 300ms cubic-bezier(.85,0,.85,1);
+  pointer-events: none;
+  .mode--all & {
+    opacity: 1;
+    pointer-events: all;
+  }
+  &--active {
+    opacity: 1;
+    transform: translate(0px,0px) scale(2) !important;
+    transition: all 300ms cubic-bezier(.25,0,.25,1) !important;
+    pointer-events: all;
+  }
+  &__grp {
+    &--device {
+      .mode--all & {
+        cursor: pointer;
+      }
+    }
+    &__circle {
+      fill: none;
+      stroke: #222;
+      display: none;
+      user-select: none;
+      transition: all 300ms;
+      .mode--browser  .radar__grp--device &,
+      .mode--browser  .radar__grp--browser &,
+      .mode--age      .radar__grp--device &,
+      .mode--age      .radar__grp--browser &,
+      .mode--age      .radar__grp--age &,
+      .mode--version  .radar__grp--device &,
+      .mode--version  .radar__grp--browser &,
+      .mode--version  .radar__grp--age &,
+      .mode--version  .radar__grp--version & {
+        display: block;
+        stroke: #333;
+        stroke-dasharray: 2, 2;
+      }
+      .mode--browser  .radar__grp--browser &,
+      .mode--age      .radar__grp--age &,
+      .mode--version  .radar__grp--version & {
+        display: block;
+        opacity: 0;
+      }
+    }
+    &__arcs {
+        transition: all 300ms;
+        .radar--active & {
+          transform: scale(1) !important;
+          transition: all 300ms linear;
+        }
+        .mode--device .radar__grp--browser &,
+        .mode--browser .radar__grp--age &,
+        .mode--age .radar__grp--version &  {
+          opacity: 0;
+          transform: scale(1.2) !important;
+          transition: all 200ms linear;
+        }
+        .mode--browser .radar__grp--device &,
+        .mode--age .radar__grp--browser &,
+        .mode--version .radar__grp--age &  {
+          transform: scale(0.9) !important;
+          transition: all 200ms linear;
+        }
+        .mode--age .radar__grp--device &,
+        .mode--version .radar__grp--browser &  {
+          transform: scale(0.8) !important;
+          transition: all 200ms linear;
+        }
+        .mode--version .radar__grp--device &  {
+          transform: scale(0.7) !important;
+          transition: all 200ms linear;
+        }
+    }
+  }
+  &__arc {
+    cursor: pointer;
+    user-select: none;
+    transition: all 800ms;
+    .radar__arc__grp:hover & {
+      transition: all 100ms;
+      stroke-width: 40px !important;
+    }
+    .mode--all .radar__grp--device:hover & {
+      transition: all 100ms;
+      stroke-width: 40px !important;
+    }
+    .mode--browser  .radar__grp--device &,
+    .mode--age      .radar__grp--device &,
+    .mode--age      .radar__grp--browser &,
+    .mode--version  .radar__grp--device &,
+    .mode--version  .radar__grp--browser &,
+    .mode--version  .radar__grp--age & {
+      stroke-width: 10px !important;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .mode--browser  .radar__grp--device .radar__arc__grp--active &,
+    .mode--age      .radar__grp--device .radar__arc__grp--active &,
+    .mode--age      .radar__grp--browser .radar__arc__grp--active &,
+    .mode--version  .radar__grp--device .radar__arc__grp--active &,
+    .mode--version  .radar__grp--browser .radar__arc__grp--active &,
+    .mode--version  .radar__grp--age .radar__arc__grp--active & {
+      opacity: 1;
+      filter:url(#darkenSVG);
+    }
+    &__txt {
+      color: #000;
+      cursor: pointer;
+      transition: opacity 500ms;
+      transition-delay: 300ms;
+      opacity: 0;
+      user-select: none;
+      .mode--all  & {
+        transition-delay: 0ms;
+      }
+      .radar__arc__grp--active &,
+      .mode--device .radar__grp--device &,
+      .mode--browser .radar__grp--browser &,
+      .mode--age .radar__grp--age &,
+      .mode--version .radar__grp--version & {
+        opacity: 1;
+      }
+    }
+  }
+  &__txt {
+    fill: #fff;
+    &__title {
+      fill: #fff;
+    }
+    &__value {
+      fill: #999;
+    }
+  }
+}
+
+.ballpit {
+  &--run {
+    svg {
+      transition: none;
+    }
+  }
+}

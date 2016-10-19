@@ -1,0 +1,1 @@
+$('[data-js-background-click]').on('click',slidesNext);

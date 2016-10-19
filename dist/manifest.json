@@ -1,0 +1,21 @@
+{
+  "short_name": "Device radar",
+  "name": "Stendahls device radar",
+  "icons": [
+    {
+      "src": "img/launcher-icon-1x.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "img/launcher-icon-2x.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "img/launcher-icon-4x.png",
+      "sizes": "192x192"
+    }
+  ],
+  "theme_color": "#1C5976",
+  "start_url": "/",
+  "lang": "sv-SE"
+}

@@ -1,0 +1,1 @@
+var viewChoice = 0;

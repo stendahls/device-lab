@@ -1,0 +1,214 @@
+@mixin respond-to($media) {
+  @if $media == xxs-only {
+    @media (max-width: $screen-xxs-max) { @content; }
+  }
+  @else if $media == xs-only {
+    @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) { @content; }
+  }
+  @else if $media == xs-up {
+    @media (min-width: $screen-xs-min) { @content; }
+  }
+  @else if $media == xs-down {
+    @media (max-width: $screen-xs-max) { @content; }
+  }
+  @else if $media == sm-only {
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { @content; }
+  }
+  @else if $media == sm-up {
+    @media (min-width: $screen-sm-min) { @content; }
+  }
+  @else if $media == sm-down {
+    @media (max-width: $screen-sm-max) { @content; }
+  }
+  @else if $media == md-only {
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { @content; }
+  }
+  @else if $media == md-up {
+    @media (min-width: $screen-md-min) { @content; }
+  }
+  @else if $media == md-down {
+    @media (max-width: $screen-md-max) { @content; }
+  }
+  @else if $media == lg-only {
+    @media (min-width: $screen-lg-min) { @content; }
+  }
+  @else if $media == wide-screen {
+    @media (min-width: $w-screen-wide) { @content; }
+  }
+  @else if $media == mobile-modal {
+    @media (max-width: $screen-xs-max) { .touchevents & { @content; } }
+  }
+}
+
+@mixin respond-between($media1, $media2) {
+
+  @if $media1 != $media2
+  {
+    @if(map_get($breakpoints, $media1) < map_get($breakpoints, $media2))
+    {
+      @media (min-width: map_get($breakpointsMin, $media1)) and (max-width: map_get($breakpointsMax, $media2)) { @content; }
+    }
+    @else
+    {
+      @media (min-width: map_get($breakpointsMin, $media2)) and (max-width: map_get($breakpointsMax, $media1)) { @content; }
+    }
+  }
+
+}
+
+@mixin respond-to-min($screenWidth) {
+  @media (min-width: $screenWidth) { @content; }
+}
+@mixin respond-to-max($screenWidth) {
+  @media (max-width: $screenWidth) { @content; }
+}
+
+@mixin respond-to-height-min($screenHeight) {
+  @media (min-height: $screenHeight) { @content; }
+}
+@mixin respond-to-height-max($screenHeight) {
+  @media (max-height: $screenHeight) { @content; }
+}
+
+@mixin respond-to-webkit() {
+    @media (-webkit-min-device-pixel-ratio:0) { @content; }
+}
+@mixin respond-to-trident() {
+    @media screen and (min-width: 0 \0) { @content; }
+}
+@mixin respond-to-firefox() {
+    @-moz-document url-prefix() { @content; }
+}
+@mixin respond-to-retina() {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { @content; }
+}
+
+@mixin respond-to-pointer($pointerType) {
+  @media (any-pointer: $pointerType) { @content; }
+}
+
+@mixin list-style-none() {
+  list-style: none;
+  padding: 0;
+}
+
+@mixin image-fit() {
+  width: 100%;
+  height: auto;
+}
+
+@mixin hyphenate() {
+    word-break: break-word;
+    hyphens: auto;
+}
+
+@mixin ellipsis() {
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: hidden;
+}
+@mixin ellipsis-nowrap() {
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin inline-block($border,$size) {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    @if $size == sm {
+      padding: 0 0.6em;
+      height: 1.9em;
+      line-height: 1.5;
+    } @else {
+      padding: 0 0.6em;
+      height: 2.4em;
+      line-height: 2.3;
+    }
+    @if $border == true {
+      border-width: 1px;
+    } @else {
+      border: none;
+    }
+    overflow: hidden;
+}
+
+@mixin inline-block-UI {
+    @include t-typo-bold();
+    @include t-ellipsis();
+    padding: 0 1em;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    &:hover {
+      text-decoration: none;
+    }
+}
+
+@mixin typo-regular() {
+    font-family: -apple-system, 
+               BlinkMacSystemFont, 
+               "Segoe UI", 
+               Roboto, 
+               Oxygen,
+               Ubuntu,
+               Cantarell,
+               "Open Sans",
+               "Helvetica Neue", 
+               sans-serif;
+    font-weight: normal;
+    line-height: $line-height-base;
+    letter-spacing: 0.034em;
+    word-spacing: 0.0025em;
+    .fonts-loaded & {
+        font-family: $font-family-default;
+        letter-spacing: 0;
+        word-spacing: 0;
+    }
+}
+
+@mixin typo-bold() {
+    font-family: -apple-system, 
+               BlinkMacSystemFont, 
+               "Segoe UI", 
+               Roboto, 
+               Oxygen,
+               Ubuntu,
+               Cantarell,
+               "Open Sans",
+               "Helvetica Neue", 
+               sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.01em;
+    .fonts-loaded & {
+        font-family: $font-family-bold;
+        font-weight: normal;
+        letter-spacing: 0;
+    }
+}
+
+@mixin typo-headline() {
+    font-family: arial,sans-serif;
+    font-weight: bold;
+    text-transform: none;
+    letter-spacing: -0.05em;
+    .fonts-loaded & {
+        font-family: $font-family-headline;
+        font-weight: normal;
+        letter-spacing: 0;
+    }
+}
+
+// roll-our own clearfix. Without IE7/Old opera support it's much, much simpler and no longer interrupts margin collapse. http://www.cssmojo.com/the-very-latest-clearfix-reloaded/
+@mixin clearfix() {
+  &:after {
+    content:"";
+    display:block;
+    clear:both;
+  }
+}
