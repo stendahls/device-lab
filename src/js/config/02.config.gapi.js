@@ -64,6 +64,15 @@ var gaConfig = {
         1: '#fff',
         2: '#c00'
       }
+    },
+    {
+      'name': 'GE',
+      'abbr': 'ge',
+      'view': '24119751',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
     }
   ],
   reportRequests: [
