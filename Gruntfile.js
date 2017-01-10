@@ -40,7 +40,6 @@ module.exports = function(grunt) {
                     '<%= settings.src %>/js/base/utilities.js',
                     '<%= settings.src %>/js/base/storage.js',
                     '<%= settings.src %>/js/base/webfontObserver.js',
-                    '<%= settings.src %>/js/base/backgroundClick.js',
                     '<%= settings.src %>/js/config/01.config.browsers.js',
                     '<%= settings.src %>/js/config/02.config.gapi.js',
                     '<%= settings.src %>/js/config/03.config.view.js',
@@ -64,7 +63,9 @@ module.exports = function(grunt) {
                     '<%= settings.npm %>/jquery/dist/jquery.js',
                     '<%= settings.npm %>/csvtojson/dist/csvtojson.js',
                     '<%= settings.npm %>/ua-parser-js/dist/ua-parser.min.js',
-                    '<%= settings.src %>/js/*/*.js'
+                    '<%= settings.src %>/js/base/utilities.js',
+                    '<%= settings.src %>/js/base/storage.js',
+                    '<%= settings.src %>/js/base/webfontObserver.js'
                 ],
                 dest: '<%= settings.dist %>/js/lab.js'
             }
@@ -90,7 +91,8 @@ module.exports = function(grunt) {
             },
             core: {
                 files: {
-                    '<%= settings.dist %>/css/main.css': '<%= settings.src %>/scss/main.scss'
+                    '<%= settings.dist %>/css/radar.css': '<%= settings.src %>/scss/radar.scss',
+                    '<%= settings.dist %>/css/lab.css': '<%= settings.src %>/scss/lab.scss'
                 }
             }
         },
@@ -110,11 +112,17 @@ module.exports = function(grunt) {
                 ]
               }
             },
-            core: {
+            radar: {
                 options: {
                     map: true
                 },
-                src: '<%= settings.dist %>/css/style.css'
+                src: '<%= settings.dist %>/css/radar.css'
+            },
+            lab: {
+                options: {
+                    map: true
+                },
+                src: '<%= settings.dist %>/css/lab.css'
             }
         },
 
@@ -124,9 +132,13 @@ module.exports = function(grunt) {
                 keepSpecialComments: '*',
                 advanced: false
             },
-            core: {
-                src: '<%= settings.dist %>/css/style.css',
-                dest: '<%= settings.dist %>/css/style.min.css'
+            radar: {
+                src: '<%= settings.dist %>/css/radar.css',
+                dest: '<%= settings.dist %>/css/radar.min.css'
+            },
+            lab: {
+                src: '<%= settings.dist %>/css/lab.css',
+                dest: '<%= settings.dist %>/css/lab.min.css'
             }
         },
 
@@ -224,7 +236,7 @@ module.exports = function(grunt) {
     require('time-grunt')(grunt);
     grunt.loadNpmTasks('grunt-hbs');
 
-    grunt.registerTask('main', [ 'clean:dist', 'hbs', 'copy', 'sass', 'autoprefixer', 'concat:radar', ]);
+    grunt.registerTask('main', [ 'clean:dist', 'hbs', 'copy', 'sass', 'autoprefixer:radar', 'autoprefixer:lab', 'cssmin:radar', 'cssmin:lab', 'concat:radar', 'concat:lab', ]);
 
     grunt.registerTask('default', [ 'main', 'connect', 'watch' ]);
 

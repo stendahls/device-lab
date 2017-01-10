@@ -4,8 +4,8 @@
   right: 0;
   z-index: 11;
   padding: 2em;
-  color: #51B2B8;
-  background-color: #0B4C59;
+  color: $colorFG1;
+  background-color: $colorBG2;
   transform: translateY(100%);
   transition: transform 300ms;
   text-align: left;
@@ -27,7 +27,7 @@
     width: 40px;
     height: 0;
     border-left: 10px solid transparent;
-    border-top: 40px solid #0B4C59;
+    border-top: 40px solid $colorBG2;
     cursor: pointer;
   }
   &__row {
@@ -43,7 +43,7 @@
     float:left;
     color: #000;
     border: none;
-    background: #FFDC00;
+    background: $colorAlt;
     font-size: 1em;
     line-height: 50px;
     border-radius: 5px;
@@ -54,8 +54,8 @@
   }
 }
 .abcRioButtonBlue {
-  color: #0B4C59 !important;
-  background-color: #51B2B8 !important;
+  color: $colorBG2 !important;
+  background-color: $colorFG1 !important;
   border-radius: 5px !important;
   margin-bottom: 1em;
 }

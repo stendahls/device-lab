@@ -9,9 +9,9 @@ select {
   height: 3em;
   margin: 2px;
   padding: 0.3em 0.6em;
-  color: #0B4C59;
-  background-color: #51B2B8;
-  border: 1px solid #51B2B8;
+  color: $colorBG2;
+  background-color: $colorFG1;
+  border: 1px solid $colorFG1;
   border-radius: 0.3em;
   font-family: Roboto,arial,sans-serif;
   font-size: 1rem;
