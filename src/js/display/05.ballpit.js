@@ -84,7 +84,7 @@ var ballpit = function() {
         'x': 0,
         'y': 0
       },
-      'angle': initialAngles[Object.keys(balls).length],
+      'angle': (360/gaConfig.views.length) * Object.keys(balls).length,
       'r': getBallSize(index),
       'box': {
         'top': 0 - r,
