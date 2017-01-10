@@ -31,7 +31,34 @@ module.exports = function(grunt) {
         },
 
         concat: {
-            dist: {
+            radar: {
+                src: [
+                    '<%= settings.npm %>/fontfaceobserver/fontfaceobserver.js',
+                    '<%= settings.npm %>/jquery/dist/jquery.js',
+                    '<%= settings.npm %>/csvtojson/dist/csvtojson.js',
+                    '<%= settings.npm %>/ua-parser-js/dist/ua-parser.min.js',
+                    '<%= settings.src %>/js/base/utilities.js',
+                    '<%= settings.src %>/js/base/storage.js',
+                    '<%= settings.src %>/js/base/webfontObserver.js',
+                    '<%= settings.src %>/js/base/backgroundClick.js',
+                    '<%= settings.src %>/js/config/01.config.browsers.js',
+                    '<%= settings.src %>/js/config/02.config.gapi.js',
+                    '<%= settings.src %>/js/config/03.config.view.js',
+                    '<%= settings.src %>/js/display/01.svg.js',
+                    '<%= settings.src %>/js/display/05.ballpit.js',
+                    '<%= settings.src %>/js/display/10.display.js',
+                    '<%= settings.src %>/js/display/20.control.js',
+                    '<%= settings.src %>/js/process/10.chooseData.js',
+                    '<%= settings.src %>/js/process/20.oauth.js',
+                    '<%= settings.src %>/js/process/30.retrieve.js',
+                    '<%= settings.src %>/js/process/40.process.js',
+                    '<%= settings.src %>/js/process/45.process.browsers.js',
+                    '<%= settings.src %>/js/process/50.whoAmI.js',
+                    '<%= settings.src %>/js/process/70.lookup.js'
+                ],
+                dest: '<%= settings.dist %>/js/radar.js'
+            },
+            lab: {
                 src: [
                     '<%= settings.npm %>/fontfaceobserver/fontfaceobserver.js',
                     '<%= settings.npm %>/jquery/dist/jquery.js',
@@ -39,7 +66,7 @@ module.exports = function(grunt) {
                     '<%= settings.npm %>/ua-parser-js/dist/ua-parser.min.js',
                     '<%= settings.src %>/js/*/*.js'
                 ],
-                dest: '<%= settings.dist %>/js/script.js'
+                dest: '<%= settings.dist %>/js/lab.js'
             }
         },
 
@@ -197,7 +224,7 @@ module.exports = function(grunt) {
     require('time-grunt')(grunt);
     grunt.loadNpmTasks('grunt-hbs');
 
-    grunt.registerTask('main', [ 'clean:dist', 'hbs', 'copy', 'sass', 'autoprefixer', 'concat', ]);
+    grunt.registerTask('main', [ 'clean:dist', 'hbs', 'copy', 'sass', 'autoprefixer', 'concat:radar', ]);
 
     grunt.registerTask('default', [ 'main', 'connect', 'watch' ]);
 
