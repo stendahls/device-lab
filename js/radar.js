@@ -10254,6 +10254,15 @@ var gaConfig = {
       }
     },
     {
+      'name': 'UZA',
+      'abbr': 'uza',
+      'view': '74801518',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
       'name': 'UTH',
       'abbr': 'uth',
       'view': '74790785',
