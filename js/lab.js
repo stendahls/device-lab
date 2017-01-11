@@ -10425,7 +10425,7 @@ var retrieve = function() {
       } else {
         storageRemove('lab:' + inputName);
       }
-      if (this.getAttribute('data-js-input-runreports')) {
+      if (this.hasAttribute('data-js-input-runreports')) {
         queryLab();
       }
     };
@@ -10525,7 +10525,7 @@ var retrieve = function() {
     
     var outputDimensions = [];
     var outputFilters = [];
-    var inputs = document.querySelectorAll('[data-js-input-runreports]');
+    var inputs = document.querySelectorAll('[data-js-input-postarg]');
     for(var i = 0; i<inputs.length; i++) {
       var input = inputs[i];
       var inputName = input.name;

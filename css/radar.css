@@ -37,8 +37,14 @@ html, body {
   line-height: 1; }
   .result__total__percentage {
     font-size: 40vw; }
+    @media (orientation: landscape) {
+      .result__total__percentage {
+        font-size: 30vw; } }
   .result__total__title, .result__total__ua, .result__total__actual {
     font-size: 10vw; }
+    @media (orientation: landscape) {
+      .result__total__title, .result__total__ua, .result__total__actual {
+        font-size: 5vw; } }
   .result__total__actual {
     color: #0B4C59; }
   .result__total__ua {
@@ -46,6 +52,9 @@ html, body {
     font-size: 4vw;
     color: #666;
     line-height: 1.2; }
+    @media (orientation: landscape) {
+      .result__total__ua {
+        font-size: 3vw; } }
 
 @font-face {
   font-family: 'Comfortaa', serif;
@@ -310,7 +319,7 @@ input[type="radio"] {
   bottom: 100%;
   right: 0;
   z-index: 11;
-  max-height: 90vh;
+  max-height: calc(100vh - 100px);
   color: #51B2B8;
   background-color: #0B4C59;
   -webkit-transform: translateY(100%);
@@ -323,7 +332,7 @@ input[type="radio"] {
             transform: translateY(-3px); }
   .control__inner {
     width: 100%;
-    max-height: 89vh;
+    max-height: calc(100vh - 102px);
     padding: 2rem;
     overflow: auto;
     -webkit--webkit-overflow-scrolling: touch; }
