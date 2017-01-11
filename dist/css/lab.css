@@ -14,6 +14,39 @@ html, body {
   text-align: center;
   overflow: hidden; }
 
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
+.result {
+  color: #D45206;
+  line-height: 1; }
+  .result__total__percentage {
+    font-size: 40vw; }
+  .result__total__title, .result__total__ua, .result__total__actual {
+    font-size: 10vw; }
+  .result__total__actual {
+    color: #780202; }
+  .result__total__ua {
+    max-width: 28em;
+    font-size: 4vw;
+    color: #666;
+    line-height: 1.2; }
+
 @font-face {
   font-family: 'Comfortaa', serif;
   font-weight: normal;
@@ -128,12 +161,34 @@ strong {
     white-space: nowrap;
     overflow: hidden; }
 
+input {
+  position: relative;
+  -webkit-appearance: button;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  height: 3em;
+  margin: 2px;
+  padding: 0.3em 0.6em;
+  color: #780202;
+  background-color: #D45206;
+  border: 1px solid #D45206;
+  font-family: Roboto,arial,sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  overflow: hidden;
+  -webkit-transition: box-shadow 200ms, border-color 200ms;
+  transition: box-shadow 200ms, border-color 200ms;
+  white-space: nowrap; }
+
 select {
   position: relative;
   -webkit-appearance: button;
   box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
+  width: 100%;
   height: 3em;
   margin: 2px;
   padding: 0.3em 0.6em;
@@ -164,7 +219,7 @@ select {
     @media all and (-webkit-min-device-pixel-ratio: 0) {
       select:not([size]) {
         padding-right: 30px;
-        background-image: url("data:image/svg+xml;utf8,<svg width='24px' height='22px' version='1.1' xmlns='http://www.w3.org/2000/svg'><title>select-arrow</title><g id='arrow-group'><path d='M10,9 L13.4690265,14 L17,9 L10,9 Z M10,9' id='arrow' fill='#2D6C73'></path><path d='M2,1 L2,21 L3,21 L3,1 L2,1 Z M2,1' id='dark-line' fill='#2D6C73'></path></g></svg>");
+        background-image: url("data:image/svg+xml;utf8,<svg width='24px' height='22px' version='1.1' xmlns='http://www.w3.org/2000/svg'><title>select-arrow</title><g id='arrow-group'><path d='M10,9 L13.4690265,14 L17,9 L10,9 Z M10,9' id='arrow' fill='#780202'></path><path d='M2,1 L2,21 L3,21 L3,1 L2,1 Z M2,1' id='dark-line' fill='#780202'></path></g></svg>");
         background-repeat: no-repeat, repeat;
         background-position: 100% 50%, 0 0; } }
     select:not([size])::-ms-expand {
@@ -276,7 +331,7 @@ input[type="radio"] {
   bottom: 100%;
   right: 0;
   z-index: 11;
-  padding: 2em;
+  max-height: 90vh;
   color: #D45206;
   background-color: #780202;
   -webkit-transform: translateY(100%);
@@ -285,8 +340,14 @@ input[type="radio"] {
           transition: transform 300ms;
   text-align: left; }
   .control__check:checked + .control {
-    -webkit-transform: translateY(0);
-            transform: translateY(0); }
+    -webkit-transform: translateY(-3px);
+            transform: translateY(-3px); }
+  .control__inner {
+    width: 100%;
+    max-height: 89vh;
+    padding: 2rem;
+    overflow: auto;
+    -webkit--webkit-overflow-scrolling: touch; }
   .control__title {
     font-size: 2em;
     margin: 0 0 0.8em;
@@ -297,11 +358,18 @@ input[type="radio"] {
     position: absolute;
     right: 0;
     top: 100%;
-    width: 40px;
+    width: 2rem;
     height: 0;
-    border-left: 10px solid transparent;
-    border-top: 40px solid #780202;
+    margin-top: -1px;
+    border-left: 0.5rem solid transparent;
+    border-top: 2rem solid #780202;
     cursor: pointer; }
+  .control__cell h3 {
+    margin: 1em 0 0.5em; }
+  .control__split1 {
+    width: 25%; }
+  .control__split2 {
+    width: 70%; }
   .control__manual {
     position: relative;
     z-index: 999;

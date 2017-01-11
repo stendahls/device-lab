@@ -9,9 +9,9 @@
   
   <meta name="msapplication-tap-highlight" content="no" />
   
-  <title>🎯 DEVICE RADAR</title>
+  <title>⚗️ DEVICE LAB</title>
 
-  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/lab.css"/>
   
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="{{ globals 'site.themeColor' }}" />
@@ -28,7 +28,7 @@
   <script>
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-      retrieve.queryAllReports();
+      retrieve.queryLab();
       document.querySelector('html').classList.add('logged-in');
     }
     function onFailure(error) {
@@ -52,65 +52,146 @@
   </head>
   <body data-js-background-click>
     
-  <svg xmlns="http://www.w3.org/2000/svg">
-    <filter id="darkenSVG">
-      <feColorMatrix type="matrix" values=".3  0   0   0   0
-                                           0  .3   0   0   0
-                                           0   0  .3   0   0
-                                           0   0   0   1   0" />
-    </filter>
-  </svg>
-    
   <input type="checkbox" id="control-close" class="control__check" style="display:none;" />
   <nav class="control">
+    <div class="control__inner">
     
-    <h1 class="control__title">device radar</h1>
-    
-    <label class="control__close" for="control-close"></label>
-    
-    <div class="control__row">
+      <h1 class="control__title">device lab</h1>
       
-      <div class="control__cell">
-        
-        <h3>Google API</h3>
-    
-        <div id="my-signin2" data-onsuccess="retrieve.queryAllReports"></div>
-        <button class="control__manual" onclick="retrieve.queryAllReports()" data-js-control-manual>manual run</button>
-        <div class="control__manual abcRioButtonBlue" style="display:none" data-js-control-none>no data or connection</div>
-        
-      </div>
-        
-      <div class="control__cell">
-        
-        <h3>Time period</h3>
-    
-        <select data-js-control-time>
-          <option value="0">Most recent full week</option>
-          <option value="-1">The week 1 month ago</option>
-          <option value="-3">The week 3 months ago</option>
-          <option value="-6">The week 6 months ago</option>
-          <option value="-12">The week 12 months ago</option>
-          <option value="week">This week so far</option>
-          <option value="7days">Last seven days</option>
-          <option value="today">Today</option>
-        </select>
-        
-      </div>
-        
-      <div class="control__cell">
-        
-        <h3>Numbers</h3>
-    
-        <label><input type="radio" name="values" value="0" data-js-control-value checked /> Sessions</label>
-        <label><input type="radio" name="values" value="1" data-js-control-value  /> Revenue</label>
-        
-      </div>
+      <label class="control__close" for="control-close"></label>
       
+      <div class="control__row">
+        
+        <div class="control__cell">
+          
+          <h3>Google API</h3>
+      
+          <div id="my-signin2" data-onsuccess="retrieve.queryAllReports"></div>
+          <button class="control__manual" onclick="retrieve.queryAllReports()" data-js-control-manual>manual run</button>
+          <div class="control__manual abcRioButtonBlue" style="display:none" data-js-control-none>no data or connection</div>
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>Device title</h3>
+          
+          <input type="text" name="title" data-js-input />
+          
+        </div>
+        
+        <div class="control__cell">
+          
+          <h3>ga:deviceCategory</h3>
+          
+          <select name="ga:deviceCategory" data-js-input data-js-input-runreports>
+            <option value="mobile">Mobile</option>
+            <option value="tablet">Tablet</option>
+            <option value="desktop">Desktop/Laptop</option>
+          </select>
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:mobileDeviceBranding</h3>
+          
+          <select name="tp:mobileDeviceBranding" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:mobileDeviceBranding" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:mobileDeviceModel</h3>
+          
+          <select name="tp:mobileDeviceModel" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:mobileDeviceModel" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:operatingSystem</h3>
+          
+          <select name="tp:operatingSystem" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:operatingSystem" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:operatingSystemVersion</h3>
+          
+          <select name="tp:operatingSystemVersion" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:operatingSystemVersion" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:browser</h3>
+          
+          <select name="tp:browser" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:browser" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:browserVersion</h3>
+          
+          <select name="tp:browserVersion" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:browserVersion" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:screenResolution</h3>
+          
+          <select name="tp:screenResolution" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:screenResolution" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+      </div>  
     </div>
-    
   </nav>
   
-  <div class="container" data-js-container></div>
+  <div class="container result" data-js-container>
+    <div class="result__total__title" data-js-result-title></div>
+    <div class="result__total__actual" data-js-result-actual></div>
+    <div class="result__total__percentage" data-js-result-percentage></div>
+    <div class="result__total__ua" data-js-result-ua></div>
+  </div>
   <script src="js/lab.js"></script>
   </body>
 </html>

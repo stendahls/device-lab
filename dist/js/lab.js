@@ -10076,3 +10076,576 @@ var storageRemove = function(key) {
             document.cookie = "fonts-loaded=1; path=/";
         });
 }( this ));
+
+var browsersConfig = [
+  {
+    "name": "Chrome",
+    "gaName": "Chrome",
+    "uaName": "Chrome",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 4,
+      },
+      {
+        "name": "Medium",
+        "last": 15,
+      }
+    ]
+  },
+  {
+    "name": "Safari",
+    "gaName": "Safari",
+    "uaName": ["Safari","Mobile Safari"],
+    "type": "majorVersion",
+    "age": 4,
+    "translate": [
+      {
+        "type": "MoreEqualTo",
+        "src": 9000,
+        "version": 7
+      },
+      {
+        "type": "MoreEqualTo",
+        "src": 8000,
+        "version": 8
+      },
+      {
+        "type": "MoreEqualTo",
+        "src": 600,
+        "version": 8
+      },
+      {
+        "type": "MoreEqualTo",
+        "src": 538,
+        "version": 8
+      },
+      {
+        "type": "MoreEqualTo",
+        "src": 537,
+        "version": 7
+      },
+      {
+        "type": "MoreEqualTo",
+        "src": 536,
+        "version": 6
+      },
+      {
+        "type": "MoreEqualTo",
+        "src": 100,
+        "version": 5
+      }
+    ]
+  },
+  {
+    "name": "Safari (in-app)",
+    "gaName": "Safari (in-app)",
+    "type": "majorVersion"
+  },
+  {
+    "name": "IE",
+    "gaName": "Internet Explorer",
+    "uaName": ["Internet Explorer","IE","IEMobile"],
+    "type": "majorVersion",
+    "age": 5
+  },
+  {
+    "name": "Firefox",
+    "gaName": "Firefox",
+    "uaName": "Firefox",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 4,
+      },
+      {
+        "name": "Medium",
+        "last": 10,
+      }
+    ]
+  },
+  {
+    "name": "Edge",
+    "gaName": "Edge",
+    "uaName": "Edge",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 1,
+      },
+      {
+        "name": "Medium",
+        "last": 3,
+      }
+    ]
+  },
+  {
+    "name": "Opera",
+    "gaName": "Opera",
+    "uaName": "Opera",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 4,
+      },
+      {
+        "name": "Medium",
+        "last": 10,
+      }
+    ]
+  },
+  {
+    "name": "Android Browser",
+    "gaName": "Android Browser",
+    "uaName": "Android Browser",
+    "type": "majorVersion",
+    "age": 1
+  },
+  {
+    "name": "BlackBerry",
+    "gaName": "BlackBerry",
+    "uaName": "BlackBerry",
+    "type": "majorVersion",
+    "age": 1
+  }
+];
+var OAUTH_CLIENT_ID = "776189517355-6bjjleaopdes0fe57f8gsf4i1ncgflpb.apps.googleusercontent.com";
+
+var gaConfig = {
+  views: [
+    {
+      'name': 'T',
+      'abbr': 'ts',
+      'view': '14912375',
+      'colors': {
+        1: '#fff',
+        2: '#1c5976'
+      }
+    },
+    {
+      'name': 'W',
+      'abbr': 'ws',
+      'view': '14554529',
+      'colors': {
+        1: '#000',
+        2: '#fc0'
+      }
+    },
+    {
+      'name': 'UJA',
+      'abbr': 'uja',
+      'view': '74801519',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
+      'name': 'UAU',
+      'abbr': 'uau',
+      'view': '74798055',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
+      'name': 'UTH',
+      'abbr': 'uth',
+      'view': '74790785',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
+      'name': 'VHN',
+      'abbr': 'vhn',
+      'view': '91846327',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
+      'name': 'IV',
+      'abbr': 'iv',
+      'view': '125131939',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
+      'name': 'GE',
+      'abbr': 'ge',
+      'view': '24119751',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
+      'name': 'R',
+      'abbr': 'r',
+      'view': '11560419',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    }
+  ],
+  reportRequests: [
+    {
+      dateRanges: [
+        {
+          startDate: '7daysAgo',
+          endDate: 'today'
+        }
+      ],
+      metrics: [
+        {expression: 'ga:sessions'},
+        {expression: 'ga:transactionRevenue'}
+      ],
+      dimensions:
+      [
+        {name: "ga:deviceCategory"},
+        {name: "ga:browser"},
+        {name: "ga:browserVersion"}
+      ]
+    }
+  ]
+};
+var viewConfig = {
+  locale: 'sv-SE',
+  svgSize: 300,
+  radius: 150,
+  minSize: 0.2,
+  strokeWidth: 10,
+  strokeWidthActive: 40,
+  labelFontSize: 10
+};
+var oAuthMetaClientId = document.createElement("meta"); 
+oAuthMetaClientId.setAttribute('name','google-signin-client_id');
+oAuthMetaClientId.setAttribute('content',OAUTH_CLIENT_ID);
+
+var $oAuthMetaScope = $('meta[name="google-signin-scope"]');
+
+document.head.insertBefore(oAuthMetaClientId,$oAuthMetaScope[0]);
+var retrieve = function() {
+  "use strict";
+  
+  var configStart = null;
+  var configEnd = null;
+  var configYr = null;
+  var configWk = null;
+  var configSuffix = null;
+  var configNoStorage = false;
+  var localStorageTrue = false;
+  var gaRequest = {};
+  var dimensions = [
+    'ga:deviceCategory',
+    'ga:operatingSystem',
+    'ga:operatingSystemVersion',
+    'ga:mobileDeviceModel',
+    'ga:screenResolution'
+  ];
+
+  var init = function() {
+    localStorageTrue = testForLocalStorage();
+    gaRequest = {
+      path: '/v4/reports:batchGet',
+      root: 'https://analyticsreporting.googleapis.com/',
+      method: 'POST',
+      body: {
+        reportRequests: gaConfig.reportRequests
+      }
+    };
+    
+    readDefaults();
+    
+    registerEvents();
+    
+    // set the overall amount
+    gaRequest.body.reportRequests.push({
+      dateRanges: [
+        {
+          startDate: '7daysAgo',
+          endDate: 'today'
+        }
+      ],
+      metrics: [
+        {expression: 'ga:sessions'},
+        {expression: 'ga:transactionRevenue'}
+      ]
+    });
+    
+    setDateRange();
+    
+    // check to see if any local storage is available
+    var testAbbr = gaConfig.views[0].abbr;
+    var localStorageKey = storageKey(testAbbr);
+    if (!localStorageTrue || storageGet(localStorageKey) === null) {
+      document.querySelector('[data-js-control-manual]').style.display = 'none';
+      if (typeof(gapi) === 'undefined') {
+        document.querySelector('[data-js-control-none]').style.display = 'block';
+      }
+    }
+  };
+  
+  var readDefaults = function() {
+    
+    console.log('**** readDefaults ****');
+    
+    var inputs = document.querySelectorAll('[data-js-input]');
+    for(var i = 0; i<inputs.length; i++) {
+      var input = inputs[i];
+      var inputName = input.name;
+      var InputValue = storageGet('lab:' + inputName);
+      if (InputValue && InputValue.length) {
+        input.value = InputValue;
+      }
+    }
+  };
+  
+  var registerEvents = function() {
+    
+    console.log('**** registerEvents ****');
+    
+    var inputSet = function() {
+      console.log('SETTTING CHANGED: ' + inputValue);
+      var inputName = this.name;
+      var inputValue = this.value.trim();
+      if (inputValue && inputValue.length) {
+        storageSet('lab:' + inputName,inputValue);
+      } else {
+        storageRemove('lab:' + inputName);
+      }
+      if (this.getAttribute('data-js-input-runreports')) {
+        queryLab();
+      }
+    };
+    
+    var inputsText = document.querySelectorAll('input[data-js-input]');
+    var inputsSelect = document.querySelectorAll('select[data-js-input]');
+    for(var i = 0; i<inputsText.length; i++) {
+      var input = inputsText[i];
+      input.addEventListener('blur',inputSet);
+    }
+    for(i = 0; i<inputsSelect.length; i++) {
+      var select = inputsSelect[i];
+      select.addEventListener('change',inputSet);
+    }
+  };
+
+  var setDateRange = function () {
+    var dateNow = new Date();
+    var dateYr = dateNow.getYear();
+    var dateWk = dateNow.getWeek();
+    
+    var reportStartDate = null;
+    var reportEndDate = null;
+    
+    configNoStorage = false;
+    configSuffix = '';
+    
+    reportStartDate = new Date(dateNow.setDate(dateNow.getDate() - 7));
+    reportEndDate = dateNow;
+    configStart = '7daysAgo';
+    configEnd = 'today';
+    configSuffix = '7d';
+    configNoStorage = true;
+        
+    configYr = reportStartDate.toISOString().slice(0,4) || dateYr;
+    configWk = reportStartDate.getWeek() || dateWk;
+    for(var i=0; i<gaRequest.body.reportRequests.length; i++) {
+      gaRequest.body.reportRequests[i].dateRanges = [{
+        startDate: configStart,
+        endDate: configEnd
+      }];
+    }
+  };
+
+
+  // Query the API and print the results to the page.
+  var queryLab = function () {
+    //display.killAll();
+    console.log('**** RUN ALL ****');
+    
+    setDateRange(); 
+    
+    queryLabLoop().then(function() {
+      
+      console.log('**** RADAR: ****');
+      //console.log(radar);
+    });
+
+  };
+
+
+  // query all the reports sequentially
+  var queryLabLoop = function () {
+    
+    return new Promise(function(resolve, reject) {
+      
+      var queryLabCycle = function (reportIndex) {
+        
+        reportIndex = reportIndex || 0;
+        var reportNode = gaConfig.views[reportIndex];
+        queryReports(reportNode).then(function() {
+          
+          /* CAN'T BUILD A BALL AS SOON AS THE DATA IS HERE - we need to know the maximum amounts before we start resizing */
+          // build a ball and drop into the ballpit
+          //console.log(reportIndex)
+          //display.buildPie(reportIndex);
+          //console.log(reportNode.abbr)
+          //ballpit.addBall(reportNode.abbr);
+          
+          // run again?
+          reportIndex++;
+          if (reportIndex < gaConfig.views.length) {
+            queryLabCycle(reportIndex);
+          } else {
+            resolve(true);
+          }
+        });
+        
+      };
+      queryLabCycle();
+      
+    });
+    
+  };
+  
+  var setFilters = function() {
+    
+    var outputDimensions = [];
+    var outputFilters = [];
+    var inputs = document.querySelectorAll('[data-js-input-runreports]');
+    for(var i = 0; i<inputs.length; i++) {
+      var input = inputs[i];
+      var inputName = input.name;
+      var inputType = 'EXACT';
+      var inputTypeName = '[name="' + inputName.replace('ga','tp') + '"]';
+      var inputTypeEl = document.querySelector(inputTypeName);
+      if (inputTypeEl) {
+        inputType = document.querySelector('[name="' + inputName.replace('ga','tp') + '"]').value || 'EXACT';
+      }
+      var inputValue = input.value.trim();
+      if (inputValue.length) {
+        
+        outputDimensions.push({'name':inputName});
+        outputFilters.push(
+          {"filters": 
+            [{
+              "dimensionName": inputName,
+              "operator": inputType,
+              "expressions": inputValue.split('|')
+            }]
+          });
+      }
+    }
+    return {
+      'dimensions': outputDimensions,
+      'dimensionFilters': outputFilters
+    };
+  };
+    
+  // Query the API and print the results to the page.
+  var queryReports = function (reportNode) {
+
+    var localStorageKey = storageKey(reportNode.abbr);
+    
+    return new Promise(function(resolve, reject) {
+      
+      // if in local storage, use that
+      //if (localStorageTrue && storageGet(localStorageKey) !== null && !configNoStorage) {
+      //  // check the datestamp on the data to make sure it's up to date info (ie, it was collected after the week end)
+      //  if (2 > 1 /* FIX THIS! */) {
+      //    console.log('**** run '  + reportNode.name + ': ' + reportNode.view + ' from local storage ****');
+      //    var response = JSON.parse(storageGet(localStorageKey));
+      //    processData(response,reportNode);
+      //    resolve(true);
+      //    return;
+      //  }
+      //} else {
+      //  document.querySelector('[data-js-control-manual]').style.display = 'none';
+      //}
+      
+      // else retrieve via web and store in local storage
+      
+      console.log('**** run '  + reportNode.name + ': ' + reportNode.view + ' from online ****');
+      
+      // set filters:
+      var filters = setFilters();
+      gaRequest.body.reportRequests[0].dimensions = filters.dimensions;
+      gaRequest.body.reportRequests[0].dimensionFilterClauses = filters.dimensionFilters;
+      
+      for(var i=0; i<gaRequest.body.reportRequests.length; i++) {
+        gaRequest.body.reportRequests[i].viewId = reportNode.view;
+      }
+      console.warn(gaRequest);
+      gapi.client.request(gaRequest).then(
+        
+        function(response) {
+          
+          queryResponse(response,reportNode);
+          resolve(true);
+        }, console.error.bind(console));
+      
+    });
+    
+  };
+
+  var queryResponse = function (response,reportNode) {
+    
+    var resultTitle = document.querySelector('[data-js-result-title]');
+    var resultUA    = document.querySelector('[data-js-result-ua]');
+    var resultPerc  = document.querySelector('[data-js-result-percentage]');
+    var resultAct   = document.querySelector('[data-js-result-actual]');
+    resultTitle.innerText = '';
+    resultUA.innerText = '';
+    resultPerc.innerText = '';
+    resultAct.innerText = '';
+    
+    if (typeof response.result.reports === 'undefined' || typeof response.result.reports[0].data.rows === 'undefined') {
+      resultTitle.innerText = 'error. no results?';
+      return;
+    }
+    
+    var segment     = response.result.reports[0].data.rows[0].metrics[0].values[0];
+    var total       = response.result.reports[1].data.rows[0].metrics[0].values[0];
+    var percOfTotal = (segment/total)* 100;
+    if (percOfTotal > 9) {
+      percOfTotal   = Math.round(percOfTotal);
+    } else {
+      percOfTotal   = percOfTotal.toFixed(1);
+    }
+    resultTitle.innerText = document.querySelector('[name="title"]').value;
+    resultUA.innerText = window.navigator.userAgent;
+    resultPerc.innerText = percOfTotal + '%';
+    resultAct.innerText = segment + '/' + total;
+      
+    //processData(response,reportNode);
+    //// save the response to local storage
+    //if (localStorageTrue && !configNoStorage) {
+    //  var localStorageKey = storageKey(reportNode.abbr);
+    //  storageSet(localStorageKey,JSON.stringify(response));
+    //}
+  };
+  
+  var storageKey = function(abbr) {
+    var newKey = abbr + '-y' + configYr + '-w' + configWk + (configSuffix ? '-' + configSuffix : '');
+    return newKey;
+  };
+
+  return {
+    init: init(),
+    queryLab: queryLab
+  };
+  
+}();

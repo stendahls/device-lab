@@ -11,3 +11,36 @@ html,body {
   text-align: center;
   overflow: hidden;
 }
+
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.result {
+  color: $colorFG1;
+  line-height: 1;
+  &__total {
+    &__percentage {
+      font-size: 40vw;
+    }
+    &__title,
+    &__ua,
+    &__actual {
+      font-size: 10vw;
+    }
+    &__actual {
+      color: $colorBG2;
+    }
+    &__ua {
+      max-width: 28em;
+      font-size: 4vw;
+      color: #666;
+      line-height: 1.2;
+    }
+  }
+}

@@ -3,14 +3,21 @@
   bottom: 100%;
   right: 0;
   z-index: 11;
-  padding: 2em;
+  max-height: 90vh;
   color: $colorFG1;
   background-color: $colorBG2;
   transform: translateY(100%);
   transition: transform 300ms;
   text-align: left;
   .control__check:checked + & {
-    transform: translateY(0);
+    transform: translateY(-3px);
+  }
+  &__inner {
+    width: 100%;
+    max-height: 89vh;
+    padding: 2rem;
+    overflow: auto;
+    -webkit--webkit-overflow-scrolling: touch;
   }
   &__title {
     font-size: 2em;
@@ -24,16 +31,28 @@
     position: absolute;
     right: 0;
     top: 100%;
-    width: 40px;
+    width: 2rem;
     height: 0;
-    border-left: 10px solid transparent;
-    border-top: 40px solid $colorBG2;
+    margin-top: -1px;
+    border-left: 0.5rem solid transparent;
+    border-top: 2rem solid $colorBG2;
     cursor: pointer;
   }
   &__row {
     //display: flex;
     //justify-content: space-between;
     //flex-wrap: wrap;
+  }
+  &__cell {
+    h3 {
+      margin: 1em 0 0.5em;
+    }
+  }
+  &__split1 {
+    width: 25%;
+  }
+  &__split2 {
+    width: 70%;
   }
   &__manual {
     position: relative;

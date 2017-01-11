@@ -49,7 +49,7 @@ module.exports = function(grunt) {
                     '<%= settings.src %>/js/display/20.control.js',
                     '<%= settings.src %>/js/process/10.chooseData.js',
                     '<%= settings.src %>/js/process/20.oauth.js',
-                    '<%= settings.src %>/js/process/30.retrieve.js',
+                    '<%= settings.src %>/js/process/30.retrieve-radar.js',
                     '<%= settings.src %>/js/process/40.process.js',
                     '<%= settings.src %>/js/process/45.process.browsers.js',
                     '<%= settings.src %>/js/process/50.whoAmI.js',
@@ -65,7 +65,12 @@ module.exports = function(grunt) {
                     '<%= settings.npm %>/ua-parser-js/dist/ua-parser.min.js',
                     '<%= settings.src %>/js/base/utilities.js',
                     '<%= settings.src %>/js/base/storage.js',
-                    '<%= settings.src %>/js/base/webfontObserver.js'
+                    '<%= settings.src %>/js/base/webfontObserver.js',
+                    '<%= settings.src %>/js/config/01.config.browsers.js',
+                    '<%= settings.src %>/js/config/02.config.gapi.js',
+                    '<%= settings.src %>/js/config/03.config.view.js',
+                    '<%= settings.src %>/js/process/20.oauth.js',
+                    '<%= settings.src %>/js/process/30.retrieve-lab.js'
                 ],
                 dest: '<%= settings.dist %>/js/lab.js'
             }
