@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="{{ meta.description }}" />
+  <meta name="keywords" content="{{ meta.keywords }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, max-scale=1" />
+  <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
+  
+  <meta name="msapplication-tap-highlight" content="no" />
+  
+  <title>⚗️ DEVICE LAB</title>
+
+  <link rel="stylesheet" href="css/lab.css"/>
+  
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="{{ globals 'site.themeColor' }}" />
+  <meta name="application-name" content="{{ yep }}" />
+  <link rel="icon" href="{{ globals 'site.meta.favIconPath' }}" type="image/x-icon" />
+  <link rel="icon" sizes="192x192" href="{{ globals 'site.meta.icon192Url' }}" />
+  <meta name="apple-mobile-web-app-title" content="{{ globals 'site.title' }}">
+  <link rel="apple-touch-icon" href="{{ globals 'site.meta.appleTouchIconiPhoneUrl' }}"/>
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ globals 'site.meta.appleTouchIconiPhone2Url' }}"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ globals 'site.meta.appleTouchIconiPad2Url' }}"/>
+  <meta name="msapplication-TileImage" content="{{ globals 'site.meta.appleTouchIconiPad2Url' }}" />
+  <meta name="msapplication-TileColor" content="{{ globals 'site.themeColor' }}" />
+  
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      retrieve.queryLab();
+      document.querySelector('html').classList.add('logged-in');
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+  
+  <script src="https://apis.google.com/js/client:platform.js?onload=renderButton"></script>
+  
+  </head>
+  <body data-js-background-click>
+    
+  <input type="checkbox" id="control-close" class="control__check" style="display:none;" />
+  <nav class="control">
+    <div class="control__inner">
+    
+      <h1 class="control__title">device lab</h1>
+      
+      <label class="control__close" for="control-close"></label>
+      
+      <div class="control__row">
+        
+        <div class="control__cell">
+          
+          <h3>Google API</h3>
+      
+          <div id="my-signin2" data-onsuccess="retrieve.queryAllReports"></div>
+          <button class="control__manual" onclick="retrieve.queryAllReports()" data-js-control-manual>manual run</button>
+          <div class="control__manual abcRioButtonBlue" style="display:none" data-js-control-none>no data or connection</div>
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>Device title</h3>
+          
+          <input type="text" name="title" data-js-input />
+          
+        </div>
+        
+        <div class="control__cell">
+          
+          <h3>ga:deviceCategory</h3>
+          
+          <select name="ga:deviceCategory" data-js-input data-js-input-runreports>
+            <option value="mobile">Mobile</option>
+            <option value="tablet">Tablet</option>
+            <option value="desktop">Desktop/Laptop</option>
+          </select>
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:mobileDeviceBranding</h3>
+          
+          <select name="tp:mobileDeviceBranding" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:mobileDeviceBranding" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:mobileDeviceModel</h3>
+          
+          <select name="tp:mobileDeviceModel" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:mobileDeviceModel" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:operatingSystem</h3>
+          
+          <select name="tp:operatingSystem" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:operatingSystem" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:operatingSystemVersion</h3>
+          
+          <select name="tp:operatingSystemVersion" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:operatingSystemVersion" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:browser</h3>
+          
+          <select name="tp:browser" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:browser" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:browserVersion</h3>
+          
+          <select name="tp:browserVersion" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:browserVersion" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>ga:screenResolution</h3>
+          
+          <select name="tp:screenResolution" class="control__split1" data-js-input >
+            <option value="EXACT">==</option>
+            <option value="REGEXP">=@</option>
+            <option value="BEGINS_WITH">=^</option>
+          </select>
+          <input type="text" name="ga:screenResolution" class="control__split2" data-js-input data-js-input-runreports />
+          
+        </div>
+      </div>  
+    </div>
+  </nav>
+  
+  <div class="container result" data-js-container>
+    <div class="result__total__title" data-js-result-title></div>
+    <div class="result__total__actual" data-js-result-actual></div>
+    <div class="result__total__percentage" data-js-result-percentage></div>
+    <div class="result__total__ua" data-js-result-ua></div>
+  </div>
+  <script src="js/lab.js"></script>
+  </body>
+</html>

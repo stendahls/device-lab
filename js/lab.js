@@ -9833,38 +9833,6 @@ return jQuery;
  * Copyright © 2012-2015 Faisal Salman <fyzlman@gmail.com>
  * Dual licensed under GPLv2 & MIT
  */(function(e,t){"use strict";var n="0.7.10",r="",i="?",s="function",o="undefined",u="object",a="string",f="major",l="model",c="name",h="type",p="vendor",d="version",v="architecture",m="console",g="mobile",y="tablet",b="smarttv",w="wearable",E="embedded",S={extend:function(e,t){for(var n in t)"browser cpu device engine os".indexOf(n)!==-1&&t[n].length%2===0&&(e[n]=t[n].concat(e[n]));return e},has:function(e,t){return typeof e=="string"?t.toLowerCase().indexOf(e.toLowerCase())!==-1:!1},lowerize:function(e){return e.toLowerCase()},major:function(e){return typeof e===a?e.split(".")[0]:t}},x={rgx:function(){var e,n=0,r,i,a,f,l,c,h=arguments;while(n<h.length&&!l){var p=h[n],d=h[n+1];if(typeof e===o){e={};for(a in d)d.hasOwnProperty(a)&&(f=d[a],typeof f===u?e[f[0]]=t:e[f]=t)}r=i=0;while(r<p.length&&!l){l=p[r++].exec(this.getUA());if(!!l)for(a=0;a<d.length;a++)c=l[++i],f=d[a],typeof f===u&&f.length>0?f.length==2?typeof f[1]==s?e[f[0]]=f[1].call(this,c):e[f[0]]=f[1]:f.length==3?typeof f[1]===s&&(!f[1].exec||!f[1].test)?e[f[0]]=c?f[1].call(this,c,f[2]):t:e[f[0]]=c?c.replace(f[1],f[2]):t:f.length==4&&(e[f[0]]=c?f[3].call(this,c.replace(f[1],f[2])):t):e[f]=c?c:t}n+=2}return e},str:function(e,n){for(var r in n)if(typeof n[r]===u&&n[r].length>0){for(var s=0;s<n[r].length;s++)if(S.has(n[r][s],e))return r===i?t:r}else if(S.has(n[r],e))return r===i?t:r;return e}},T={browser:{oldsafari:{version:{"1.0":"/8",1.2:"/1",1.3:"/3","2.0":"/412","2.0.2":"/416","2.0.3":"/417","2.0.4":"/419","?":"/"}}},device:{amazon:{model:{"Fire Phone":["SD","KF"]}},sprint:{model:{"Evo Shift 4G":"7373KT"},vendor:{HTC:"APA",Sprint:"Sprint"}}},os:{windows:{version:{ME:"4.90","NT 3.11":"NT3.51","NT 4.0":"NT4.0",2e3:"NT 5.0",XP:["NT 5.1","NT 5.2"],Vista:"NT 6.0",7:"NT 6.1",8:"NT 6.2",8.1:"NT 6.3",10:["NT 6.4","NT 10.0"],RT:"ARM"}}}},N={browser:[[/(opera\smini)\/([\w\.-]+)/i,/(opera\s[mobiletab]+).+version\/([\w\.-]+)/i,/(opera).+version\/([\w\.]+)/i,/(opera)[\/\s]+([\w\.]+)/i],[c,d],[/\s(opr)\/([\w\.]+)/i],[[c,"Opera"],d],[/(kindle)\/([\w\.]+)/i,/(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?([\w\.]+)*/i,/(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?([\w\.]*)/i,/(?:ms|\()(ie)\s([\w\.]+)/i,/(rekonq)\/([\w\.]+)*/i,/(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium|phantomjs)\/([\w\.-]+)/i],[c,d],[/(trident).+rv[:\s]([\w\.]+).+like\sgecko/i],[[c,"IE"],d],[/(edge)\/((\d+)?[\w\.]+)/i],[c,d],[/(yabrowser)\/([\w\.]+)/i],[[c,"Yandex"],d],[/(comodo_dragon)\/([\w\.]+)/i],[[c,/_/g," "],d],[/(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?([\w\.]+)/i,/(qqbrowser)[\/\s]?([\w\.]+)/i],[c,d],[/(uc\s?browser)[\/\s]?([\w\.]+)/i,/ucweb.+(ucbrowser)[\/\s]?([\w\.]+)/i,/JUC.+(ucweb)[\/\s]?([\w\.]+)/i],[[c,"UCBrowser"],d],[/(dolfin)\/([\w\.]+)/i],[[c,"Dolphin"],d],[/((?:android.+)crmo|crios)\/([\w\.]+)/i],[[c,"Chrome"],d],[/XiaoMi\/MiuiBrowser\/([\w\.]+)/i],[d,[c,"MIUI Browser"]],[/android.+version\/([\w\.]+)\s+(?:mobile\s?safari|safari)/i],[d,[c,"Android Browser"]],[/FBAV\/([\w\.]+);/i],[d,[c,"Facebook"]],[/fxios\/([\w\.-]+)/i],[d,[c,"Firefox"]],[/version\/([\w\.]+).+?mobile\/\w+\s(safari)/i],[d,[c,"Mobile Safari"]],[/version\/([\w\.]+).+?(mobile\s?safari|safari)/i],[d,c],[/webkit.+?(mobile\s?safari|safari)(\/[\w\.]+)/i],[c,[d,x.str,T.browser.oldsafari.version]],[/(konqueror)\/([\w\.]+)/i,/(webkit|khtml)\/([\w\.]+)/i],[c,d],[/(navigator|netscape)\/([\w\.-]+)/i],[[c,"Netscape"],d],[/(swiftfox)/i,/(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?([\w\.\+]+)/i,/(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix)\/([\w\.-]+)/i,/(mozilla)\/([\w\.]+).+rv\:.+gecko\/\d+/i,/(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|sleipnir)[\/\s]?([\w\.]+)/i,/(links)\s\(([\w\.]+)/i,/(gobrowser)\/?([\w\.]+)*/i,/(ice\s?browser)\/v?([\w\._]+)/i,/(mosaic)[\/\s]([\w\.]+)/i],[c,d]],cpu:[[/(?:(amd|x(?:(?:86|64)[_-])?|wow|win)64)[;\)]/i],[[v,"amd64"]],[/(ia32(?=;))/i],[[v,S.lowerize]],[/((?:i[346]|x)86)[;\)]/i],[[v,"ia32"]],[/windows\s(ce|mobile);\sppc;/i],[[v,"arm"]],[/((?:ppc|powerpc)(?:64)?)(?:\smac|;|\))/i],[[v,/ower/,"",S.lowerize]],[/(sun4\w)[;\)]/i],[[v,"sparc"]],[/((?:avr32|ia64(?=;))|68k(?=\))|arm(?:64|(?=v\d+;))|(?=atmel\s)avr|(?:irix|mips|sparc)(?:64)?(?=;)|pa-risc)/i],[[v,S.lowerize]]],device:[[/\((ipad|playbook);[\w\s\);-]+(rim|apple)/i],[l,p,[h,y]],[/applecoremedia\/[\w\.]+ \((ipad)/],[l,[p,"Apple"],[h,y]],[/(apple\s{0,1}tv)/i],[[l,"Apple TV"],[p,"Apple"]],[/(archos)\s(gamepad2?)/i,/(hp).+(touchpad)/i,/(kindle)\/([\w\.]+)/i,/\s(nook)[\w\s]+build\/(\w+)/i,/(dell)\s(strea[kpr\s\d]*[\dko])/i],[p,l,[h,y]],[/(kf[A-z]+)\sbuild\/[\w\.]+.*silk\//i],[l,[p,"Amazon"],[h,y]],[/(sd|kf)[0349hijorstuw]+\sbuild\/[\w\.]+.*silk\//i],[[l,x.str,T.device.amazon.model],[p,"Amazon"],[h,g]],[/\((ip[honed|\s\w*]+);.+(apple)/i],[l,p,[h,g]],[/\((ip[honed|\s\w*]+);/i],[l,[p,"Apple"],[h,g]],[/(blackberry)[\s-]?(\w+)/i,/(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|huawei|meizu|motorola|polytron)[\s_-]?([\w-]+)*/i,/(hp)\s([\w\s]+\w)/i,/(asus)-?(\w+)/i],[p,l,[h,g]],[/\(bb10;\s(\w+)/i],[l,[p,"BlackBerry"],[h,g]],[/android.+(transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus 7)/i],[l,[p,"Asus"],[h,y]],[/(sony)\s(tablet\s[ps])\sbuild\//i,/(sony)?(?:sgp.+)\sbuild\//i],[[p,"Sony"],[l,"Xperia Tablet"],[h,y]],[/(?:sony)?(?:(?:(?:c|d)\d{4})|(?:so[-l].+))\sbuild\//i],[[p,"Sony"],[l,"Xperia Phone"],[h,g]],[/\s(ouya)\s/i,/(nintendo)\s([wids3u]+)/i],[p,l,[h,m]],[/android.+;\s(shield)\sbuild/i],[l,[p,"Nvidia"],[h,m]],[/(playstation\s[34portablevi]+)/i],[l,[p,"Sony"],[h,m]],[/(sprint\s(\w+))/i],[[p,x.str,T.device.sprint.vendor],[l,x.str,T.device.sprint.model],[h,g]],[/(lenovo)\s?(S(?:5000|6000)+(?:[-][\w+]))/i],[p,l,[h,y]],[/(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i,/(zte)-(\w+)*/i,/(alcatel|geeksphone|huawei|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]+)*/i],[p,[l,/_/g," "],[h,g]],[/(nexus\s9)/i],[l,[p,"HTC"],[h,y]],[/[\s\(;](xbox(?:\sone)?)[\s\);]/i],[l,[p,"Microsoft"],[h,m]],[/(kin\.[onetw]{3})/i],[[l,/\./g," "],[p,"Microsoft"],[h,g]],[/\s(milestone|droid(?:[2-4x]|\s(?:bionic|x2|pro|razr))?(:?\s4g)?)[\w\s]+build\//i,/mot[\s-]?(\w+)*/i,/(XT\d{3,4}) build\//i,/(nexus\s[6])/i],[l,[p,"Motorola"],[h,g]],[/android.+\s(mz60\d|xoom[\s2]{0,2})\sbuild\//i],[l,[p,"Motorola"],[h,y]],[/android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n8000|sgh-t8[56]9|nexus 10))/i,/((SM-T\w+))/i],[[p,"Samsung"],l,[h,y]],[/((s[cgp]h-\w+|gt-\w+|galaxy\snexus|sm-n900))/i,/(sam[sung]*)[\s-]*(\w+-?[\w-]*)*/i,/sec-((sgh\w+))/i],[[p,"Samsung"],l,[h,g]],[/(samsung);smarttv/i],[p,l,[h,b]],[/\(dtv[\);].+(aquos)/i],[l,[p,"Sharp"],[h,b]],[/sie-(\w+)*/i],[l,[p,"Siemens"],[h,g]],[/(maemo|nokia).*(n900|lumia\s\d+)/i,/(nokia)[\s_-]?([\w-]+)*/i],[[p,"Nokia"],l,[h,g]],[/android\s3\.[\s\w;-]{10}(a\d{3})/i],[l,[p,"Acer"],[h,y]],[/android\s3\.[\s\w;-]{10}(lg?)-([06cv9]{3,4})/i],[[p,"LG"],l,[h,y]],[/(lg) netcast\.tv/i],[p,l,[h,b]],[/(nexus\s[45])/i,/lg[e;\s\/-]+(\w+)*/i],[l,[p,"LG"],[h,g]],[/android.+(ideatab[a-z0-9\-\s]+)/i],[l,[p,"Lenovo"],[h,y]],[/linux;.+((jolla));/i],[p,l,[h,g]],[/((pebble))app\/[\d\.]+\s/i],[p,l,[h,w]],[/android.+;\s(glass)\s\d/i],[l,[p,"Google"],[h,w]],[/android.+(\w+)\s+build\/hm\1/i,/android.+(hm[\s\-_]*note?[\s_]*(?:\d\w)?)\s+build/i,/android.+(mi[\s\-_]*(?:one|one[\s_]plus)?[\s_]*(?:\d\w)?)\s+build/i],[[l,/_/g," "],[p,"Xiaomi"],[h,g]],[/\s(tablet)[;\/\s]/i,/\s(mobile)[;\/\s]/i],[[h,S.lowerize],p,l]],engine:[[/windows.+\sedge\/([\w\.]+)/i],[d,[c,"EdgeHTML"]],[/(presto)\/([\w\.]+)/i,/(webkit|trident|netfront|netsurf|amaya|lynx|w3m)\/([\w\.]+)/i,/(khtml|tasman|links)[\/\s]\(?([\w\.]+)/i,/(icab)[\/\s]([23]\.[\d\.]+)/i],[c,d],[/rv\:([\w\.]+).*(gecko)/i],[d,c]],os:[[/microsoft\s(windows)\s(vista|xp)/i],[c,d],[/(windows)\snt\s6\.2;\s(arm)/i,/(windows\sphone(?:\sos)*|windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i],[c,[d,x.str,T.os.windows.version]],[/(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i],[[c,"Windows"],[d,x.str,T.os.windows.version]],[/\((bb)(10);/i],[[c,"BlackBerry"],d],[/(blackberry)\w*\/?([\w\.]+)*/i,/(tizen)[\/\s]([\w\.]+)/i,/(android|webos|palm\sos|qnx|bada|rim\stablet\sos|meego|contiki)[\/\s-]?([\w\.]+)*/i,/linux;.+(sailfish);/i],[c,d],[/(symbian\s?os|symbos|s60(?=;))[\/\s-]?([\w\.]+)*/i],[[c,"Symbian"],d],[/\((series40);/i],[c],[/mozilla.+\(mobile;.+gecko.+firefox/i],[[c,"Firefox OS"],d],[/(nintendo|playstation)\s([wids34portablevu]+)/i,/(mint)[\/\s\(]?(\w+)*/i,/(mageia|vectorlinux)[;\s]/i,/(joli|[kxln]?ubuntu|debian|[open]*suse|gentoo|(?=\s)arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk|linpus)[\/\s-]?([\w\.-]+)*/i,/(hurd|linux)\s?([\w\.]+)*/i,/(gnu)\s?([\w\.]+)*/i],[c,d],[/(cros)\s[\w]+\s([\w\.]+\w)/i],[[c,"Chromium OS"],d],[/(sunos)\s?([\w\.]+\d)*/i],[[c,"Solaris"],d],[/\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]+)*/i],[c,d],[/(ip[honead]+)(?:.*os\s([\w]+)*\slike\smac|;\sopera)/i],[[c,"iOS"],[d,/_/g,"."]],[/(mac\sos\sx)\s?([\w\s\.]+\w)*/i,/(macintosh|mac(?=_powerpc)\s)/i],[[c,"Mac OS"],[d,/_/g,"."]],[/((?:open)?solaris)[\/\s-]?([\w\.]+)*/i,/(haiku)\s(\w+)/i,/(aix)\s((\d)(?=\.|\)|\s)[\w\.]*)*/i,/(plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos|openvms)/i,/(unix)\s?([\w\.]+)*/i],[c,d]]},C=function(t,n){if(this instanceof C){var i=t||(e&&e.navigator&&e.navigator.userAgent?e.navigator.userAgent:r),s=n?S.extend(N,n):N;return this.getBrowser=function(){var e=x.rgx.apply(this,s.browser);return e.major=S.major(e.version),e},this.getCPU=function(){return x.rgx.apply(this,s.cpu)},this.getDevice=function(){return x.rgx.apply(this,s.device)},this.getEngine=function(){return x.rgx.apply(this,s.engine)},this.getOS=function(){return x.rgx.apply(this,s.os)},this.getResult=function(){return{ua:this.getUA(),browser:this.getBrowser(),engine:this.getEngine(),os:this.getOS(),device:this.getDevice(),cpu:this.getCPU()}},this.getUA=function(){return i},this.setUA=function(e){return i=e,this},this.setUA(i),this}return(new C(t,n)).getResult()};C.VERSION=n,C.BROWSER={NAME:c,MAJOR:f,VERSION:d},C.CPU={ARCHITECTURE:v},C.DEVICE={MODEL:l,VENDOR:p,TYPE:h,CONSOLE:m,MOBILE:g,SMARTTV:b,TABLET:y,WEARABLE:w,EMBEDDED:E},C.ENGINE={NAME:c,VERSION:d},C.OS={NAME:c,VERSION:d},typeof exports!==o?(typeof module!==o&&module.exports&&(exports=module.exports=C),exports.UAParser=C):typeof define===s&&define.amd?define(function(){return C}):e.UAParser=C;var k=e.jQuery||e.Zepto;if(typeof k!==o){var L=new C;k.ua=L.getResult(),k.ua.get=function(){return L.getUA()},k.ua.set=function(e){L.setUA(e);var t=L.getResult();for(var n in t)k.ua[n]=t[n]}}})(typeof window=="object"?window:this);
-// test to see if local/session storage is enabled in the current client
-var testForLocalStorage = function() {
-    try {
-        sessionStorage.setItem('null', 'null');
-        sessionStorage.removeItem('null');
-        return true;
-    } catch (e) {
-        return false;
-    }
-};
-var stringifyResult = function(value) {
-    // flatten objects
-    if (typeof value === 'object') {
-        // if the object is a document, take the document part
-        if (typeof value.documentElement !== 'undefined') {
-            value = value.documentElement;
-        }
-        value = new XMLSerializer().serializeToString(value);
-    }
-    return value;
-};
-var storageSet = function(key,value) {
-    localStorage.setItem(key + 'DateStamp', Date.now());
-    return localStorage.setItem(key, value);
-};
-var storageGet = function(key,dateStamp) {
-    return localStorage.getItem(key + ( dateStamp ? 'DateStamp' : ''));
-};
-var storageRemove = function(key) {
-    localStorage.removeItem(key + 'DateStamp');
-    return localStorage.removeItem(key);
-};
 // translate silly browser versions into more usable ones. EG, Safari 537 is actually Safari 6.0
 var browserVersionTranslate = function(browserName,dataBrowserMajor) {
   
@@ -10057,6 +10025,38 @@ function getMonday(d) {
   var diff = d.getDate() - day + (day === 0 ? -6:1); // adjust when day is sunday
   return new Date(d.setDate(diff));
 }
+// test to see if local/session storage is enabled in the current client
+var testForLocalStorage = function() {
+    try {
+        sessionStorage.setItem('null', 'null');
+        sessionStorage.removeItem('null');
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+var stringifyResult = function(value) {
+    // flatten objects
+    if (typeof value === 'object') {
+        // if the object is a document, take the document part
+        if (typeof value.documentElement !== 'undefined') {
+            value = value.documentElement;
+        }
+        value = new XMLSerializer().serializeToString(value);
+    }
+    return value;
+};
+var storageSet = function(key,value) {
+    localStorage.setItem(key + 'DateStamp', Date.now());
+    return localStorage.setItem(key, value);
+};
+var storageGet = function(key,dateStamp) {
+    return localStorage.getItem(key + ( dateStamp ? 'DateStamp' : ''));
+};
+var storageRemove = function(key) {
+    localStorage.removeItem(key + 'DateStamp');
+    return localStorage.removeItem(key);
+};
 /*
     Fonts are loaded through @font-face rules in the CSS whenever an element references them.
     FontFaceObserver creates a referencing element to trigger the font request, and lsisten for font load events.
@@ -10329,1076 +10329,6 @@ var viewConfig = {
   strokeWidthActive: 40,
   labelFontSize: 10
 };
-var drawSVG = function (viewId,totalAmount,maxAmount,config) {
-  
-  if (totalAmount < 1) {
-    return;
-  }
-  
-  var svgNS             = 'http://www.w3.org/2000/svg';
-  var strokeWidthActive = viewConfig.strokeWidthActive;
-  var svgSize           = viewConfig.svgSize;
-  var minSize           = viewConfig.minSize;
-  var radius            = viewConfig.radius;
-  var radiusWithStroke  = radius - strokeWidthActive/2;
-  var size = ( (0.99 * Math.sqrt(totalAmount))/Math.sqrt(maxAmount)).toFixed(3); // 0.99x so that we always detect a transitionend as we transform to 1x
-  if (size < minSize) {
-    size = minSize;
-  }
-  
-  
-  var svg = document.createElementNS(svgNS, 'svg');
-  svg.id = viewId;
-  svg.classList.add('radar');
-  svg.setAttribute('xmlns',svgNS);
-  svg.setAttribute('data-js-radar','');
-  svg.setAttribute('data-js-radar-size',size);
-  svg.setAttribute('viewBox','0 0 ' + svgSize + ' ' + svgSize);
-  svg.setAttribute('width',svgSize);
-  svg.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
-  
-  var defs = document.createElementNS(svgNS, 'defs');
-  defs.setAttributeNS(null,'data-js-radar-defs','');
-  svg.appendChild(defs);
-  
-  // create the device group
-  
-  var grpDevicesArcs = document.createElementNS(svgNS, 'g');
-  grpDevicesArcs.setAttributeNS(null,'data-js-radar-g-device-arcs','');
-  grpDevicesArcs.setAttributeNS(null,'style','transform: scale(' + size + ');transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
-  grpDevicesArcs.classList.add('radar__grp__arcs');
-  
-  var grpDevicesCircle = document.createElementNS(svgNS, 'circle');
-  grpDevicesCircle.setAttributeNS(null,'cx',radius);
-  grpDevicesCircle.setAttributeNS(null,'cy',radius);
-  grpDevicesCircle.setAttributeNS(null,'r',radiusWithStroke);
-  grpDevicesCircle.classList.add('radar__grp__circle');
-  
-  var grpDevices = document.createElementNS(svgNS, 'g');
-  grpDevices.setAttributeNS(null,'data-js-radar-g-device','');
-  grpDevices.classList.add('radar__grp');
-  grpDevices.classList.add('radar__grp--device');
-  
-  grpDevicesArcs.appendChild(grpDevicesCircle);
-  grpDevices.appendChild(grpDevicesArcs);
-  svg.appendChild(grpDevices);
-  
-  // create the browsers group
-  
-  var grpBrowsersArcs = document.createElementNS(svgNS, 'g');
-  grpBrowsersArcs.setAttributeNS(null,'data-js-radar-g-browser-arcs','');
-  grpBrowsersArcs.setAttributeNS(null,'style','transform: scale(' + size + ');transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
-  grpBrowsersArcs.classList.add('radar__grp__arcs');
-  
-  var grpBrowsersCircle = document.createElementNS(svgNS, 'circle');
-  grpBrowsersCircle.setAttributeNS(null,'cx',radius);
-  grpBrowsersCircle.setAttributeNS(null,'cy',radius);
-  grpBrowsersCircle.setAttributeNS(null,'r',radiusWithStroke);
-  grpBrowsersCircle.classList.add('radar__grp__circle');
-  
-  var grpBrowsers = document.createElementNS(svgNS, 'g');
-  grpBrowsers.setAttributeNS(null,'data-js-radar-g-browser','');
-  grpBrowsers.classList.add('radar__grp');
-  grpBrowsers.classList.add('radar__grp--browser');
-  
-  grpBrowsersArcs.appendChild(grpBrowsersCircle);
-  grpBrowsers.appendChild(grpBrowsersArcs);
-  svg.appendChild(grpBrowsers);
-  
-  // create the age group
-  
-  var grpAgesArcs = document.createElementNS(svgNS, 'g');
-  grpAgesArcs.setAttributeNS(null,'data-js-radar-g-age-arcs','');
-  grpAgesArcs.setAttributeNS(null,'style','transform: scale(' + size + ');transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
-  grpAgesArcs.classList.add('radar__grp__arcs');
-  
-  var grpAgesCircle = document.createElementNS(svgNS, 'circle');
-  grpAgesCircle.setAttributeNS(null,'cx',radius);
-  grpAgesCircle.setAttributeNS(null,'cy',radius);
-  grpAgesCircle.setAttributeNS(null,'r',radiusWithStroke);
-  grpAgesCircle.classList.add('radar__grp__circle');
-  
-  var grpAges = document.createElementNS(svgNS, 'g');
-  grpAges.setAttributeNS(null,'data-js-radar-g-age','');
-  grpAges.classList.add('radar__grp');
-  grpAges.classList.add('radar__grp--age');
-  
-  grpAgesArcs.appendChild(grpAgesCircle);
-  grpAges.appendChild(grpAgesArcs);
-  svg.appendChild(grpAges);
-  
-  // create the versions group
-  
-  var grpVersionsArcs = document.createElementNS(svgNS, 'g');
-  grpVersionsArcs.setAttributeNS(null,'data-js-radar-g-version-arcs','');
-  grpVersionsArcs.setAttributeNS(null,'style','transform: scale(' + size + ');transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
-  grpVersionsArcs.classList.add('radar__grp__arcs');
-  
-  var grpVersionsCircle = document.createElementNS(svgNS, 'circle');
-  grpVersionsCircle.setAttributeNS(null,'cx',radius);
-  grpVersionsCircle.setAttributeNS(null,'cy',radius);
-  grpVersionsCircle.setAttributeNS(null,'r',radiusWithStroke);
-  grpVersionsCircle.classList.add('radar__grp__circle');
-  
-  var grpVersions = document.createElementNS(svgNS, 'g');
-  grpVersions.setAttributeNS(null,'data-js-radar-g-version','');
-  grpVersions.classList.add('radar__grp');
-  grpVersions.classList.add('radar__grp--version');
-  
-  grpVersionsArcs.appendChild(grpVersionsCircle);
-  grpVersions.appendChild(grpVersionsArcs);
-  svg.appendChild(grpVersions);
-  
-  return svg;
-  
-};
-
-var drawSVGArc = function (config) {
-  
-  return new Promise(function(resolve, reject) {
-    
-    var svgNS             = 'http://www.w3.org/2000/svg';
-    var viewId            = config.viewId;
-    var arcThisMode       = config.arcThisMode;
-    var arcNextMode       = config.arcNextMode;
-    var arcSelector       = config.arcSelector;
-    
-    var timeStart         = 0;
-    var timeCurrent       = timeStart;
-    var timeIncrement     = config.timeIncrement || 10;
-    var timeDuration      = config.timeDuration || 500;
-    
-    var pie               = document.getElementById(viewId);
-    var scaled            = pie.querySelector('[data-js-radar-g-' + arcThisMode + '-arcs]');
-    var defs              = pie.querySelector('[data-js-radar-defs]');
-    var color             = config.color || 'white';
-    var strokeWidth       = viewConfig.strokeWidth;
-    var strokeWidthActive = viewConfig.strokeWidthActive;
-    var angleStart        = config.angleStart || 0;
-    var angleArc          = config.angleArc || 360;
-    var angleStep         = config.angleStep || 10;
-    var angle             = angleStart;
-    var radius            = viewConfig.radius;
-    var radiusWithStroke  = radius - strokeWidthActive/2;
-    
-    var labelSize         = viewConfig.labelFontSize;
-    var labelTitle        = config.labelTitle || arcSelector;
-    var labelValTotal     = config.labelValTotal || null;
-    var labelValTotalPerc = config.labelValTotalPerc || null;
-    var labelValDevicePerc= config.labelValDevicePerc || null;
-    
-    
-    var arcGrp = document.createElementNS(svgNS, 'g');
-    arcGrp.setAttributeNS(null,'data-js-radar-arc-grp','');
-    arcGrp.setAttributeNS(null,'data-js-radar-arc-grp-' + arcThisMode,'');
-    arcGrp.classList.add('radar__arc__grp');
-    
-    // create the path
-    var arc = document.createElementNS(svgNS, 'path');
-    arc.setAttributeNS(null,'fill','none');
-    arc.setAttributeNS(null,'data-js-arc-thismode' , arcThisMode);
-    arc.setAttributeNS(null,'data-js-arc-nextmode' , arcNextMode);
-    arc.setAttributeNS(null,'data-js-arc-segment' , arcSelector);
-    arc.setAttributeNS(null,'data-js-arc-angle-start' , angleStart);
-    arc.setAttributeNS(null,'data-js-arc-angle-arc' , angleArc);
-    arc.setAttributeNS(null,'d','');
-    arc.setAttributeNS(null,'stroke',color);
-    arc.setAttributeNS(null,'stroke-width',strokeWidth);
-    arc.classList.add('radar__arc');
-    arc.id = 'radar-arc-' + arcThisMode + '-' + arcSelector.replace(/ /g,'-');
-    arcGrp.appendChild(arc);
-    
-    // create a path for the text in defs
-    var radians = (angleStart/180) * Math.PI;
-    var radiusWithText = radiusWithStroke - labelSize/2.5;
-    var xStart = radius + Math.cos(radians) * radiusWithText;
-    var yStart = radius + Math.sin(radians) * radiusWithText;
-    var xEnd = radius + Math.cos(radians - 0.02) * radiusWithText;
-    var yEnd = radius + Math.sin(radians - 0.02) * radiusWithText;
-    var arcDef = document.createElementNS(svgNS, 'path');
-    arcDef.setAttributeNS(null,'data-js-radar-arcdef-' + arcThisMode,'');
-    arcDef.id = 'radar-' + viewId + '-arcdef-' + arcThisMode + '-' + arcSelector.replace(/ /g,'-');
-    arcDef.setAttribute("d", "M " + xStart.toFixed(3) + labelSize + " " + yStart.toFixed(3) + " A " + radiusWithText + " " + radiusWithText + " " + angleStart + " 1 1 "+ xEnd.toFixed(3) + " " + yEnd.toFixed(3));
-    defs.appendChild(arcDef);
-    
-    // create the text
-    var label = document.createElementNS(svgNS, 'text');
-    label.setAttributeNS(null,"x",1);     
-    label.setAttributeNS(null,"y",0); 
-    label.setAttributeNS(null,"font-size",labelSize);
-    label.classList.add('radar__arc__txt');
-    var labelPath = document.createElementNS(svgNS, 'textPath');
-    labelPath.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href','#' + arcDef.id);  
-    var textNode = document.createTextNode(labelTitle.toUpperCase());
-    labelPath.appendChild(textNode);
-    label.appendChild(labelPath);
-    arcGrp.appendChild(label);
-    
-    if (arcThisMode==='device' && scaled.firstChild.nextSibling) {
-      scaled.insertBefore(arcGrp, scaled.firstChild.nextSibling);
-    } else {
-      scaled.appendChild(arcGrp);
-    }
-    
-    
-    // draw one frame of the arc
-    var i = 0;
-    var drawArcFrame = function () {
-      var radians = null;
-      var x = null;
-      var y = null;
-      var d = null;
-      var e = arc.getAttribute("d");
-      // on first beat, we just move to the correct position
-      if (i === 0) {
-        radians = (angleStart/180) * Math.PI;
-        x = radius + Math.cos(radians) * radiusWithStroke;
-        y = radius + Math.sin(radians) * radiusWithStroke;
-        d = e + "\n M " + x.toFixed(3) + " " + y.toFixed(3);
-      // if we've finished the entire arc, exit
-      } else if (angle >= (angleStart + angleArc) && i !== 0) {
-        resolve(angle);
-        return;
-      // draw a frame of the arc
-      } else {
-        timeCurrent += timeIncrement;
-        // if the final position is not a multiple of the angleStep
-        if (angle + angleStep > angleStart + angleArc) {
-          angle = angleStart + angleArc;  
-        // add angleStep
-        } else {
-          //angle = Math.easeInCubic(timeCurrent, angleStart, angleStart + angleArc, timeDuration);
-          angle += angleStep;
-        }
-        // calc final stroke position
-        radians= (angle/180) * Math.PI;
-        x = radius + Math.cos(radians) * radiusWithStroke;
-        y = radius + Math.sin(radians) * radiusWithStroke;
-        // decide between straight line and arc
-        d = e + "\n A " + radius + " " + radius + " 0 0 1 "+ x.toFixed(3) + " " + y.toFixed(3); // arc
-      } 
-      // draw it
-      arc.setAttribute("d", d);
-      i++;
-      window.requestAnimationFrame(function(){
-        drawArcFrame();
-      });
-    };
-    // convert to requestAnimationFrame soon:
-    drawArcFrame();
-  });
-};
-
-var drawSVGText = function (viewIndex,type,value) {
-  
-  var svgNS     = 'http://www.w3.org/2000/svg';
-  var view      = gaConfig.views[viewIndex];
-  var viewId    = view.abbr;
-  var radius    = viewConfig.radius;
-  var pie       = document.getElementById(viewId);
-  var grp       = pie.querySelector('[data-js-radar-g-device]');
-  
-  // switch
-  var x = 0;
-  var y = 0;
-  var align = 'middle';
-  var cssClass = '';
-  var dataType = '';
-  var text = '';
-  switch (type) {
-    case 'title':
-      x = radius;
-      y = radius;
-      text = view.name;
-      break;
-    case 'value':
-      x = radius;
-      y = radius + 25;
-      text = value.toLocaleString(viewConfig.locale);
-      break;
-  }
-  
-  // create the path to the arc
-  var txtBox = document.createElementNS(svgNS, 'text');
-  txtBox.setAttributeNS(null,'x',x);
-  txtBox.setAttributeNS(null,'y',y);
-  txtBox.setAttributeNS(null,'text-anchor',align);
-  txtBox.setAttributeNS(null,'data-js-radar-txt-' + type,'');
-  txtBox.classList.add('radar__txt__' + type);
-  txtBox.textContent = text;
-  grp.appendChild(txtBox);
-  
-};
-var ballpit = function() {
-  "use strict";
-  
-  var radius = viewConfig.radius;
-  var step = 3;
-  var go = false;
-  var balls = {};
-  var pitDims = [];
-  var pitBox = {};
-  var initialAngles = [30,60,120,150,210,240,300,330,30,60,120,150,210,240,300,330];
-  
-  var init = function() {
-    getPitSize();
-    window.addEventListener('resize',getPitSize);
-    ticker();
-    registerEvents();
-  };
-  
-  var currentMode = function() {
-    var allClasses = document.querySelector('[data-js-container]').classList;
-    var modeClasses = [];
-    allClasses = Array.prototype.slice.call(allClasses, 0);
-    modeClasses = allClasses.map(function(cssClass){
-      return (cssClass.indexOf('mode') >= 0 ? cssClass : false );
-    });
-    return modeClasses.join('').replace(/false/g,'').replace('mode--','');
-  };
-
-  var registerEvents = function() {
-    
-    document.querySelector('[data-js-container]').addEventListener('mouseout', function(e){
-      if (currentMode() !== 'all') {
-        return;
-      }
-      var target = e.target.closest('[data-js-radar-g-device-arcs]') || e.target.matches('[data-js-radar-txt-title]') || e.target.matches('[data-js-radar-txt-value]');
-      if (target) {
-        var radar = e.target.closest('[data-js-radar]');
-        var index = radar.id;
-        balls[index].go = true;
-        balls[index].DOM.style.zIndex = 1;
-      }
-    });
-    document.querySelector('[data-js-container]').addEventListener('mouseover', function(e){
-      if (currentMode() !== 'all') {
-        return;
-      }
-      var target = e.target.closest('[data-js-radar-g-device-arcs]') || e.target.matches('[data-js-radar-txt-title]') || e.target.matches('[data-js-radar-txt-value]');
-      if (target) {
-        var radar = e.target.closest('[data-js-radar]');
-        var index = radar.id;
-        balls[index].go = false;
-        balls[index].DOM.style.zIndex = 10;
-      }
-    });
-    
-  };
-
-  var start = function() {
-    if (!go) {
-      setTimeout(function() {
-        go = true;
-        for (var index in balls) {
-          balls[index].go = true;
-        }
-        document.querySelector('[data-js-container]').classList.add('ballpit--run');
-      },500);
-    }
-  };
-
-  var stop = function() {
-    if (go) {
-      go = false;
-      document.querySelector('[data-js-container]').classList.remove('ballpit--run');
-      
-    }
-  };
-
-  var addBall = function(index) {
-    var r = getBallSize(index);
-    balls[index] = {
-      'DOM': document.querySelector('#' + index),
-      'go': true,
-      'pos': {
-        'x': 0,
-        'y': 0
-      },
-      'angle': initialAngles[Object.keys(balls).length],
-      'r': getBallSize(index),
-      'box': {
-        'top': 0 - r,
-        'right': r,
-        'bottom': r,
-        'left': 0 - r
-      }
-    };
-    
-  };
-  
-  var getPitSize = function() {
-    var width  = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    pitDims = [
-      width,
-      height
-    ];
-    pitBox = {
-      'top':    (0 - pitDims[1]/2 + step),
-      'right':  (pitDims[0]/2 - step),
-      'bottom': (pitDims[1]/2 - step),
-      'left':   (0 - pitDims[0]/2 + step),
-    };
-  };
-  
-  var getBallSize = function(index) {
-    var ball = document.querySelector('#' + index);
-    if (!ball) {
-      return;
-    }
-    var size = ball.getAttribute('data-js-radar-size');
-    return size * radius;
-  };
-  
-  var detectPitCollision = function(index) {
-    var ballBox = balls[index].box;
-    //console.log('ball:' + ballBox.right + ' | box:' + pitBox.right);
-    if (ballBox.top <= pitBox.top) {
-      //console.warn('TOP!!');
-      return 'top';
-    } else if (ballBox.left <= pitBox.left) {
-      //console.warn('LEFT!!');
-      return 'left';
-    } else if (ballBox.right >= pitBox.right) {
-      //console.warn('RIGHT!!');
-      return 'right';
-    } else if (ballBox.bottom >= pitBox.bottom) {
-      //console.warn('BOTTOM!!');
-      return 'bottom';
-    }
-    //console.log(ballBox.bottom + ' : ' + pitBox.bottom)
-    return false;
-  };
-  
-  var detectBallCollision = function(index) {
-    return false;
-  };
-  
-  var setNewAngle = function(index,collisionSide) {
-    var currentAngle = balls[index].angle;
-    var newAngle = currentAngle;
-    switch(collisionSide) {
-      case 'top':
-        if (currentAngle > 270) {
-          newAngle = (360 - currentAngle) + 180;
-        } else if (currentAngle < 90) {
-          newAngle = 360 - (currentAngle - 0) - 180;
-        }
-        break;
-      case 'right':
-        if (currentAngle > 0 && currentAngle < 90) {
-          newAngle = (90 - currentAngle) - 90;
-        } else if (currentAngle < 180 && currentAngle > 90) {
-          newAngle = (currentAngle - 90) + 180;
-        }
-        break;
-      case 'bottom':
-        if (currentAngle < 180 && currentAngle < 180) {
-          newAngle = 180 + (180 - currentAngle) + 180;
-        } else if (currentAngle < 270 && currentAngle > 180) {
-          newAngle = 180 - (currentAngle - 180) + 180;
-        }
-        break;
-      case 'left':
-        if (currentAngle < 270 && currentAngle > 180) {
-          newAngle = 270 + (270 - currentAngle) - 180;
-        } else if (currentAngle < 360 && currentAngle > 270) {
-          newAngle = 270 - (currentAngle - 270) - 180;
-        }
-        break;
-    }
-    // fix bad angles outside of 0˚ - 360˚
-    if (newAngle > 360) {
-      newAngle = newAngle - 360;
-    } else if (newAngle < 0) {
-      newAngle = newAngle + 360;
-    }
-    balls[index].angle =  newAngle;
-  };
-  
-  var moveCalc = function(index) {
-    var ball = balls[index];
-    var angle = parseInt(ball.angle);
-    var oldAngle = angle;
-    if (ball.go) {
-      var collisionSide = detectPitCollision(index) || detectBallCollision(index);
-      if (collisionSide) {
-        setNewAngle(index,collisionSide);
-        angle = parseInt(ball.angle);
-      }
-      
-      var movedX = 0;
-      var movedY = 0;
-      if (angle < 90) {
-        movedX = Math.sin(angle * (Math.PI / 180)) * step;
-      } else if (angle < 180) {
-        movedX = Math.cos((angle - 90) * (Math.PI / 180)) * step;
-      } else if (angle < 270) {
-        movedX = 0 - (Math.sin((angle - 180) * (Math.PI / 180)) * step);
-      } else {
-        movedX = 0 - (Math.cos((angle - 270) * (Math.PI / 180)) * step);
-      }
-      movedY = Math.sqrt(Math.pow(parseInt(step),2) -  Math.pow(parseFloat(Math.abs(movedX)),2));
-      if (angle < 90 || angle > 270) {
-        movedY = 0 - movedY;
-      }
-      balls[index].pos.x = (parseFloat(ball.pos.x) + parseFloat(movedX)).toFixed(1);
-      balls[index].pos.y = (parseFloat(ball.pos.y) + parseFloat(movedY)).toFixed(1);
-      balls[index].box = {
-        'top':    parseFloat(balls[index].pos.y) - parseFloat(balls[index].r),
-        'right':  parseFloat(balls[index].pos.x) + parseFloat(balls[index].r),
-        'bottom': parseFloat(balls[index].pos.y) + parseFloat(balls[index].r),
-        'left':   parseFloat(balls[index].pos.x) - parseFloat(balls[index].r)
-      };
-      moveTransform(index);
-    }
-  };
-  
-  var moveTransform = function(index) {
-    var ball = balls[index];
-    if (ball.go) {
-      var ballDOM = ball.DOM;
-      if (!ballDOM) {
-        return;
-      }
-      //console.log('translate(' + balls[index].pos.x + 'px, ' + balls[index].pos.y + 'px)')
-      ballDOM.style.transform = 'translate(' + balls[index].pos.x + 'px, ' + balls[index].pos.y + 'px)';
-    }
-  };
-  
-  var ticker = function() {
-    var ball = null;
-    var tick = function() {
-      if (go) {
-        for (var index in balls) {
-          moveCalc(index);
-        }
-      }
-      window.requestAnimationFrame(function(){
-        tick();
-      });
-    };
-    tick();
-  };
-  
-  var killBalls = function() {
-    balls = {};
-  };
-  
-  return {
-    init: init(),
-    killBalls: killBalls,
-    addBall: addBall,
-    start: start,
-    stop: stop
-  };
-  
-}();
-var display = function() {
-  
-  var duration = 1000;
-  var increment = 10;
-  var fontSize = 54;
-  var valueKey = 0;
-  var segmentPath = [];
-  var devices = ['desktop','mobile','tablet'];
-  var colors = {
-    'desktop': [
-      '#b56969',
-      '#F58F8F',
-      '#6E4040',
-      '#A66161',
-      '#6E2A27',
-      '#B54641',
-      '#F55E58',
-      '#9B3C38',
-      '#F57F90',
-      '#6E3940'
-    ],
-    'mobile':[
-      '#3fb0ac',
-      '#56F0EB',
-      '#369693',
-      '#256966',
-      '#1F9BB0',
-      '#2AD4F0',
-      '#1A8596',
-      '#125C69',
-      '#38B0AB',
-      '#4DF0E9',
-      '#216966'
-    ],
-    'tablet':[
-      '#e6cf8b',
-      '#FFE59A',
-      '#CCB87C',
-      '#9F8F60',
-      '#E6D074',
-      '#FFE79C',
-      '#E6D77F',
-      '#FFEE8C',
-      '#9F9457',
-      '#D7C976'
-    ]
-  };
-  var maxAmount = 0;
-  var levels = [
-    'all',
-    'device',
-    'browser',
-    'age',
-    'version'
-  ];
-  
-  var init = function() {
-    registerEvents();
-    document.querySelector('[data-js-container]').classList.add('mode--all');
-  };
-  
-  var registerEvents = function() {
-    // CLICK ON BACKGROUND
-    document.querySelector('[data-js-background-click]').addEventListener('click', function(e) {
-      back(e);
-    });
-    // CLICK ON RADAR
-    document.querySelector('[data-js-container]').addEventListener('click', function(e){
-      if (currentMode() !== 'all') {
-        return;
-      }
-      var target = e.target;
-      if (target.matches('[data-js-radar]') || target.closest('[data-js-radar]')) {
-        e.stopPropagation();
-        modeToggle(target.closest('[data-js-radar]'),'device',false);
-      }
-    });
-    // CLICK ON ARC
-    document.querySelector('[data-js-container]').addEventListener('click', function(e){
-      if (currentMode() === 'all') {
-        return;
-      }
-      var target = e.target.closest('[data-js-radar-arc-grp]');
-      if (target) {
-        e.stopPropagation();
-        
-        var pie = target.closest('[data-js-radar]');
-        var viewId = pie.id;
-        var arc = target.querySelector('[data-js-arc-thismode]');
-        var thisMode = arc.getAttribute('data-js-arc-thismode');
-        var nextMode = arc.getAttribute('data-js-arc-nextmode');
-        var segment = arc.getAttribute('data-js-arc-segment');
-        // end of the line?
-        if (nextMode === 'undefined') {
-          return;
-        }
-        // no further data?
-        var radarChildren = radarFromPath(viewId,segmentPath); 
-        radarChildren = radarChildren[segment];
-        var radarChildrenKeys = Object.keys(radarChildren);
-        if (!radarChildrenKeys.length || radarChildrenKeys.length === 1) {
-          return;
-        }
-        // remove other active arcs
-        if( pie.querySelector('[data-js-radar-g-' + thisMode + '-arcs] .radar__arc__grp--active')) {
-            pie.querySelector('[data-js-radar-g-' + thisMode + '-arcs] .radar__arc__grp--active').classList.remove('radar__arc__grp--active');
-        }
-        target.classList.add('radar__arc__grp--active');
-        // run the mode change
-        modeToggle(pie,nextMode,segment)
-        // then start the build of the next mode
-        .then(function() {
-          segmentPath.push(segment);
-          buildAllArcs(pie.id,nextMode,segmentPath);
-        });
-      }
-    });
-  };
-  
-  var back = function(e) {
-    var mode = currentMode();
-    if (mode === 'device') {
-      modeToggle(null,'all');
-    } else if (mode === 'browser') {
-      segmentPath.pop();
-      modeToggle(null,'device').then(function() {
-        killAllArcs(mode);
-      });
-    } else {
-      segmentPath.pop();
-      var nextMode = levels[levels.indexOf(mode) - 1] || 'all';
-      modeToggle(null,nextMode,segmentPath).then(function() {
-        killAllArcs(mode);
-      });
-    }
-  };
-  
-  var radarFromPath = function(viewId,path) {
-    var output = radar[viewId];
-    for(var i=0; i<path.length; i++) {
-      output = output[path[i]];
-    }
-    return output;
-  };
-  
-  var buildPie = function(viewIndex) {
-    
-    var view = gaConfig.views[viewIndex];
-    var viewId = view.abbr;
-    var totalAmount = radar[viewId].TOTAL[valueKey];
-    
-    var svgEl = drawSVG(viewId,totalAmount,maxAmount);
-    if (svgEl) {
-      document.querySelector('[data-js-container]').appendChild(svgEl);
-      buildAllArcs(viewId);
-      buildPieText(viewIndex);
-    }
-    
-  };
-  
-  var buildAllArcs = function(viewId,nextMode,path) {
-    
-    var pathLevel = nextMode || 'device';
-    var prevLevel = levels[levels.indexOf(pathLevel)-1];
-    var pathChildren = path || [];
-    var device = ( pathChildren.length ? pathChildren[0] : null );
-    var timeDuration = 500;
-    var radarChildren = radarFromPath(viewId,pathChildren); 
-    var totalAmount = radarChildren.TOTAL[valueKey];
-    var angleAllStart = -90;
-    var angleAllArc = 360;
-    
-    if (path !== undefined && path.length) {
-      var triggerArc = document.querySelector('#' + viewId + ' #radar-arc-' + prevLevel + '-' + path[path.length - 1].replace(/ /g,'-'));
-      if (triggerArc) {
-        angleAllStart = parseFloat(triggerArc.getAttribute('data-js-arc-angle-start'));
-        angleAllArc = parseFloat(triggerArc.getAttribute('data-js-arc-angle-arc'));
-      }
-    }
-    
-    // SORT
-    var radarChildrenSorted = []; 
-    var radarChildrenSortedOther = null;
-    for(var key in radarChildren) {
-      // if there's an "other" slice, reserve it for the end
-      if (key === 'OTHER') {
-        radarChildrenSortedOther = {
-          'key': key,
-          'TOTAL': radarChildren[key].TOTAL[valueKey]
-        };
-        continue;
-      } else if (key !== 'TOTAL' && key !== 'MAX' && radarChildren[key].TOTAL[valueKey] > 0) {
-        radarChildrenSorted.push({
-          'key': key,
-          'TOTAL': radarChildren[key].TOTAL[valueKey]
-        });
-      }
-    }
-    radarChildrenSorted.sort(function compare(a,b) {
-      if (a.TOTAL < b.TOTAL)
-        return 1;
-      if (a.TOTAL > b.TOTAL)
-        return -1;
-      return 0;
-    });
-    // re-attach the "other" slice
-    if (radarChildrenSortedOther) {
-      radarChildrenSorted.push(radarChildrenSortedOther);
-    }
-    
-    // loop through the sorted data
-    var i = 0;
-    var buildAllArcsLoop = function(degNew) {
-      arc = radarChildrenSorted.shift();
-      if(!arc) {
-        return;
-      }
-      var angleArc = ( ( arc.TOTAL/totalAmount ) * angleAllArc );
-      // if the angle is too small, continue
-      if (angleArc < 1 && radarChildrenSorted.length) {
-        buildAllArcsLoop(degNew);
-      }
-      var config = {
-        'viewId'              : viewId,
-        'arcThisMode'         : pathLevel,
-        'arcNextMode'         : levels[levels.indexOf(pathLevel) + 1],
-        'arcSelector'         : arc.key,
-        'arcAmount'         : arc.TOTAL,
-        'totalAmount'       : totalAmount,
-        'angleStart'          : degNew || angleAllStart,
-        'angleArc'            : angleArc,
-        'timeStart'           : 0,
-        'timeDuration'        : Math.round(arc.TOTAL/totalAmount * timeDuration),
-        'color'               : ( !device ? colors[arc.key][0] : colors[device][i] ),
-        'labelTitle'          : arc.key,
-        'labelValTotal'       : arc.TOTAL,
-        'labelValTotalPerc'   : radar[viewId].TOTAL,
-        'labelValDevicePerc'  : ( device ? radar[viewId][device].TOTAL : null )
-      };
-      buildArc(config).then(function(val) {
-        i++;
-        if (radarChildrenSorted.length) {
-          buildAllArcsLoop(val);
-        }
-      });
-    };
-    buildAllArcsLoop();
-    
-  };
-  
-  var buildArc = function(options) {
-    
-    return new Promise(function(resolve, reject) {
-      
-      if (options.angleArc < 1) {
-        resolve(options.angleStart);
-        return;
-      }
-      
-      viewId            = options.viewId;
-      level             = options.level;
-      arcId             = options.arcId;
-      arcThisMode       = options.arcThisMode;
-      arcNextMode       = options.arcNextMode;
-      arcSelector       = options.arcSelector;
-      arcAmount       = options.arcAmount;
-      totalAmount     = options.totalAmount;
-      timeStart         = options.timeStart;
-      timeDuration      = options.timeDuration;
-      angleStart        = options.angleStart || 0;
-      angleArc          = options.angleArc;
-      color             = options.color || 'red';
-      
-      var config = {
-        'viewId': viewId,
-        'arcId': arcId,
-        'arcThisMode': arcThisMode,
-        'arcNextMode': arcNextMode,
-        'arcSelector': arc.key,
-        'arcSelector': arcSelector,
-        'color': color,
-        'angleStart': angleStart,
-        'angleArc': angleArc,
-        'timeStart': 0,
-        'timeDuration': timeDuration
-      };
-      drawSVGArc(config).then(function(angle) {
-        resolve(angle);
-      });
-    });
-  };
-  
-  var buildPieText = function(viewIndex) {
-    
-    var view = gaConfig.views[viewIndex];
-    var viewId = view.abbr;
-    
-    drawSVGText(viewIndex,'title');
-    drawSVGText(viewIndex,'value',radar[viewId].TOTAL[valueKey]);
-    
-  };
-  
-  var buildAll = function() {
-    
-    console.log('build');
-    
-    // clear ballpit
-    ballpit.killBalls();
-    
-    // start the ballpit animation timer
-    ballpit.start(); 
-    
-    // find the type of value we're looking for
-    getValueType();
-    
-    // find max amount
-    calcMaxAmount();
-    
-    // create the SVG for each view
-    for (i=0; i<gaConfig.views.length;i++) {
-      buildPie(i);
-      ballpit.addBall(gaConfig.views[i].abbr);
-    }
-    
-  };
-  
-  var getValueType = function() {
-    var controlValue = document.querySelector('[data-js-control-value]:checked');
-    valueKey = controlValue.value;
-  };
-  
-  var calcMaxAmount = function() {
-    maxAmount = 0;
-    for (var key in radar) {
-      if (key === 'TOTAL') {
-        continue;
-      }
-      if (radar[key].TOTAL[valueKey] > maxAmount) {
-        maxAmount = radar[key].TOTAL[valueKey];
-      }
-    }
-  };
-  
-  var killAll = function() {
-    
-    var svgs = document.querySelectorAll('[data-js-radar]');
-    for (var i=0; i<svgs.length;i++) {
-      svgs[i].parentNode.removeChild(svgs[i]);
-    }
-    
-  };
-  
-  var killAllArcs = function(arcLevel) {
-    
-    var pie = document.querySelector('.radar--active');
-    if (pie) {
-      var arcGrps = pie.querySelectorAll('[data-js-radar-arc-grp-' + arcLevel + ']');
-      for(var i=0; i<arcGrps.length; i++) {
-        arcGrps[i].parentNode.removeChild(arcGrps[i]);
-      }
-      var arcDefs = pie.querySelectorAll('[data-js-radar-arcdef-' + arcLevel + ']');
-      for(i=0; i<arcDefs.length; i++) {
-        arcDefs[i].parentNode.removeChild(arcDefs[i]);
-      }
-    }
-    
-  };
-  
-  var currentMode = function() {
-    var allClasses = document.querySelector('[data-js-container]').classList;
-    var modeClasses = [];
-    allClasses = Array.prototype.slice.call(allClasses, 0);
-    modeClasses = allClasses.map(function(cssClass){
-      return (cssClass.indexOf('mode') >= 0 ? cssClass : false );
-    });
-    return modeClasses.join('').replace(/false/g,'').replace('mode--','');
-  };
-  
-  var modeToggleTimer = null;
-  var modeToggleClass = function(modeNew) {
-    
-    return new Promise(function(resolve, reject) {
-      
-      clearTimeout(modeToggleTimer);
-      
-      modeToggleTimer = setTimeout(function() {
-        for (var i=0; i<levels.length; i++) {
-          if (levels[i] === modeNew) {
-            document.querySelector('[data-js-container]').classList.add('mode--' + levels[i]);
-          } else {
-            document.querySelector('[data-js-container]').classList.remove('mode--' + levels[i]);
-          }
-        }
-        resolve(true);
-      },50);
-    });
-    
-  };
-    
-  var modeToggle = function(target,nextMode,segment) {
-    
-    var oldMode = currentMode();
-    
-    return new Promise(function(resolve, reject) {
-    
-      // LEAVING ALL
-      if (oldMode === 'all' && nextMode !== 'all') {
-        target.classList.add('radar--active');
-        ballpit.stop();
-        resolve(true);
-      // ENTERING ALL
-      } else if (nextMode === 'all') {
-        var activeRadar = document.querySelector('.radar--active');
-        if (activeRadar) {
-          activeRadar.classList.remove('radar--active');
-          ballpit.start();
-        }
-        resolve(true);
-      // entering and leaving all other modes
-      } else {
-        var transformingElement = document.querySelector('[data-js-radar-g-' + oldMode + '-arcs]');
-        if (transformingElement) {
-          var radarTransition = function() {
-            resolve(true);
-            transformingElement.removeEventListener('transitionend',radarTransition);
-          };
-          transformingElement.addEventListener('transitionend',radarTransition);
-        }
-      }
-      modeToggleClass(nextMode);
-      
-    });
-    
-  };
-  
-  return {
-    init: init(),
-    buildPie: buildPie,
-    buildAll: buildAll,
-    killAll: killAll,
-    modeToggle: modeToggle
-  };
-  
-}();
-var control = function() {
-
-  var init = function() {
-    registerEvents();
-  };
-  
-  var registerEvents = function() {
-    var controlValues = document.querySelectorAll('[data-js-control-value]');
-    for(var i=0; i<controlValues.length; i++) {
-      controlValues[i].addEventListener('change',setValue);
-    } 
-    
-    document.querySelector('[data-js-control-time]').addEventListener('change',function() {
-      retrieve.queryAllReports();
-    });
-  };
-  
-  var setValue = function() {
-    if (this.checked) {
-      display.modeToggle(null,'all');
-      display.killAll();
-      display.buildAll();
-    }
-  };
-  
-  return {
-    init: init()
-  };
-  
-}();
-$('[data-js-background-click]').on('click',slidesNext);
-var error = function() {
-  
-  var init = function() {
-    registerEvents();
-  }
-  
-  var registerEvents = function() {
-  }
-  
-  var send = function(obj) {
-    console.log('xx');
-    openCurtain();
-  }
-  
-  return {
-    init: init,
-    send: send
-  }
-  
-}();
-var slidesNext = function() {
-  
-}
-
-var openCurtain = function() {
-  $('html').addClass('curtain-open');
-}
-
-var viewChoice = 0;
 var oAuthMetaClientId = document.createElement("meta"); 
 oAuthMetaClientId.setAttribute('name','google-signin-client_id');
 oAuthMetaClientId.setAttribute('content',OAUTH_CLIENT_ID);
@@ -11417,6 +10347,13 @@ var retrieve = function() {
   var configNoStorage = false;
   var localStorageTrue = false;
   var gaRequest = {};
+  var dimensions = [
+    'ga:deviceCategory',
+    'ga:operatingSystem',
+    'ga:operatingSystemVersion',
+    'ga:mobileDeviceModel',
+    'ga:screenResolution'
+  ];
 
   var init = function() {
     localStorageTrue = testForLocalStorage();
@@ -11428,7 +10365,27 @@ var retrieve = function() {
         reportRequests: gaConfig.reportRequests
       }
     };
+    
+    readDefaults();
+    
+    registerEvents();
+    
+    // set the overall amount
+    gaRequest.body.reportRequests.push({
+      dateRanges: [
+        {
+          startDate: '7daysAgo',
+          endDate: 'today'
+        }
+      ],
+      metrics: [
+        {expression: 'ga:sessions'},
+        {expression: 'ga:transactionRevenue'}
+      ]
+    });
+    
     setDateRange();
+    
     // check to see if any local storage is available
     var testAbbr = gaConfig.views[0].abbr;
     var localStorageKey = storageKey(testAbbr);
@@ -11439,11 +10396,53 @@ var retrieve = function() {
       }
     }
   };
+  
+  var readDefaults = function() {
+    
+    console.log('**** readDefaults ****');
+    
+    var inputs = document.querySelectorAll('[data-js-input]');
+    for(var i = 0; i<inputs.length; i++) {
+      var input = inputs[i];
+      var inputName = input.name;
+      var InputValue = storageGet('lab:' + inputName);
+      if (InputValue && InputValue.length) {
+        input.value = InputValue;
+      }
+    }
+  };
+  
+  var registerEvents = function() {
+    
+    console.log('**** registerEvents ****');
+    
+    var inputSet = function() {
+      console.log('SETTTING CHANGED: ' + inputValue);
+      var inputName = this.name;
+      var inputValue = this.value.trim();
+      if (inputValue && inputValue.length) {
+        storageSet('lab:' + inputName,inputValue);
+      } else {
+        storageRemove('lab:' + inputName);
+      }
+      if (this.getAttribute('data-js-input-runreports')) {
+        queryLab();
+      }
+    };
+    
+    var inputsText = document.querySelectorAll('input[data-js-input]');
+    var inputsSelect = document.querySelectorAll('select[data-js-input]');
+    for(var i = 0; i<inputsText.length; i++) {
+      var input = inputsText[i];
+      input.addEventListener('blur',inputSet);
+    }
+    for(i = 0; i<inputsSelect.length; i++) {
+      var select = inputsSelect[i];
+      select.addEventListener('change',inputSet);
+    }
+  };
 
   var setDateRange = function () {
-    var dateInput = document.querySelector('[data-js-control-time]');
-    var dateOptionSelected = dateInput.options[dateInput.selectedIndex];
-    var dateVal = dateOptionSelected.value;
     var dateNow = new Date();
     var dateYr = dateNow.getYear();
     var dateWk = dateNow.getWeek();
@@ -11454,86 +10453,50 @@ var retrieve = function() {
     configNoStorage = false;
     configSuffix = '';
     
-    // week so far (monday 00:00 to right now)
-    if (dateVal === 'week') {
-        reportStartDate = getMonday(dateNow);
-        reportEndDate = dateNow;
-        configStart = reportStartDate.toISOString().slice(0,10);
-        configEnd = reportEndDate.toISOString().slice(0,10);
-        configNoStorage = true;
-    // the last 7 days up to right now
-    } else if (dateVal === '7days') {
-        reportStartDate = new Date(dateNow.setDate(dateNow.getDate() - 7));
-        reportEndDate = dateNow;
-        configStart = '7daysAgo';
-        configEnd = 'today';
-        configSuffix = '7d';
-        configNoStorage = true;
-    // today only up to right now
-    } else if (dateVal === 'today') {
-        reportStartDate = dateNow;
-        reportEndDate = dateNow;
-        configStart = 'yesterday';
-        configEnd = 'today';
-        configSuffix = 'd' + dateNow.toISOString().slice(5,10);
-        configNoStorage = true;
-    // if we're looking at a full week an amount of months ago
-    } else if (dateVal.substring(0,1) === '-') {
-        var monthsAgo = parseInt(dateVal.substring(1));
-        reportStartDate = new Date(dateNow.setDate(dateNow.getDate() - (30 * monthsAgo) ));
-        reportStartDate = getMonday(reportStartDate);
-        configStart = reportStartDate.toISOString().slice(0,10);
-        reportEndDate = new Date();
-        reportEndDate = new Date(reportStartDate.setDate(reportStartDate.getDate() + 7));
-        configEnd = reportEndDate.toISOString().slice(0,10);
-    // default - the most recent full week of data
-    } else {
-        reportStartDate = getMonday(dateNow);
-        reportStartDate = new Date(reportStartDate.setDate(reportStartDate.getDate() - 7));
-        configStart = reportStartDate.toISOString().slice(0,10);
-        reportEndDate = getMonday(dateNow);
-        configEnd = reportEndDate.toISOString().slice(0,10);
-    }
+    reportStartDate = new Date(dateNow.setDate(dateNow.getDate() - 7));
+    reportEndDate = dateNow;
+    configStart = '7daysAgo';
+    configEnd = 'today';
+    configSuffix = '7d';
+    configNoStorage = true;
+        
     configYr = reportStartDate.toISOString().slice(0,4) || dateYr;
     configWk = reportStartDate.getWeek() || dateWk;
-    gaRequest.body.reportRequests[0].dateRanges = [{
-      startDate: configStart,
-      endDate: configEnd
-    }];
+    for(var i=0; i<gaRequest.body.reportRequests.length; i++) {
+      gaRequest.body.reportRequests[i].dateRanges = [{
+        startDate: configStart,
+        endDate: configEnd
+      }];
+    }
   };
 
 
   // Query the API and print the results to the page.
-  var queryAllReports = function () {
-    display.killAll();
+  var queryLab = function () {
+    //display.killAll();
     console.log('**** RUN ALL ****');
     
-    setDateRange();
+    setDateRange(); 
     
-    ballpit.start(); 
-    
-    queryAllReportsLoop().then(function() {
+    queryLabLoop().then(function() {
       
       console.log('**** RADAR: ****');
-      console.log(radar);
-      
-      whoAmI();
+      //console.log(radar);
     });
 
   };
 
 
   // query all the reports sequentially
-  var queryAllReportsLoop = function () {
+  var queryLabLoop = function () {
     
     return new Promise(function(resolve, reject) {
       
-      var queryAllReportsCycle = function (reportIndex) {
+      var queryLabCycle = function (reportIndex) {
         
         reportIndex = reportIndex || 0;
         var reportNode = gaConfig.views[reportIndex];
         queryReports(reportNode).then(function() {
-          
           
           /* CAN'T BUILD A BALL AS SOON AS THE DATA IS HERE - we need to know the maximum amounts before we start resizing */
           // build a ball and drop into the ballpit
@@ -11545,17 +10508,51 @@ var retrieve = function() {
           // run again?
           reportIndex++;
           if (reportIndex < gaConfig.views.length) {
-            queryAllReportsCycle(reportIndex);
+            queryLabCycle(reportIndex);
           } else {
             resolve(true);
           }
         });
         
       };
-      queryAllReportsCycle();
+      queryLabCycle();
       
     });
     
+  };
+  
+  var setFilters = function() {
+    
+    var outputDimensions = [];
+    var outputFilters = [];
+    var inputs = document.querySelectorAll('[data-js-input-runreports]');
+    for(var i = 0; i<inputs.length; i++) {
+      var input = inputs[i];
+      var inputName = input.name;
+      var inputType = 'EXACT';
+      var inputTypeName = '[name="' + inputName.replace('ga','tp') + '"]';
+      var inputTypeEl = document.querySelector(inputTypeName);
+      if (inputTypeEl) {
+        inputType = document.querySelector('[name="' + inputName.replace('ga','tp') + '"]').value || 'EXACT';
+      }
+      var inputValue = input.value.trim();
+      if (inputValue.length) {
+        
+        outputDimensions.push({'name':inputName});
+        outputFilters.push(
+          {"filters": 
+            [{
+              "dimensionName": inputName,
+              "operator": inputType,
+              "expressions": inputValue.split('|')
+            }]
+          });
+      }
+    }
+    return {
+      'dimensions': outputDimensions,
+      'dimensionFilters': outputFilters
+    };
   };
     
   // Query the API and print the results to the page.
@@ -11564,26 +10561,38 @@ var retrieve = function() {
     var localStorageKey = storageKey(reportNode.abbr);
     
     return new Promise(function(resolve, reject) {
-
+      
       // if in local storage, use that
-      if (localStorageTrue && storageGet(localStorageKey) !== null && !configNoStorage) {
-        // check the datestamp on the data to make sure it's up to date info (ie, it was collected after the week end)
-        if (2 > 1 /* FIX THIS! */) {
-          console.log('**** run '  + reportNode.name + ': ' + reportNode.view + ' from local storage ****');
-          var response = JSON.parse(storageGet(localStorageKey));
-          processData(response,reportNode);
-          resolve(true);
-          return;
-        }
-      } else {
-        document.querySelector('[data-js-control-manual]').style.display = 'none';
-      }
+      //if (localStorageTrue && storageGet(localStorageKey) !== null && !configNoStorage) {
+      //  // check the datestamp on the data to make sure it's up to date info (ie, it was collected after the week end)
+      //  if (2 > 1 /* FIX THIS! */) {
+      //    console.log('**** run '  + reportNode.name + ': ' + reportNode.view + ' from local storage ****');
+      //    var response = JSON.parse(storageGet(localStorageKey));
+      //    processData(response,reportNode);
+      //    resolve(true);
+      //    return;
+      //  }
+      //} else {
+      //  document.querySelector('[data-js-control-manual]').style.display = 'none';
+      //}
       
       // else retrieve via web and store in local storage
+      
       console.log('**** run '  + reportNode.name + ': ' + reportNode.view + ' from online ****');
-      gaRequest.body.reportRequests[0].viewId = reportNode.view;
+      
+      // set filters:
+      var filters = setFilters();
+      gaRequest.body.reportRequests[0].dimensions = filters.dimensions;
+      gaRequest.body.reportRequests[0].dimensionFilterClauses = filters.dimensionFilters;
+      
+      for(var i=0; i<gaRequest.body.reportRequests.length; i++) {
+        gaRequest.body.reportRequests[i].viewId = reportNode.view;
+      }
+      console.warn(gaRequest);
       gapi.client.request(gaRequest).then(
+        
         function(response) {
+          
           queryResponse(response,reportNode);
           resolve(true);
         }, console.error.bind(console));
@@ -11593,12 +10602,40 @@ var retrieve = function() {
   };
 
   var queryResponse = function (response,reportNode) {
-    processData(response,reportNode);
-    // save the response to local storage
-    if (localStorageTrue && !configNoStorage) {
-      var localStorageKey = storageKey(reportNode.abbr);
-      storageSet(localStorageKey,JSON.stringify(response));
+    
+    var resultTitle = document.querySelector('[data-js-result-title]');
+    var resultUA    = document.querySelector('[data-js-result-ua]');
+    var resultPerc  = document.querySelector('[data-js-result-percentage]');
+    var resultAct   = document.querySelector('[data-js-result-actual]');
+    resultTitle.innerText = '';
+    resultUA.innerText = '';
+    resultPerc.innerText = '';
+    resultAct.innerText = '';
+    
+    if (typeof response.result.reports === 'undefined' || typeof response.result.reports[0].data.rows === 'undefined') {
+      resultTitle.innerText = 'error. no results?';
+      return;
     }
+    
+    var segment     = response.result.reports[0].data.rows[0].metrics[0].values[0];
+    var total       = response.result.reports[1].data.rows[0].metrics[0].values[0];
+    var percOfTotal = (segment/total)* 100;
+    if (percOfTotal > 9) {
+      percOfTotal   = Math.round(percOfTotal);
+    } else {
+      percOfTotal   = percOfTotal.toFixed(1);
+    }
+    resultTitle.innerText = document.querySelector('[name="title"]').value;
+    resultUA.innerText = window.navigator.userAgent;
+    resultPerc.innerText = percOfTotal + '%';
+    resultAct.innerText = segment + '/' + total;
+      
+    //processData(response,reportNode);
+    //// save the response to local storage
+    //if (localStorageTrue && !configNoStorage) {
+    //  var localStorageKey = storageKey(reportNode.abbr);
+    //  storageSet(localStorageKey,JSON.stringify(response));
+    //}
   };
   
   var storageKey = function(abbr) {
@@ -11608,364 +10645,7 @@ var retrieve = function() {
 
   return {
     init: init(),
-    queryAllReports: queryAllReports
+    queryLab: queryLab
   };
   
 }();
-
-var columns       = [];
-var data          = [];
-var radar         = {};
-
-var processData = function(response,reportNode) {
-
-  var viewName = reportNode.abbr;
-  columns = response.result.reports[0].columnHeader;
-  data    = response.result.reports[0].data;
-  radar[viewName] = {};
-  
-  radar = processDataBrowserAll(radar, reportNode);
-  
-  return radar;
-  
-};
-var maxBrowserVersion = {};
-
-var processDataBrowserAll = function(radar, viewConfigNode) {
-  var knownBrowsers = [];
-  for(var i=0; i<browsersConfig.length; i++) {
-    radar = processDataBrowserSingle(radar, browsersConfig[i],viewConfigNode);
-    knownBrowsers.push(browsersConfig[i].gaName);
-  }
-  radar = processDataBrowserOthers(radar, knownBrowsers,viewConfigNode);
-  return radar;
-};
-
-// process all data looking for one browser type (eg Chrome), specified in the config node. the viewConfigNode is the config info about this view we're currently in (eg 777555 - Tingstad.se)
-var processDataBrowserSingle = function(radar, browserConfigNode,viewConfigNode) {
-  
-  var viewName            = viewConfigNode.abbr;
-  var gaBrowserName       = browserConfigNode.gaName;
-  //console.log('processing ' + gaBrowserName);
-  var dataLength          = data.rows.length;
-  var dataDeviceType      = null;
-  var dataBrowser         = null;
-  var dataBrowserVersion  = null;
-  var dataSessions        = null;
-  var dataRevenue         = null;
-  for(var i=0; i<dataLength; i++) {
-    
-    dataBrowser           = data.rows[i].dimensions[1];
-    
-    // if the browser in this row of data matches what the config says is the ga name for the browser we're lookign for
-    if (dataBrowser === gaBrowserName) {
-      
-      dataDeviceType        = data.rows[i].dimensions[0];
-      dataBrowserVersion    = data.rows[i].dimensions[2];
-      dataBrowserMajor      = dataBrowserVersion.split('.')[0];
-      dataBrowserMajor2     = browserVersionTranslate(gaBrowserName,dataBrowserMajor); // do some normalisation on bad browser versions
-      dataValue1            = data.rows[i].metrics[0].values[0];
-      dataValue2            = data.rows[i].metrics[0].values[1];
-      dataValue1a           = (dataValue1.toLowerCase().indexOf('e') > 1 ? Math.round(Number(dataValue1)) : parseInt(dataValue1) ); // deal with string->number, scientific notation
-      dataValue2a           = parseFloat((dataValue2.toLowerCase().indexOf('e') > 1 ? Number(dataValue2) : parseFloat(dataValue2) ).toFixed(2)); // deal with string->number, scientific notation and decimals
-      
-      // create new nodes as required
-      if (typeof radar[viewName][dataDeviceType] === 'undefined') {
-        radar[viewName][dataDeviceType] = {};
-      }
-      if (typeof radar[viewName][dataDeviceType][gaBrowserName] === 'undefined') {
-        radar[viewName][dataDeviceType][gaBrowserName] = {};
-      }
-      if (typeof radar[viewName][dataDeviceType][gaBrowserName][dataBrowserMajor2] === 'undefined') {
-        radar[viewName][dataDeviceType][gaBrowserName][dataBrowserMajor2] = {'TOTAL':[0,0]};
-      }
-      radar[viewName][dataDeviceType][gaBrowserName][dataBrowserMajor2].TOTAL[0] += dataValue1a;
-      radar[viewName][dataDeviceType][gaBrowserName][dataBrowserMajor2].TOTAL[1] += dataValue2a;
-      
-      // TOTAL for overall
-      if (typeof radar[viewName].TOTAL === 'undefined') {
-        radar[viewName].TOTAL = [0,0];
-      }
-      radar[viewName].TOTAL[0] += dataValue1a;
-      radar[viewName].TOTAL[1] += dataValue2a;
-    
-      // TOTAL for device type 
-      if (typeof radar[viewName][dataDeviceType].TOTAL === 'undefined') {
-        radar[viewName][dataDeviceType].TOTAL = [0,0];
-      }
-      radar[viewName][dataDeviceType].TOTAL[0] += dataValue1a;
-      radar[viewName][dataDeviceType].TOTAL[1] += dataValue2a;
-    
-      // TOTALS for this browser type
-      if (typeof radar[viewName][dataDeviceType][gaBrowserName].TOTAL === 'undefined') {
-        radar[viewName][dataDeviceType][gaBrowserName].TOTAL = [0,0];
-      }
-      radar[viewName][dataDeviceType][gaBrowserName].TOTAL[0] += dataValue1a;
-      radar[viewName][dataDeviceType][gaBrowserName].TOTAL[1] += dataValue2a;
-    
-      // MAX browser version (eg "54" If Chrome 54 is the latest version found)
-      if (typeof radar[viewName][dataDeviceType][gaBrowserName].MAX === 'undefined') {
-        radar[viewName][dataDeviceType][gaBrowserName].MAX = 0;
-      }
-      if (radar[viewName][dataDeviceType][gaBrowserName].MAX < parseInt(dataBrowserMajor2)) {
-          radar[viewName][dataDeviceType][gaBrowserName].MAX = parseInt(dataBrowserMajor2);
-      }
-      
-    }
-  }
-  
-  // now we've run through all the data and found everything related to this browser, we can do some other operations on the data we've collected about this browser.
-  
-  // run through the radar to record the GLOBAL max versions of this browser (to use in the whoami calculations, eg what age-band is the browser you're currently using?)
-  for (var loopDeviceType in radar[viewName]) {
-    // create new nodes as required
-    if (typeof maxBrowserVersion[loopDeviceType] === 'undefined') {
-      maxBrowserVersion[loopDeviceType] = {};
-    }
-    if (typeof maxBrowserVersion[loopDeviceType][gaBrowserName] === 'undefined') {
-      maxBrowserVersion[loopDeviceType][gaBrowserName] = 0;
-    }
-    // update the max if it's bigger than what we currently know of
-    if (
-      radar[viewName][loopDeviceType][gaBrowserName] && 
-      radar[viewName][loopDeviceType][gaBrowserName].MAX && parseInt(radar[viewName][loopDeviceType][gaBrowserName].MAX) > parseInt(maxBrowserVersion[loopDeviceType][gaBrowserName])
-    ) {
-      maxBrowserVersion[loopDeviceType][gaBrowserName] = parseInt(radar[viewName][loopDeviceType][gaBrowserName].MAX);
-    }
-  }
-  
-  // run through the radar to determine the age-band of each browser and segment them into a temporary object ageBandTemp
-  var ageBandTemp = {};
-  // loop the list of devices
-  for (loopDeviceType in radar[viewName]) {
-    // if this browser is part of this device group
-    if (typeof radar[viewName][loopDeviceType][gaBrowserName] !== 'undefined') {
-      var browserVersions = radar[viewName][loopDeviceType][gaBrowserName];
-      // loop through all versions found of this browser
-      for (var loopBrowserVersion in browserVersions) {
-        if (!Number.isInteger(parseInt(loopBrowserVersion))) {
-          continue;
-        } 
-        var ageBand = browserAgeCalc(gaBrowserName,loopBrowserVersion,browserVersions.MAX);
-        // if the ageband isn't false (eg "Old", "Latest", etc), move it to a new category
-        if (ageBand) {
-          // create new nodes as required
-          if (typeof ageBandTemp[loopDeviceType] === 'undefined') {
-            ageBandTemp[loopDeviceType] = [];
-          }
-          if (typeof ageBandTemp[loopDeviceType][gaBrowserName] === 'undefined') {
-            ageBandTemp[loopDeviceType][gaBrowserName] = [];
-          }
-          if (typeof ageBandTemp[loopDeviceType][gaBrowserName][ageBand] === 'undefined') {
-            ageBandTemp[loopDeviceType][gaBrowserName][ageBand] = {
-              'TOTAL':[0,0]
-            };
-          }
-          // add total
-          ageBandTemp[loopDeviceType][gaBrowserName][ageBand].TOTAL[0] += browserVersions[loopBrowserVersion].TOTAL[0];
-          ageBandTemp[loopDeviceType][gaBrowserName][ageBand].TOTAL[1] += browserVersions[loopBrowserVersion].TOTAL[1];
-          // copy the (now segmented) browser version into a seperate area
-          ageBandTemp[loopDeviceType][gaBrowserName][ageBand][loopBrowserVersion] = browserVersions[loopBrowserVersion];
-          // delete the original row, as it's now been segmented into an age-band, totalled up and moved.
-          delete(browserVersions[loopBrowserVersion]);
-        }
-        //console.log('++ ' + loopDeviceType + ' ' + gaBrowserName + ' ' + loopBrowserVersion + '/' + maxBrowserMajor + ' (' + ageBand + ')')
-      }
-    }
-  }
-  // now we've go all the new ag-bands in a temporary object, enter them back into the radar
-  for(loopDeviceType in ageBandTemp) {
-    if (typeof ageBandTemp[loopDeviceType][gaBrowserName] !== 'undefined') {
-      for(var loopAgeBand in ageBandTemp[loopDeviceType][gaBrowserName]) {
-        radar[viewName][loopDeviceType][gaBrowserName][loopAgeBand] = ageBandTemp[loopDeviceType][gaBrowserName][loopAgeBand];
-      }
-    }
-  }
-  
-  return radar;
-  
-};
-
-// once we have processed data for all browsers, look for any other browsers (eg YA, coc coc, Opera Mini)
-var processDataBrowserOthers = function(radar, knownBrowsers,viewConfigNode) {
-  
-  //console.log('processing unknown browsers');
-  
-  var viewName            = viewConfigNode.abbr;
-  var dataLength          = data.rows.length;
-  var dataDeviceType      = null;
-  var dataBrowser         = null;
-  var dataBrowserVersion  = null;
-  var dataSessions        = null;
-  var dataRevenue         = null;
-  for(var i=0; i<dataLength; i++) {
-    dataDeviceType        = data.rows[i].dimensions[0];
-    dataBrowser           = data.rows[i].dimensions[1];
-    dataBrowserVersion    = data.rows[i].dimensions[2];
-    dataBrowserMajor      = dataBrowserVersion.split('.')[0];
-    dataValue1            = data.rows[i].metrics[0].values[0];
-    dataValue2            = data.rows[i].metrics[0].values[1];
-    dataValue1a           = (dataValue1.toLowerCase().indexOf('e') > 1 ? Math.round(Number(dataValue1)) : parseInt(dataValue1) );
-    dataValue2a           = (dataValue2.toLowerCase().indexOf('e') > 1 ? Number(dataValue2) : parseFloat(dataValue2) );
-    if (knownBrowsers.indexOf(dataBrowser) < 0) {
-      
-      // create new nodes as required
-      if (typeof radar[viewName][dataDeviceType] === 'undefined') {
-        radar[viewName][dataDeviceType] = {};
-      }
-      if (typeof radar[viewName][dataDeviceType].OTHER === 'undefined') {
-        radar[viewName][dataDeviceType].OTHER = {};
-      }
-      if (typeof radar[viewName][dataDeviceType].OTHER[dataBrowser] === 'undefined') {
-        radar[viewName][dataDeviceType].OTHER[dataBrowser] = {'TOTAL':[0,0]};
-      }
-      radar[viewName][dataDeviceType].OTHER[dataBrowser].TOTAL[0] += dataValue1a;
-      radar[viewName][dataDeviceType].OTHER[dataBrowser].TOTAL[1] += dataValue2a;
-      
-      // TOTAL for overall
-      if (typeof radar[viewName].TOTAL === 'undefined') {
-        radar[viewName].TOTAL = [0,0];
-      }
-      radar[viewName].TOTAL[0] += dataValue1a;
-      radar[viewName].TOTAL[1] += dataValue2a;
-      
-      // TOTAL for device type 
-      if (typeof radar[viewName][dataDeviceType].TOTAL === 'undefined') {
-        radar[viewName][dataDeviceType].TOTAL = [0,0];
-      }
-      radar[viewName][dataDeviceType].TOTAL[0] += dataValue1a;
-      radar[viewName][dataDeviceType].TOTAL[1] += dataValue2a;
-    
-      // TOTAL browser type
-      if (typeof radar[viewName][dataDeviceType].OTHER.TOTAL === 'undefined') {
-        radar[viewName][dataDeviceType].OTHER.TOTAL = [0,0];
-      }
-      radar[viewName][dataDeviceType].OTHER.TOTAL[0] += dataValue1a;
-      radar[viewName][dataDeviceType].OTHER.TOTAL[1] += dataValue2a;
-      
-    }
-  }
-  
-  return radar;
-  
-};
-var whoAmI = function() {
-
-  var unknownDevice = function() {
-    if ($.ua.os.name === 'Mac OS') {
-      return 'Apple Mac';
-    } else if ($.ua.os.name === 'Windows') {
-      return 'PC';
-    } else if ($.ua.os.name === 'Chrome') {
-      return 'Chromebook';
-    } else {
-      return 'Unknown';
-    }
-  };
-  
-  var deviceType = $.ua.device.type || 'desktop';
-  var browserName = $.ua.browser.name;
-  var browserNameNormalize = browserNameTranslate(browserName);
-  var browserVersion = parseInt($.ua.browser.version.split('.')[0], 10);
-  var browserVersionNormalize = browserVersionTranslate(browserName,browserVersion);
-  
-  console.log('**** MAX BROWSER VERSIONS: ****');
-  console.log(maxBrowserVersion)
-
-  var whoiam = {
-    'device' : {
-      'category': deviceType,
-      'vendor' : $.ua.device.vendor || unknownDevice(),
-      'model' : $.ua.device.model
-    },
-    'platform' : {
-      'name' : $.ua.os.name,
-      'version' : $.ua.os.version
-    },
-    'browser' : {
-      'name': browserNameNormalize,
-      'version': browserVersion,
-      'major': browserVersionNormalize,
-      'ageBand': browserAgeCalc(browserNameNormalize,browserVersionNormalize,maxBrowserVersion[deviceType][browserNameNormalize]),
-      'engine': $.ua.engine.name
-    },
-    'screen': {},
-    'id': false,
-    'name': false
-  };
-
-  var knownScreenSizes = {
-    '320x480' : 'iPhone4',
-    '320x568' : 'iPhone5',
-    '375x667' : 'iPhone6',
-    '414x736' : 'iPhone6+',
-    '736x414' : 'iPhone6+ - horizontal',
-    '360x640' : 'Most Android mobiles',
-    '768x1024' : 'iPad - portrait',
-    '1024x768' : 'iPad - landscape',
-    '1366x768' : 'Many smaller PC laptops',
-  };
-
-  whoiam.screen.width = screen.width;
-  whoiam.screen.height = screen.height;
-  whoiam.screen.name = false;
-  if (knownScreenSizes[whoiam.screen.width + 'x' + whoiam.screen.height]) {
-    whoiam.screen.name = knownScreenSizes[whoiam.screen.width + 'x' + whoiam.screen.height];
-  }
-  whoiam.screenId = whoiam.screen.width + 'x' + whoiam.screen.height;
-
-
-  console.log('**** WHOAMI: ****');
-  console.log(whoiam);
-  
-  lookmeUp(whoiam);
-}
-
-
-
-
-var slides = [];
-
-var lookmeUp = function(whoiam) {
-  
-  for (var key in radar) {
-    
-    var viewId = key;
-    var viewNode = lookUpView(viewId);
-    
-    //console.error(key + ' : ' + whoiam.device.category + ' : ' + whoiam.browser.name);
-    
-    // sessions
-    slides.push({
-      'device'  : whoiam.device.category,
-      'browser' : whoiam.browser.name,
-      'metric'  : 'sessions',
-      'view'    : viewNode,
-      'total'   : radar[viewId].TOTAL[0],
-      'category': radar[viewId][whoiam.device.category].TOTAL[0],
-      'value'   : (radar[viewId][whoiam.device.category][whoiam.browser.name] ? radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[0] : 0 )
-    });
-    
-    // revenue
-    if (radar[viewId][1] > 0) {
-      slides.push({
-        'device'  : whoiam.device.category,
-        'browser' : whoiam.browser.name,
-        'metric'  : 'revenue',
-        'view'    : viewNode,
-        'total'   : radar[viewId].TOTAL[1],
-        'category': radar[viewId][whoiam.device.category].TOTAL[1],
-        'value'   : (radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[1] ? radar[viewId][whoiam.device.category][whoiam.browser.name].TOTAL[1] : 0 )
-      });
-    }
-    
-  }
-  
-  console.log('**** SLIDES: ****');
-  console.log(slides);
-  
-  
-  console.log('**** VIEWS: ****');
-  display.buildAll();
-  
-};
