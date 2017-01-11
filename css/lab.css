@@ -180,6 +180,7 @@ body {
   .flickity-enabled .result {
     visibility: visible; }
   .result__device, .result__client, .result__figures, .result__total, .result__ua {
+    max-width: calc(100vw - 10px);
     margin: 0; }
   .result__client {
     text-transform: uppercase; }
@@ -194,7 +195,7 @@ body {
       .result__total {
         font-size: 25vw; } }
   .result__device, .result__client, .result__figures {
-    font-size: 10vw; }
+    font-size: 8vw; }
     @media (orientation: landscape) {
       .result__device, .result__client, .result__figures {
         font-size: 4vw; } }
@@ -203,11 +204,11 @@ body {
   .result__ua {
     max-width: 28em;
     margin: 0 auto;
-    font-size: 4vw;
+    font-size: 3vw;
     color: #666; }
     @media (orientation: landscape) {
       .result__ua {
-        font-size: 3vw; } }
+        font-size: 2vw; } }
 
 @font-face {
   font-family: 'Comfortaa', serif;
