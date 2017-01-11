@@ -52,13 +52,13 @@
   </head>
   <body data-js-background-click>
     
-  <input type="checkbox" id="control-close" class="control__check" style="display:none;" />
+  <input type="checkbox" id="control-close" class="control__check" style="display:none;" checked="checked" />
   <nav class="control">
+  
+    <label class="control__close" for="control-close"></label>
     <div class="control__inner">
     
       <h1 class="control__title">device lab</h1>
-      
-      <label class="control__close" for="control-close"></label>
       
       <div class="control__row">
         
@@ -76,7 +76,7 @@
           
           <h3>Device title</h3>
           
-          <input type="text" name="title" data-js-input />
+          <input type="text" name="title" data-js-input data-js-input-runreports />
           
         </div>
         
@@ -84,7 +84,7 @@
           
           <h3>ga:deviceCategory</h3>
           
-          <select name="ga:deviceCategory" data-js-input data-js-input-runreports>
+          <select name="ga:deviceCategory" data-js-input data-js-input-postarg data-js-input-runreports>
             <option value="mobile">Mobile</option>
             <option value="tablet">Tablet</option>
             <option value="desktop">Desktop/Laptop</option>
@@ -96,12 +96,12 @@
           
           <h3>ga:mobileDeviceBranding</h3>
           
-          <select name="tp:mobileDeviceBranding" class="control__split1" data-js-input >
-            <option value="EXACT">==</option>
-            <option value="REGEXP">=@</option>
-            <option value="BEGINS_WITH">=^</option>
+          <select name="tp:mobileDeviceBranding" class="control__split1" data-js-input data-js-input-runreports >
+            <option value="EXACT">== EXACT</option>
+            <option value="REGEXP">=@ REGEXP</option>
+            <option value="BEGINS_WITH">=^ BEGINS WITH</option>
           </select>
-          <input type="text" name="ga:mobileDeviceBranding" class="control__split2" data-js-input data-js-input-runreports />
+          <input type="text" name="ga:mobileDeviceBranding" class="control__split2" data-js-input data-js-input-postarg data-js-input-runreports />
           
         </div>
           
@@ -109,12 +109,12 @@
           
           <h3>ga:mobileDeviceModel</h3>
           
-          <select name="tp:mobileDeviceModel" class="control__split1" data-js-input >
-            <option value="EXACT">==</option>
-            <option value="REGEXP">=@</option>
-            <option value="BEGINS_WITH">=^</option>
+          <select name="tp:mobileDeviceModel" class="control__split1" data-js-input data-js-input-runreports >
+            <option value="EXACT">== EXACT</option>
+            <option value="REGEXP">=@ REGEXP</option>
+            <option value="BEGINS_WITH">=^ BEGINS WITH</option>
           </select>
-          <input type="text" name="ga:mobileDeviceModel" class="control__split2" data-js-input data-js-input-runreports />
+          <input type="text" name="ga:mobileDeviceModel" class="control__split2" data-js-input data-js-input-postarg data-js-input-runreports />
           
         </div>
           
@@ -122,12 +122,12 @@
           
           <h3>ga:operatingSystem</h3>
           
-          <select name="tp:operatingSystem" class="control__split1" data-js-input >
-            <option value="EXACT">==</option>
-            <option value="REGEXP">=@</option>
-            <option value="BEGINS_WITH">=^</option>
+          <select name="tp:operatingSystem" class="control__split1" data-js-input data-js-input-runreports >
+            <option value="EXACT">== EXACT</option>
+            <option value="REGEXP">=@ REGEXP</option>
+            <option value="BEGINS_WITH">=^ BEGINS WITH</option>
           </select>
-          <input type="text" name="ga:operatingSystem" class="control__split2" data-js-input data-js-input-runreports />
+          <input type="text" name="ga:operatingSystem" class="control__split2" data-js-input data-js-input-postarg data-js-input-runreports />
           
         </div>
           
@@ -135,12 +135,12 @@
           
           <h3>ga:operatingSystemVersion</h3>
           
-          <select name="tp:operatingSystemVersion" class="control__split1" data-js-input >
-            <option value="EXACT">==</option>
-            <option value="REGEXP">=@</option>
-            <option value="BEGINS_WITH">=^</option>
+          <select name="tp:operatingSystemVersion" class="control__split1" data-js-input data-js-input-runreports >
+            <option value="EXACT">== EXACT</option>
+            <option value="REGEXP">=@ REGEXP</option>
+            <option value="BEGINS_WITH">=^ BEGINS WITH</option>
           </select>
-          <input type="text" name="ga:operatingSystemVersion" class="control__split2" data-js-input data-js-input-runreports />
+          <input type="text" name="ga:operatingSystemVersion" class="control__split2" data-js-input data-js-input-postarg data-js-input-runreports />
           
         </div>
           
@@ -148,12 +148,12 @@
           
           <h3>ga:browser</h3>
           
-          <select name="tp:browser" class="control__split1" data-js-input >
-            <option value="EXACT">==</option>
-            <option value="REGEXP">=@</option>
-            <option value="BEGINS_WITH">=^</option>
+          <select name="tp:browser" class="control__split1" data-js-input data-js-input-runreports >
+            <option value="EXACT">== EXACT</option>
+            <option value="REGEXP">=@ REGEXP</option>
+            <option value="BEGINS_WITH">=^ BEGINS WITH</option>
           </select>
-          <input type="text" name="ga:browser" class="control__split2" data-js-input data-js-input-runreports />
+          <input type="text" name="ga:browser" class="control__split2" data-js-input data-js-input-postarg data-js-input-runreports />
           
         </div>
           
@@ -161,12 +161,12 @@
           
           <h3>ga:browserVersion</h3>
           
-          <select name="tp:browserVersion" class="control__split1" data-js-input >
-            <option value="EXACT">==</option>
-            <option value="REGEXP">=@</option>
-            <option value="BEGINS_WITH">=^</option>
+          <select name="tp:browserVersion" class="control__split1" data-js-input data-js-input-runreports >
+            <option value="EXACT">== EXACT</option>
+            <option value="REGEXP">=@ REGEXP</option>
+            <option value="BEGINS_WITH">=^ BEGINS WITH</option>
           </select>
-          <input type="text" name="ga:browserVersion" class="control__split2" data-js-input data-js-input-runreports />
+          <input type="text" name="ga:browserVersion" class="control__split2" data-js-input data-js-input-postarg data-js-input-runreports />
           
         </div>
           
@@ -174,24 +174,19 @@
           
           <h3>ga:screenResolution</h3>
           
-          <select name="tp:screenResolution" class="control__split1" data-js-input >
-            <option value="EXACT">==</option>
-            <option value="REGEXP">=@</option>
-            <option value="BEGINS_WITH">=^</option>
+          <select name="tp:screenResolution" class="control__split1" data-js-input data-js-input-runreports >
+            <option value="EXACT">== EXACT</option>
+            <option value="REGEXP">=@ REGEXP</option>
+            <option value="BEGINS_WITH">=^ BEGINS WITH</option>
           </select>
-          <input type="text" name="ga:screenResolution" class="control__split2" data-js-input data-js-input-runreports />
+          <input type="text" name="ga:screenResolution" class="control__split2" data-js-input data-js-input-postarg data-js-input-runreports />
           
         </div>
       </div>  
     </div>
   </nav>
   
-  <div class="container result" data-js-container>
-    <div class="result__total__title" data-js-result-title></div>
-    <div class="result__total__actual" data-js-result-actual></div>
-    <div class="result__total__percentage" data-js-result-percentage></div>
-    <div class="result__total__ua" data-js-result-ua></div>
-  </div>
+  <div class="container main-carousel" data-js-container></div>
   <script src="js/lab.js"></script>
   </body>
 </html>

@@ -12,6 +12,14 @@ html,body {
   overflow: hidden;
 }
 
+body {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 .container {
   display: flex;
   height: 100vh;
@@ -22,25 +30,54 @@ html,body {
 }
 
 .result {
+  visibility: hidden;
+  width: 100%;
   color: $colorFG1;
-  line-height: 1;
+  line-height: 1.2;
+  .flickity-enabled & {
+    visibility: visible;
+  }
+  &__device,
+  &__client,
+  &__figures,
+  &__total,
+  &__ua {
+    margin: 0;
+  }
+  &__client {
+    text-transform: uppercase;
+    &:after {
+      content: ': ';
+    }
+  }
+  &__device {
+    color: #fff;
+  }
   &__total {
-    &__percentage {
-      font-size: 40vw;
+    font-size: 40vw;
+    line-height: 1;
+    @media (orientation: landscape) {
+      font-size: 25vw;
     }
-    &__title,
-    &__ua,
-    &__actual {
-      font-size: 10vw;
-    }
-    &__actual {
-      color: $colorBG2;
-    }
-    &__ua {
-      max-width: 28em;
+  }
+  &__device,
+  &__client,
+  &__figures {
+    font-size: 10vw;
+    @media (orientation: landscape) {
       font-size: 4vw;
-      color: #666;
-      line-height: 1.2;
+    }
+  }
+  &__figures {
+    opacity: 0.5;
+  }
+  &__ua {
+    max-width: 28em;
+    margin: 0 auto;
+    font-size: 4vw;
+    color: #666;
+    @media (orientation: landscape) {
+      font-size: 3vw;
     }
   }
 }

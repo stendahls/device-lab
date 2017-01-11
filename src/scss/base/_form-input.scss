@@ -1,6 +1,5 @@
 input {
   position: relative;
-  -webkit-appearance: button;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -20,5 +19,5 @@ input {
   -webkit-transition: box-shadow 200ms, border-color 200ms;
   -moz-transition: box-shadow 200ms, border-color 200ms;
   transition: box-shadow 200ms, border-color 200ms;
-  white-space: nowrap; 
+  user-select: initial;
 }

@@ -87,7 +87,7 @@ var retrieve = function() {
       } else {
         storageRemove('lab:' + inputName);
       }
-      if (this.getAttribute('data-js-input-runreports')) {
+      if (this.hasAttribute('data-js-input-runreports')) {
         queryLab();
       }
     };
@@ -135,7 +135,9 @@ var retrieve = function() {
 
   // Query the API and print the results to the page.
   var queryLab = function () {
-    //display.killAll();
+    
+    document.querySelector('[data-js-container]').innerText = '';
+    
     console.log('**** RUN ALL ****');
     
     setDateRange(); 
@@ -144,6 +146,11 @@ var retrieve = function() {
       
       console.log('**** RADAR: ****');
       //console.log(radar);
+      
+      
+      var flkty = new Flickity( '.main-carousel', {
+        prevNextButtons: false
+      });
     });
 
   };
@@ -187,7 +194,7 @@ var retrieve = function() {
     
     var outputDimensions = [];
     var outputFilters = [];
-    var inputs = document.querySelectorAll('[data-js-input-runreports]');
+    var inputs = document.querySelectorAll('[data-js-input-postarg]');
     for(var i = 0; i<inputs.length; i++) {
       var input = inputs[i];
       var inputName = input.name;
@@ -257,6 +264,7 @@ var retrieve = function() {
           
           queryResponse(response,reportNode);
           resolve(true);
+          
         }, console.error.bind(console));
       
     });
@@ -265,32 +273,45 @@ var retrieve = function() {
 
   var queryResponse = function (response,reportNode) {
     
-    var resultTitle = document.querySelector('[data-js-result-title]');
-    var resultUA    = document.querySelector('[data-js-result-ua]');
-    var resultPerc  = document.querySelector('[data-js-result-percentage]');
-    var resultAct   = document.querySelector('[data-js-result-actual]');
-    resultTitle.innerText = '';
-    resultUA.innerText = '';
-    resultPerc.innerText = '';
-    resultAct.innerText = '';
+    var slideOuter = document.createElement('div');
+    slideOuter.classList.add('result');
+    slideOuter.classList.add('carousel-cell');
+    slideOuter.style.color = reportNode.colors['2'];
+    var slideTitleClient = document.createElement('span');
+    slideTitleClient.classList.add('result__client');
+    slideTitleClient.innerText = reportNode.name;
+    var slideTitleDevice = document.createElement('span');
+    slideTitleDevice.classList.add('result__device');
+    slideTitleDevice.innerText = document.querySelector('[name="title"]').value;
+    var slideSubFigures = document.createElement('p');
+    slideSubFigures.classList.add('result__figures');
+    var slideTotal = document.createElement('p');
+    slideTotal.classList.add('result__total');
+    var slideSubUA = document.createElement('p');
+    slideSubUA.classList.add('result__ua');
+    slideSubUA.innerText = window.navigator.userAgent;
     
     if (typeof response.result.reports === 'undefined' || typeof response.result.reports[0].data.rows === 'undefined') {
-      resultTitle.innerText = 'error. no results?';
-      return;
+      slideTotal.innerText = '--';
+    } else {
+      var segment     = response.result.reports[0].data.rows[0].metrics[0].values[0];
+      var total       = response.result.reports[1].data.rows[0].metrics[0].values[0];
+      var percOfTotal = (segment/total)* 100;
+      if (percOfTotal > 9) {
+        percOfTotal   = Math.round(percOfTotal);
+      } else {
+        percOfTotal   = percOfTotal.toFixed(1);
+      }
+      slideTotal.innerText = percOfTotal + '%';
+      slideSubFigures.innerText = segment + '/' + total;
     }
     
-    var segment     = response.result.reports[0].data.rows[0].metrics[0].values[0];
-    var total       = response.result.reports[1].data.rows[0].metrics[0].values[0];
-    var percOfTotal = (segment/total)* 100;
-    if (percOfTotal > 9) {
-      percOfTotal   = Math.round(percOfTotal);
-    } else {
-      percOfTotal   = percOfTotal.toFixed(1);
-    }
-    resultTitle.innerText = document.querySelector('[name="title"]').value;
-    resultUA.innerText = window.navigator.userAgent;
-    resultPerc.innerText = percOfTotal + '%';
-    resultAct.innerText = segment + '/' + total;
+    slideOuter.appendChild(slideTitleClient);
+    slideOuter.appendChild(slideTitleDevice);
+    slideOuter.appendChild(slideSubFigures);
+    slideOuter.appendChild(slideTotal);
+    slideOuter.appendChild(slideSubUA);
+    document.querySelector('[data-js-container]').appendChild(slideOuter);
       
     //processData(response,reportNode);
     //// save the response to local storage
