@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(255,255,255,0);
-  user-select: none;
 }
 
 html,body {
@@ -42,6 +41,7 @@ body {
   &__figures,
   &__total,
   &__ua {
+    max-width: calc(100vw - 10px);
     margin: 0;
   }
   &__client {
@@ -63,7 +63,7 @@ body {
   &__device,
   &__client,
   &__figures {
-    font-size: 10vw;
+    font-size: 8vw;
     @media (orientation: landscape) {
       font-size: 4vw;
     }
@@ -74,10 +74,10 @@ body {
   &__ua {
     max-width: 28em;
     margin: 0 auto;
-    font-size: 4vw;
+    font-size: 3vw;
     color: #666;
     @media (orientation: landscape) {
-      font-size: 3vw;
+      font-size: 2vw;
     }
   }
 }
