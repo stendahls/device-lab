@@ -10826,34 +10826,39 @@ var ballpit = function() {
     var newAngle = currentAngle;
     switch(collisionSide) {
       case 'top':
-        if (currentAngle > 270) {
+        if (currentAngle >= 270) {
           newAngle = (360 - currentAngle) + 180;
-        } else if (currentAngle < 90) {
+        } else {
           newAngle = 360 - (currentAngle - 0) - 180;
         }
         break;
       case 'right':
-        if (currentAngle > 0 && currentAngle < 90) {
+        if (currentAngle <= 90) {
           newAngle = (90 - currentAngle) - 90;
-        } else if (currentAngle < 180 && currentAngle > 90) {
+        } else {
           newAngle = (currentAngle - 90) + 180;
         }
         break;
       case 'bottom':
-        if (currentAngle < 180 && currentAngle < 180) {
+        if (currentAngle <= 180) {
           newAngle = 180 + (180 - currentAngle) + 180;
-        } else if (currentAngle < 270 && currentAngle > 180) {
+        } else {
           newAngle = 180 - (currentAngle - 180) + 180;
         }
         break;
       case 'left':
-        if (currentAngle < 270 && currentAngle > 180) {
+        if (currentAngle <= 270) {
           newAngle = 270 + (270 - currentAngle) - 180;
-        } else if (currentAngle < 360 && currentAngle > 270) {
+        } else {
           newAngle = 270 - (currentAngle - 270) - 180;
         }
         break;
     }
+    // add a little randomness to get stuff away from the walls
+    var variableAngle = 5;
+    var variableRandom = Math.round( ( Math.random() * (variableAngle * 2) ) - variableAngle );
+    newAngle = newAngle + variableRandom;
+    //newAngle =+ Math.round( ( Math.random() * (variableAngle * 2) ) - variableAngle );
     // fix bad angles outside of 0˚ - 360˚
     if (newAngle > 360) {
       newAngle = newAngle - 360;

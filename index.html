@@ -2,31 +2,34 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="{{ meta.description }}" />
-  <meta name="keywords" content="{{ meta.keywords }}" />
+  <meta name="description" content="Breakdown of devices and browsers across Google Analytics accounts" />
   <meta name="viewport" content="width=device-width, initial-scale=1, max-scale=1" />
   <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
   
   <meta name="msapplication-tap-highlight" content="no" />
   
-  <title>🎯 DEVICE RADAR</title>
+  <title>D E V I C E R A D A R</title>
 
   <link rel="stylesheet" href="css/radar.css"/>
   
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="{{ globals 'site.themeColor' }}" />
-  <meta name="application-name" content="{{ yep }}" />
-  <link rel="icon" href="{{ globals 'site.meta.favIconPath' }}" type="image/x-icon" />
-  <link rel="icon" sizes="192x192" href="{{ globals 'site.meta.icon192Url' }}" />
-  <meta name="apple-mobile-web-app-title" content="{{ globals 'site.title' }}">
-  <link rel="apple-touch-icon" href="{{ globals 'site.meta.appleTouchIconiPhoneUrl' }}"/>
-  <link rel="apple-touch-icon" sizes="120x120" href="{{ globals 'site.meta.appleTouchIconiPhone2Url' }}"/>
-  <link rel="apple-touch-icon" sizes="152x152" href="{{ globals 'site.meta.appleTouchIconiPad2Url' }}"/>
-  <meta name="msapplication-TileImage" content="{{ globals 'site.meta.appleTouchIconiPad2Url' }}" />
-  <meta name="msapplication-TileColor" content="{{ globals 'site.themeColor' }}" />
+  <link rel="manifest" href="manifest-radar.json" />
+  <meta name="theme-color" content="#0B4C59" />
+  <meta name="application-name" content="Device Radar" />
+  <link rel="icon" href="imgs/icon-radar-512.png" type="image/x-icon" />
+  <link rel="icon" sizes="192x192" href="imgs/icon-radar-192.png" />
+  <meta name="apple-mobile-web-app-title" content="Device radar" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon" href="imgs/icon-radar-120.png"/>
+  <link rel="apple-touch-icon" sizes="120x120" href="imgs/icon-radar-120.png"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="imgs/icon-radar-152.png"/>
+  <link rel="apple-touch-icon" sizes="512x512" href="imgs/icon-radar-512.png"/>
+  <meta name="msapplication-TileImage" content="imgs/icon-lab-512.png" />
+  <meta name="msapplication-TileColor" content="#0B4C59" />
   
   <script>
     function onSuccess(googleUser) {
+      document.querySelector('.abcRioButtonContents').querySelectorAll('span')[1].innerHTML = '<span class="abcRioButtonLock">&#128273;</span> ' + googleUser.getBasicProfile().getName();
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
       retrieve.queryAllReports();
       document.querySelector('html').classList.add('logged-in');

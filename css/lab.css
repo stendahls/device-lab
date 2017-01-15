@@ -154,7 +154,7 @@ html, body {
   opacity: 0.2;
   -webkit-transition: opacity 200ms;
           transition: opacity 200ms; }
-  .container.flickity-enabled {
+  .container.ballpit--run, .container.mode--device, .container.mode--browser, .container.mode--age, .container.mode--version, .container.flickity-enabled {
     opacity: 1;
     -webkit-transition: opacity 1000ms;
             transition: opacity 1000ms;
