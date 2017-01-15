@@ -1,0 +1,20 @@
+{
+  "short_name": "Device lab",
+  "name": "Stendahls device lab",
+  "icons": [
+    {
+      "src": "imgs/icon-lab-48.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "imgs/icon-lab-96.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "imgs/icon-lab-192.png",
+      "sizes": "192x192"
+    }
+  ],
+  "theme_color": "#415C32",
+  "start_url": "/lab.html"
+}
