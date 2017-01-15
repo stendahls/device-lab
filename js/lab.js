@@ -14689,6 +14689,10 @@ function getMonday(d) {
   document.addEventListener('touchend', function(e) {
     lockScroll = false;
   });
+
+  document.addEventListener('touchcancel', function(e) {
+    lockScroll = false;
+  });
   
 })();
 // test to see if local/session storage is enabled in the current client
@@ -15022,6 +15026,7 @@ var retrieve = function() {
   var configNoStorage = false;
   var localStorageTrue = false;
   var gaRequest = {};
+  var flkty = {};
   var dimensions = [
     'ga:deviceCategory',
     'ga:operatingSystem',
@@ -15147,10 +15152,14 @@ var retrieve = function() {
 
   var killAll = function() {
     console.log('KILLALL');
+    if (typeof flkty.destroy === 'undefined') {
+      return;
+    }
     var container = document.querySelector('[data-js-container]');
-    container.innerHTML = '';
+    flkty.destroy();
     container.classList.remove('flickity-enabled');
     container.classList.remove('is-draggable');
+    container.innerHTML = '';
   };
 
 
@@ -15165,11 +15174,9 @@ var retrieve = function() {
     
     queryLabLoop().then(function() {
       
-      console.log('**** RADAR: ****');
-      //console.log(radar);
+      console.log('**** COMPLETE: ****');
       
-      
-      var flkty = new Flickity( '.main-carousel', {
+      flkty = new Flickity( '.main-carousel', {
         prevNextButtons: false
       });
     });

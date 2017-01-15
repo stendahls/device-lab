@@ -10056,6 +10056,10 @@ function getMonday(d) {
   document.addEventListener('touchend', function(e) {
     lockScroll = false;
   });
+
+  document.addEventListener('touchcancel', function(e) {
+    lockScroll = false;
+  });
   
 })();
 // test to see if local/session storage is enabled in the current client
