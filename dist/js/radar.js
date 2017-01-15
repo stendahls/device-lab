@@ -10030,19 +10030,35 @@ function getMonday(d) {
 /* stop the document level scrollign and bouncing at the end of scroll (locks the screen solid for iOS) */
 (function stopBounce() {
 
-  var xStart, yStart = 0; 
+  var xStart, 
+      yStart = 0, 
+      lockScroll = false; 
 
   document.addEventListener('touchstart', function(e) {
-      xStart = e.touches[0].screenX;
-      yStart = e.touches[0].screenY;
+    if (e.target.closest('.control')) {
+      return;
+    }
+    lockScroll = true;
+    xStart = e.touches[0].screenX;
+    yStart = e.touches[0].screenY;
   }); 
 
   document.addEventListener('touchmove', function(e) {
+    if (lockScroll) {
       var xMovement = Math.abs(e.touches[0].screenX - xStart);
       var yMovement = Math.abs(e.touches[0].screenY - yStart);
       if((yMovement * 3) > xMovement) {
-          e.preventDefault();
+        e.preventDefault();
       }
+    }
+  });
+
+  document.addEventListener('touchend', function(e) {
+    lockScroll = false;
+  });
+
+  document.addEventListener('touchcancel', function(e) {
+    lockScroll = false;
   });
   
 })();
@@ -10810,34 +10826,39 @@ var ballpit = function() {
     var newAngle = currentAngle;
     switch(collisionSide) {
       case 'top':
-        if (currentAngle > 270) {
+        if (currentAngle >= 270) {
           newAngle = (360 - currentAngle) + 180;
-        } else if (currentAngle < 90) {
+        } else {
           newAngle = 360 - (currentAngle - 0) - 180;
         }
         break;
       case 'right':
-        if (currentAngle > 0 && currentAngle < 90) {
+        if (currentAngle <= 90) {
           newAngle = (90 - currentAngle) - 90;
-        } else if (currentAngle < 180 && currentAngle > 90) {
+        } else {
           newAngle = (currentAngle - 90) + 180;
         }
         break;
       case 'bottom':
-        if (currentAngle < 180 && currentAngle < 180) {
+        if (currentAngle <= 180) {
           newAngle = 180 + (180 - currentAngle) + 180;
-        } else if (currentAngle < 270 && currentAngle > 180) {
+        } else {
           newAngle = 180 - (currentAngle - 180) + 180;
         }
         break;
       case 'left':
-        if (currentAngle < 270 && currentAngle > 180) {
+        if (currentAngle <= 270) {
           newAngle = 270 + (270 - currentAngle) - 180;
-        } else if (currentAngle < 360 && currentAngle > 270) {
+        } else {
           newAngle = 270 - (currentAngle - 270) - 180;
         }
         break;
     }
+    // add a little randomness to get stuff away from the walls
+    var variableAngle = 5;
+    var variableRandom = Math.round( ( Math.random() * (variableAngle * 2) ) - variableAngle );
+    newAngle = newAngle + variableRandom;
+    //newAngle =+ Math.round( ( Math.random() * (variableAngle * 2) ) - variableAngle );
     // fix bad angles outside of 0˚ - 360˚
     if (newAngle > 360) {
       newAngle = newAngle - 360;

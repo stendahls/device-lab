@@ -30,7 +30,7 @@ html, body {
   opacity: 0.2;
   -webkit-transition: opacity 200ms;
           transition: opacity 200ms; }
-  .container.flickity-enabled {
+  .container.ballpit--run, .container.mode--device, .container.mode--browser, .container.mode--age, .container.mode--version, .container.flickity-enabled {
     opacity: 1;
     -webkit-transition: opacity 1000ms;
             transition: opacity 1000ms;
@@ -88,6 +88,7 @@ html, body {
   max-height: 999rem;
   margin: -25vw 0 0 -25vw;
   opacity: 1;
+  stroke: #51B2B8;
   -webkit-transform: scale(1);
           transform: scale(1);
   overflow: hidden;
@@ -383,7 +384,7 @@ input[type="radio"] {
   .control__inner {
     width: 100%;
     max-height: calc(100vh - 102px);
-    padding: 2rem;
+    padding: 2.1rem;
     overflow: auto;
     -webkit-overflow-scrolling: touch; }
   .control__title {
@@ -397,11 +398,11 @@ input[type="radio"] {
     position: absolute;
     right: 0;
     top: 100%;
-    width: 2rem;
+    width: 2.5rem;
     height: 0;
-    margin-top: -1px;
+    margin-top: -2px;
     border-left: 0.5rem solid transparent;
-    border-top: 2rem solid #0B4C59;
+    border-top: 2.5rem solid #0B4C59;
     cursor: pointer; }
   .control__cell h3 {
     margin: 1em 0 0.5em; }
@@ -430,6 +431,11 @@ input[type="radio"] {
   background-color: #51B2B8 !important;
   border-radius: 5px !important;
   margin-bottom: 1em; }
+
+.abcRioButtonLock {
+  font-size: 1.5em;
+  vertical-align: middle;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
 
 .radar {
   opacity: 0;

@@ -20,6 +20,11 @@ html,body {
   justify-content: center;
   opacity: 0.2;
   transition: opacity 200ms;
+  &.ballpit--run,
+  &.mode--device,
+  &.mode--browser,
+  &.mode--age,
+  &.mode--version,
   &.flickity-enabled {
     opacity: 1;
     transition: opacity 1000ms;
@@ -95,6 +100,7 @@ html,body {
   max-height: 999rem;
   margin: -25vw 0 0 -25vw;
   opacity: 1;
+  stroke: $colorFG1;
   transform: scale(1);
   overflow: hidden;
   transition: opacity 500ms, transform 500ms, max-height 0s;
