@@ -71,7 +71,7 @@ html, body {
   .result__figures {
     opacity: 0.5; }
   .result__ua {
-    max-width: 28em;
+    max-width: 32em;
     margin: 0 auto;
     font-size: 3vw;
     color: #666; }

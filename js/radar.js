@@ -10027,20 +10027,25 @@ function getMonday(d) {
 }
 
 
-var xStart, yStart = 0; 
+/* stop the document level scrollign and bouncing at the end of scroll (locks the screen solid for iOS) */
+(function stopBounce() {
 
-document.addEventListener('touchstart', function(e) {
-    xStart = e.touches[0].screenX;
-    yStart = e.touches[0].screenY;
-}); 
+  var xStart, yStart = 0; 
 
-document.addEventListener('touchmove', function(e) {
-    var xMovement = Math.abs(e.touches[0].screenX - xStart);
-    var yMovement = Math.abs(e.touches[0].screenY - yStart);
-    if((yMovement * 3) > xMovement) {
-        e.preventDefault();
-    }
-});
+  document.addEventListener('touchstart', function(e) {
+      xStart = e.touches[0].screenX;
+      yStart = e.touches[0].screenY;
+  }); 
+
+  document.addEventListener('touchmove', function(e) {
+      var xMovement = Math.abs(e.touches[0].screenX - xStart);
+      var yMovement = Math.abs(e.touches[0].screenY - yStart);
+      if((yMovement * 3) > xMovement) {
+          e.preventDefault();
+      }
+  });
+  
+})();
 // test to see if local/session storage is enabled in the current client
 var testForLocalStorage = function() {
     try {
