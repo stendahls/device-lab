@@ -15606,15 +15606,15 @@ var OAUTH_CLIENT_ID = "776189517355-6bjjleaopdes0fe57f8gsf4i1ncgflpb.apps.google
 
 var gaConfig = {
   views: [
-    {
-      'name': 'T',
-      'abbr': 'ts',
-      'view': '14912375',
-      'colors': {
-        1: '#fff',
-        2: '#1c5976'
-      }
-    },
+    //{
+    //  'name': 'T',
+    //  'abbr': 'ts',
+    //  'view': '14912375',
+    //  'colors': {
+    //    1: '#fff',
+    //    2: '#1c5976'
+    //  }
+    //},
     {
       'name': 'W',
       'abbr': 'ws',
@@ -15622,6 +15622,24 @@ var gaConfig = {
       'colors': {
         1: '#000',
         2: '#fc0'
+      }
+    },
+    {
+      'name': 'GE',
+      'abbr': 'ge',
+      'view': '24119751',
+      'colors': {
+        1: '#fff',
+        2: '#5CA1C4'
+      }
+    },
+    {
+      'name': 'R',
+      'abbr': 'r',
+      'view': '11560419',
+      'colors': {
+        1: '#fff',
+        2: '#0057a3'
       }
     },
     {
@@ -15676,24 +15694,6 @@ var gaConfig = {
       'colors': {
         1: '#fff',
         2: '#919296'
-      }
-    },
-    {
-      'name': 'GE',
-      'abbr': 'ge',
-      'view': '24119751',
-      'colors': {
-        1: '#fff',
-        2: '#5CA1C4'
-      }
-    },
-    {
-      'name': 'R',
-      'abbr': 'r',
-      'view': '11560419',
-      'colors': {
-        1: '#fff',
-        2: '#0057a3'
       }
     }
   ],
@@ -15868,11 +15868,19 @@ var retrieve = function() {
     }
   };
 
+  var killAll = function() {
+    console.log('KILLALL');
+    var container = document.querySelector('[data-js-container]');
+    container.innerHTML = '';
+    container.classList.remove('flickity-enabled');
+    container.classList.remove('is-draggable');
+  };
+
 
   // Query the API and print the results to the page.
   var queryLab = function () {
     
-    document.querySelector('[data-js-container]').innerText = '';
+    killAll();
     
     console.log('**** RUN ALL ****');
     
@@ -16001,7 +16009,10 @@ var retrieve = function() {
           queryResponse(response,reportNode);
           resolve(true);
           
-        }, console.error.bind(console));
+        }, function() {
+          document.querySelector('[data-js-container]').innerHTML = response.result.error.message;
+          console.error.bind(console);
+        });
       
     });
     
