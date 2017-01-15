@@ -10025,6 +10025,22 @@ function getMonday(d) {
   var diff = d.getDate() - day + (day === 0 ? -6:1); // adjust when day is sunday
   return new Date(d.setDate(diff));
 }
+
+
+var xStart, yStart = 0; 
+
+document.addEventListener('touchstart', function(e) {
+    xStart = e.touches[0].screenX;
+    yStart = e.touches[0].screenY;
+}); 
+
+document.addEventListener('touchmove', function(e) {
+    var xMovement = Math.abs(e.touches[0].screenX - xStart);
+    var yMovement = Math.abs(e.touches[0].screenY - yStart);
+    if((yMovement * 3) > xMovement) {
+        e.preventDefault();
+    }
+});
 // test to see if local/session storage is enabled in the current client
 var testForLocalStorage = function() {
     try {
