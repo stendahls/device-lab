@@ -431,6 +431,11 @@ input[type="radio"] {
   border-radius: 5px !important;
   margin-bottom: 1em; }
 
+.abcRioButtonLock {
+  font-size: 1.5em;
+  vertical-align: middle;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); }
+
 .radar {
   opacity: 0;
   position: absolute;

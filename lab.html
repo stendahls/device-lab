@@ -28,13 +28,12 @@
   
   <script>
     function onSuccess(googleUser) {
-      console.log('1')
+      document.querySelector('.abcRioButtonContents').querySelectorAll('span')[1].innerHTML = '<span class="abcRioButtonLock">&#128273;</span> ' + googleUser.getBasicProfile().getName();
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
       retrieve.queryLab();
       document.querySelector('html').classList.add('logged-in');
     }
     function onFailure(error) {
-      console.log('2');
       console.log(error);
       document.querySelector('[data-js-container]').innerHTML = response.result.error.message;
     }
@@ -68,10 +67,10 @@
         
         <div class="control__cell">
           
-          <h3>Google API</h3>
+          <h3>Google API Log-in</h3>
       
           <div id="my-signin2"></div>
-          <button class="control__manual" onclick="retrieve.queryAllReports()" data-js-control-manual>manual run</button>
+          <button class="control__manual" onclick="retrieve.queryLab()" data-js-control-manual>manual run</button>
           <div class="control__manual abcRioButtonBlue" style="display:none" data-js-control-none>no data or connection</div>
           
         </div>
