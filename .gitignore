@@ -2,3 +2,4 @@
 .DS_Store
 *.scssc
 node_modules
+.grunt/grunt-gh-pages/gh-pages/src/

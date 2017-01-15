@@ -132,11 +132,19 @@ var retrieve = function() {
     }
   };
 
+  var killAll = function() {
+    console.log('KILLALL');
+    var container = document.querySelector('[data-js-container]');
+    container.innerHTML = '';
+    container.classList.remove('flickity-enabled');
+    container.classList.remove('is-draggable');
+  };
+
 
   // Query the API and print the results to the page.
   var queryLab = function () {
     
-    document.querySelector('[data-js-container]').innerText = '';
+    killAll();
     
     console.log('**** RUN ALL ****');
     
@@ -265,7 +273,10 @@ var retrieve = function() {
           queryResponse(response,reportNode);
           resolve(true);
           
-        }, console.error.bind(console));
+        }, function() {
+          document.querySelector('[data-js-container]').innerHTML = response.result.error.message;
+          console.error.bind(console);
+        });
       
     });
     

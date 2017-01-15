@@ -190,3 +190,24 @@ function getMonday(d) {
   var diff = d.getDate() - day + (day === 0 ? -6:1); // adjust when day is sunday
   return new Date(d.setDate(diff));
 }
+
+
+/* stop the document level scrollign and bouncing at the end of scroll (locks the screen solid for iOS) */
+(function stopBounce() {
+
+  var xStart, yStart = 0; 
+
+  document.addEventListener('touchstart', function(e) {
+      xStart = e.touches[0].screenX;
+      yStart = e.touches[0].screenY;
+  }); 
+
+  document.addEventListener('touchmove', function(e) {
+      var xMovement = Math.abs(e.touches[0].screenX - xStart);
+      var yMovement = Math.abs(e.touches[0].screenY - yStart);
+      if((yMovement * 3) > xMovement) {
+          e.preventDefault();
+      }
+  });
+  
+})();

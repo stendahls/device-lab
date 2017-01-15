@@ -2,37 +2,41 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="{{ meta.description }}" />
-  <meta name="keywords" content="{{ meta.keywords }}" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, max-scale=1" />
+  <meta name="description" content="Client stats from Google Analytics at a glance" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
   
   <meta name="msapplication-tap-highlight" content="no" />
   
-  <title>⚗️ DEVICE LAB</title>
+  <title>[ D E V I C E L A B ]</title>
 
   <link rel="stylesheet" href="css/lab.css"/>
   
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="{{ globals 'site.themeColor' }}" />
-  <meta name="application-name" content="{{ yep }}" />
-  <link rel="icon" href="{{ globals 'site.meta.favIconPath' }}" type="image/x-icon" />
-  <link rel="icon" sizes="192x192" href="{{ globals 'site.meta.icon192Url' }}" />
-  <meta name="apple-mobile-web-app-title" content="{{ globals 'site.title' }}">
-  <link rel="apple-touch-icon" href="{{ globals 'site.meta.appleTouchIconiPhoneUrl' }}"/>
-  <link rel="apple-touch-icon" sizes="120x120" href="{{ globals 'site.meta.appleTouchIconiPhone2Url' }}"/>
-  <link rel="apple-touch-icon" sizes="152x152" href="{{ globals 'site.meta.appleTouchIconiPad2Url' }}"/>
-  <meta name="msapplication-TileImage" content="{{ globals 'site.meta.appleTouchIconiPad2Url' }}" />
-  <meta name="msapplication-TileColor" content="{{ globals 'site.themeColor' }}" />
+  <link rel="manifest" href="manifest-lab.json" />
+  <meta name="theme-color" content="#415C32" />
+  <meta name="application-name" content="Device lab" />
+  <link rel="icon" href="imgs/icon-lab-512.png" type="image/x-icon" />
+  <link rel="icon" sizes="192x192" href="imgs/icon-lab-192.png" />
+  <meta name="apple-mobile-web-app-title" content="Device lab">
+  <link rel="apple-touch-icon" href="imgs/icon-lab-120.png"/>
+  <link rel="apple-touch-icon" sizes="120x120" href="imgs/icon-lab-120.png"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="imgs/icon-lab-152.png"/>
+  <link rel="apple-touch-icon" sizes="512x512" href="imgs/icon-lab-512.png"/>
+  <meta name="msapplication-TileImage" content="imgs/icon-lab-512.png" />
+  <meta name="msapplication-TileColor" content="#333" />
+  <script src="js/companion.js" data-service-worker="sw.js"></script>
   
   <script>
     function onSuccess(googleUser) {
+      console.log('1')
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
       retrieve.queryLab();
       document.querySelector('html').classList.add('logged-in');
     }
     function onFailure(error) {
+      console.log('2');
       console.log(error);
+      document.querySelector('[data-js-container]').innerHTML = response.result.error.message;
     }
     function renderButton() {
       gapi.signin2.render('my-signin2', {
@@ -66,7 +70,7 @@
           
           <h3>Google API</h3>
       
-          <div id="my-signin2" data-onsuccess="retrieve.queryAllReports"></div>
+          <div id="my-signin2"></div>
           <button class="control__manual" onclick="retrieve.queryAllReports()" data-js-control-manual>manual run</button>
           <div class="control__manual abcRioButtonBlue" style="display:none" data-js-control-none>no data or connection</div>
           
@@ -187,6 +191,45 @@
   </nav>
   
   <div class="container main-carousel" data-js-container></div>
+  
+  <svg class="loader" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
+    <!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL -->
+      <g fill="none" fill-rule="evenodd" stroke-width="2">
+          <circle cx="22" cy="22" r="1">
+              <animate attributeName="r"
+                  begin="0s" dur="1.8s"
+                  values="1; 20"
+                  calcMode="spline"
+                  keyTimes="0; 1"
+                  keySplines="0.165, 0.84, 0.44, 1"
+                  repeatCount="indefinite" />
+              <animate attributeName="stroke-opacity"
+                  begin="0s" dur="1.8s"
+                  values="1; 0"
+                  calcMode="spline"
+                  keyTimes="0; 1"
+                  keySplines="0.3, 0.61, 0.355, 1"
+                  repeatCount="indefinite" />
+          </circle>
+          <circle cx="22" cy="22" r="1">
+              <animate attributeName="r"
+                  begin="-0.9s" dur="1.8s"
+                  values="1; 20"
+                  calcMode="spline"
+                  keyTimes="0; 1"
+                  keySplines="0.165, 0.84, 0.44, 1"
+                  repeatCount="indefinite" />
+              <animate attributeName="stroke-opacity"
+                  begin="-0.9s" dur="1.8s"
+                  values="1; 0"
+                  calcMode="spline"
+                  keyTimes="0; 1"
+                  keySplines="0.3, 0.61, 0.355, 1"
+                  repeatCount="indefinite" />
+          </circle>
+      </g>
+  </svg>
+  
   <script src="js/lab.js"></script>
   </body>
 </html>

@@ -16,19 +16,6 @@ module.exports = function(grunt) {
         clean: {
             dist: '<%= settings.dist %>'
         },
-        
-        hbs: {
-            preview: {
-              src: ['<%= settings.src %>/**/*.html',
-                    '<%= settings.src %>/**/*.hbt',
-                    '<%= settings.src %>/**/*.json'],
-              dest: '<%= settings.dist %>',
-              cwd:  '',
-              rules: [
-                      {url: "<%= settings.src %>/pages/*.html" , layout: "<%= settings.src %>/views/layouts/default.hbt"}
-                      ]
-            }
-        },
 
         concat: {
             radar: {
@@ -154,29 +141,23 @@ module.exports = function(grunt) {
                 src: [ '*.html', '*.txt', '*.json' ],
                 dest: '<%= settings.dist %>/'
             },
-            scripts: {
+            imgs: {
                 expand: true,
-                cwd: '<%= settings.src %>/js/utils',
-                src: [ 'google-analytics.js' ],
-                dest: '<%= settings.dist %>/js/'
+                cwd: '<%= settings.src %>/imgs',
+                src: [ '*.png','*.jpg','*.gif','*.swf' ],
+                dest: '<%= settings.dist %>/imgs/'
             },
-            fonts: {
+            rootjs: {
                 expand: true,
-                cwd: '<%= settings.src %>/fonts/',
-                src: [ '**/*' ],
-                dest: '<%= settings.dist %>/fonts/'
+                cwd: '<%= settings.src %>/js/root',
+                src: [ '*.js' ],
+                dest: '<%= settings.dist %>/'
             },
-            img: {
+            swToolbox: {
                 expand: true,
-                cwd: '<%= settings.src %>/img',
-                src: [ '**/*' ],
-                dest: '<%= settings.dist %>/img/'
-            },
-            data: {
-                expand: true,
-                cwd: '<%= settings.src %>/data',
-                src: [ '**/*', '!*', '!**/helpers/**' ],
-                dest: '<%= settings.dist %>/tmp/'
+                cwd: '<%= settings.npm %>/sw-toolbox',
+                src: [ '*.js','*.js.map' ],
+                dest: '<%= settings.dist %>/js'
             }
         },
 
@@ -193,7 +174,7 @@ module.exports = function(grunt) {
 
             scripts: {
                 files: ['<%= settings.src %>/**/*.js'],
-                tasks: ['concat', 'copy:scripts']
+                tasks: ['concat', 'copy:rootjs', 'copy:swToolbox']
             },
 
             sass: {
@@ -234,15 +215,22 @@ module.exports = function(grunt) {
               }
             }
           }
+        },
+        'gh-pages': {
+          options: {
+            base: '<%= settings.dist %>'
+          },
+          src: ['**']
         }
     });
 
     require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
     require('time-grunt')(grunt);
-    grunt.loadNpmTasks('grunt-hbs');
+    grunt.loadNpmTasks('grunt-gh-pages');
 
-    grunt.registerTask('main', [ 'clean:dist', 'hbs', 'copy', 'sass', 'autoprefixer:radar', 'autoprefixer:lab', 'cssmin:radar', 'cssmin:lab', 'concat:radar', 'concat:lab', ]);
+    grunt.registerTask('main', [ 'clean:dist', 'copy', 'sass', 'autoprefixer:radar', 'autoprefixer:lab', 'cssmin:radar', 'cssmin:lab', 'concat:radar', 'concat:lab', ]);
 
     grunt.registerTask('default', [ 'main', 'connect', 'watch' ]);
+    grunt.registerTask('deploy', [ 'main', 'gh-pages' ]);
 
 };
