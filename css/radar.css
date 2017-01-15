@@ -383,7 +383,7 @@ input[type="radio"] {
   .control__inner {
     width: 100%;
     max-height: calc(100vh - 102px);
-    padding: 2rem;
+    padding: 2.1rem;
     overflow: auto;
     -webkit-overflow-scrolling: touch; }
   .control__title {
@@ -397,11 +397,11 @@ input[type="radio"] {
     position: absolute;
     right: 0;
     top: 100%;
-    width: 2rem;
+    width: 2.5rem;
     height: 0;
-    margin-top: -1px;
+    margin-top: -2px;
     border-left: 0.5rem solid transparent;
-    border-top: 2rem solid #0B4C59;
+    border-top: 2.5rem solid #0B4C59;
     cursor: pointer; }
   .control__cell h3 {
     margin: 1em 0 0.5em; }
