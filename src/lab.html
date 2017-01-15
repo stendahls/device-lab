@@ -8,16 +8,18 @@
   
   <meta name="msapplication-tap-highlight" content="no" />
   
-  <title>[ D E V I C E L A B ]</title>
+  <title>D E V I C E L A B</title>
 
   <link rel="stylesheet" href="css/lab.css"/>
   
   <link rel="manifest" href="manifest-lab.json" />
-  <meta name="theme-color" content="#415C32" />
+  <meta name="theme-color" content="#8C8179" />
   <meta name="application-name" content="Device lab" />
   <link rel="icon" href="imgs/icon-lab-512.png" type="image/x-icon" />
   <link rel="icon" sizes="192x192" href="imgs/icon-lab-192.png" />
-  <meta name="apple-mobile-web-app-title" content="Device lab">
+  <meta name="apple-mobile-web-app-title" content="Device lab" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon" href="imgs/icon-lab-120.png"/>
   <link rel="apple-touch-icon" sizes="120x120" href="imgs/icon-lab-120.png"/>
   <link rel="apple-touch-icon" sizes="152x152" href="imgs/icon-lab-152.png"/>
@@ -28,13 +30,12 @@
   
   <script>
     function onSuccess(googleUser) {
-      console.log('1')
+      document.querySelector('.abcRioButtonContents').querySelectorAll('span')[1].innerHTML = '<span class="abcRioButtonLock">&#128273;</span> ' + googleUser.getBasicProfile().getName();
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
       retrieve.queryLab();
       document.querySelector('html').classList.add('logged-in');
     }
     function onFailure(error) {
-      console.log('2');
       console.log(error);
       document.querySelector('[data-js-container]').innerHTML = response.result.error.message;
     }
@@ -68,10 +69,10 @@
         
         <div class="control__cell">
           
-          <h3>Google API</h3>
+          <h3>Google API Log-in</h3>
       
           <div id="my-signin2"></div>
-          <button class="control__manual" onclick="retrieve.queryAllReports()" data-js-control-manual>manual run</button>
+          <button class="control__manual" onclick="retrieve.queryLab()" data-js-control-manual>manual run</button>
           <div class="control__manual abcRioButtonBlue" style="display:none" data-js-control-none>no data or connection</div>
           
         </div>

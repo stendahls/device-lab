@@ -14663,19 +14663,35 @@ function getMonday(d) {
 /* stop the document level scrollign and bouncing at the end of scroll (locks the screen solid for iOS) */
 (function stopBounce() {
 
-  var xStart, yStart = 0; 
+  var xStart, 
+      yStart = 0, 
+      lockScroll = false; 
 
   document.addEventListener('touchstart', function(e) {
-      xStart = e.touches[0].screenX;
-      yStart = e.touches[0].screenY;
+    if (e.target.closest('.control')) {
+      return;
+    }
+    lockScroll = true;
+    xStart = e.touches[0].screenX;
+    yStart = e.touches[0].screenY;
   }); 
 
   document.addEventListener('touchmove', function(e) {
+    if (lockScroll) {
       var xMovement = Math.abs(e.touches[0].screenX - xStart);
       var yMovement = Math.abs(e.touches[0].screenY - yStart);
       if((yMovement * 3) > xMovement) {
-          e.preventDefault();
+        e.preventDefault();
       }
+    }
+  });
+
+  document.addEventListener('touchend', function(e) {
+    lockScroll = false;
+  });
+
+  document.addEventListener('touchcancel', function(e) {
+    lockScroll = false;
   });
   
 })();
@@ -15010,6 +15026,7 @@ var retrieve = function() {
   var configNoStorage = false;
   var localStorageTrue = false;
   var gaRequest = {};
+  var flkty = {};
   var dimensions = [
     'ga:deviceCategory',
     'ga:operatingSystem',
@@ -15135,10 +15152,14 @@ var retrieve = function() {
 
   var killAll = function() {
     console.log('KILLALL');
+    if (typeof flkty.destroy === 'undefined') {
+      return;
+    }
     var container = document.querySelector('[data-js-container]');
-    container.innerHTML = '';
+    flkty.destroy();
     container.classList.remove('flickity-enabled');
     container.classList.remove('is-draggable');
+    container.innerHTML = '';
   };
 
 
@@ -15153,11 +15174,9 @@ var retrieve = function() {
     
     queryLabLoop().then(function() {
       
-      console.log('**** RADAR: ****');
-      //console.log(radar);
+      console.log('**** COMPLETE: ****');
       
-      
-      var flkty = new Flickity( '.main-carousel', {
+      flkty = new Flickity( '.main-carousel', {
         prevNextButtons: false
       });
     });

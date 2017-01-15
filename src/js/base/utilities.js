@@ -195,19 +195,35 @@ function getMonday(d) {
 /* stop the document level scrollign and bouncing at the end of scroll (locks the screen solid for iOS) */
 (function stopBounce() {
 
-  var xStart, yStart = 0; 
+  var xStart, 
+      yStart = 0, 
+      lockScroll = false; 
 
   document.addEventListener('touchstart', function(e) {
-      xStart = e.touches[0].screenX;
-      yStart = e.touches[0].screenY;
+    if (e.target.closest('.control')) {
+      return;
+    }
+    lockScroll = true;
+    xStart = e.touches[0].screenX;
+    yStart = e.touches[0].screenY;
   }); 
 
   document.addEventListener('touchmove', function(e) {
+    if (lockScroll) {
       var xMovement = Math.abs(e.touches[0].screenX - xStart);
       var yMovement = Math.abs(e.touches[0].screenY - yStart);
       if((yMovement * 3) > xMovement) {
-          e.preventDefault();
+        e.preventDefault();
       }
+    }
+  });
+
+  document.addEventListener('touchend', function(e) {
+    lockScroll = false;
+  });
+
+  document.addEventListener('touchcancel', function(e) {
+    lockScroll = false;
   });
   
 })();
