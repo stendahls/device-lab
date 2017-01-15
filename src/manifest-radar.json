@@ -1,7 +1,7 @@
 {
   "short_name": "Device radar",
   "name": "Stendahls device radar",
-  "start_url": "/",
+  "start_url": "index.html",
   "icons": [
     {
       "src": "imgs/icon-radar-48.png",
