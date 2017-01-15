@@ -165,7 +165,7 @@ html, body {
   display: block;
   width: 100%;
   max-height: 0;
-  color: #D45206;
+  color: #C7D943;
   line-height: 1.2;
   overflow: hidden; }
   .result:last-child {
@@ -353,9 +353,9 @@ input {
   height: 3em;
   margin: 2px;
   padding: 0.3em 0.6em;
-  color: #780202;
-  background-color: #D45206;
-  border: 1px solid #D45206;
+  color: #415C32;
+  background-color: #C7D943;
+  border: 1px solid #C7D943;
   font-family: Roboto,arial,sans-serif;
   font-size: 1rem;
   font-weight: normal;
@@ -377,9 +377,9 @@ select {
   height: 3em;
   margin: 2px;
   padding: 0.3em 0.6em;
-  color: #780202;
-  background-color: #D45206;
-  border: 1px solid #D45206;
+  color: #415C32;
+  background-color: #C7D943;
+  border: 1px solid #C7D943;
   border-radius: 0.3em;
   font-family: Roboto,arial,sans-serif;
   font-size: 1rem;
@@ -404,7 +404,7 @@ select {
     @media all and (-webkit-min-device-pixel-ratio: 0) {
       select:not([size]) {
         padding-right: 30px;
-        background-image: url("data:image/svg+xml;utf8,<svg width='24px' height='22px' version='1.1' xmlns='http://www.w3.org/2000/svg'><title>select-arrow</title><g id='arrow-group'><path d='M10,9 L13.4690265,14 L17,9 L10,9 Z M10,9' id='arrow' fill='#780202'></path><path d='M2,1 L2,21 L3,21 L3,1 L2,1 Z M2,1' id='dark-line' fill='#780202'></path></g></svg>");
+        background-image: url("data:image/svg+xml;utf8,<svg width='24px' height='22px' version='1.1' xmlns='http://www.w3.org/2000/svg'><title>select-arrow</title><g id='arrow-group'><path d='M10,9 L13.4690265,14 L17,9 L10,9 Z M10,9' id='arrow' fill='#415C32'></path><path d='M2,1 L2,21 L3,21 L3,1 L2,1 Z M2,1' id='dark-line' fill='#415C32'></path></g></svg>");
         background-repeat: no-repeat, repeat;
         background-position: 100% 50%, 0 0; } }
     select:not([size])::-ms-expand {
@@ -428,8 +428,8 @@ input[type="checkbox"], input[type="radio"] {
   padding: 0;
   width: 1.6em;
   height: 1.6em;
-  background: #780202;
-  border: 1px solid #D45206;
+  background: #415C32;
+  border: 1px solid #C7D943;
   border-radius: 0.3em;
   font-size: 1rem;
   cursor: pointer;
@@ -506,8 +506,8 @@ input[type="radio"] {
     position: relative; }
 
   input[type="radio"]:checked {
-    background: #D45206;
-    box-shadow: inset 0 0 0 0.4em #780202; }
+    background: #C7D943;
+    box-shadow: inset 0 0 0 0.4em #415C32; }
 
   .no-touch input[type="radio"]:checked:active {
     background: #02bcfc; } }
@@ -517,8 +517,8 @@ input[type="radio"] {
   right: 0;
   z-index: 11;
   max-height: calc(100vh - 100px);
-  color: #D45206;
-  background-color: #780202;
+  color: #C7D943;
+  background-color: #415C32;
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
   -webkit-transition: -webkit-transform 300ms;
@@ -548,7 +548,7 @@ input[type="radio"] {
     height: 0;
     margin-top: -1px;
     border-left: 0.5rem solid transparent;
-    border-top: 2rem solid #780202;
+    border-top: 2rem solid #415C32;
     cursor: pointer; }
   .control__cell h3 {
     margin: 1em 0 0.5em; }
@@ -573,8 +573,8 @@ input[type="radio"] {
       display: none; }
 
 .abcRioButtonBlue {
-  color: #780202 !important;
-  background-color: #D45206 !important;
+  color: #415C32 !important;
+  background-color: #C7D943 !important;
   border-radius: 5px !important;
   margin-bottom: 1em; }
 
