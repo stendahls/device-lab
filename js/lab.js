@@ -15154,15 +15154,15 @@ var retrieve = function() {
     return new Promise(function(resolve, reject) {
       
       console.log('KILLALL');
-      var container = document.querySelector('[data-js-container]');
-      container.classList.remove('flickity-enabled');
-      container.classList.remove('is-draggable');
+      var results = document.querySelector('[data-js-results]');
+      results.classList.remove('flickity-enabled');
+      results.classList.remove('is-draggable');
       if (typeof flkty.destroy === 'undefined') {
         resolve(true);
         return;
       }
       flkty.destroy();
-      container.innerHTML = '';
+      results.innerHTML = '';
       
       resolve(true);
     });
@@ -15202,13 +15202,6 @@ var retrieve = function() {
         reportIndex = reportIndex || 0;
         var reportNode = gaConfig.views[reportIndex];
         queryReports(reportNode).then(function() {
-          
-          /* CAN'T BUILD A BALL AS SOON AS THE DATA IS HERE - we need to know the maximum amounts before we start resizing */
-          // build a ball and drop into the ballpit
-          //console.log(reportIndex)
-          //display.buildPie(reportIndex);
-          //console.log(reportNode.abbr)
-          //ballpit.addBall(reportNode.abbr);
           
           // run again?
           reportIndex++;
@@ -15325,12 +15318,12 @@ var retrieve = function() {
     
     if (typeof response.result.reports === 'undefined') {
       output.hero = '&#10071;';
-    } else if (typeof response.result.reports[0].data.totals === 'undefined') {
+    } else if (typeof response.result.reports[0].data.totals === 'undefined' || response.result.reports[0].data.totals[0].values[0] === '0') {
       output.figures = '0/' + response.result.reports[1].data.totals[0].values[0];
       output.hero = '--';
     } else {
-      var segment     = response.result.reports[0].data.totals[0].values[0];
-      var total       = response.result.reports[1].data.totals[0].values[0];
+      var segment     = parseInt(response.result.reports[0].data.totals[0].values[0]);
+      var total       = parseInt(response.result.reports[1].data.totals[0].values[0]);
       var percOfTotal = (segment/total)* 100;
       if (percOfTotal > 9) {
         percOfTotal   = Math.round(percOfTotal);
@@ -15346,6 +15339,11 @@ var retrieve = function() {
   
   var display = function(input) {
     
+    var slideTitleDevice = document.querySelector('.result__device');
+    slideTitleDevice.innerText = input.titleDevice;
+    var slideSubUA = document.querySelector('.result__device__ua');
+    slideSubUA.innerText = input.ua;
+    
     var slideOuter = document.createElement('div');
     slideOuter.classList.add('result');
     slideOuter.classList.add('carousel-cell');
@@ -15353,25 +15351,17 @@ var retrieve = function() {
     var slideTitleClient = document.createElement('span');
     slideTitleClient.classList.add('result__client');
     slideTitleClient.innerText = input.titleClient;
-    var slideTitleDevice = document.createElement('span');
-    slideTitleDevice.classList.add('result__device');
-    slideTitleDevice.innerText = input.titleDevice;
     var slideSubFigures = document.createElement('p');
     slideSubFigures.classList.add('result__figures');
     slideSubFigures.innerText = input.figures;
     var slideTotal = document.createElement('p');
     slideTotal.classList.add('result__total');
     slideTotal.innerHTML = input.hero;
-    var slideSubUA = document.createElement('p');
-    slideSubUA.classList.add('result__ua');
-    slideSubUA.innerText = input.ua;
     
     slideOuter.appendChild(slideTitleClient);
-    slideOuter.appendChild(slideTitleDevice);
     slideOuter.appendChild(slideSubFigures);
     slideOuter.appendChild(slideTotal);
-    slideOuter.appendChild(slideSubUA);
-    document.querySelector('[data-js-container]').appendChild(slideOuter);
+    document.querySelector('[data-js-results]').appendChild(slideOuter);
     
   };
   

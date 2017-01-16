@@ -26,16 +26,19 @@ html, body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 100%;
-  opacity: 0.2;
-  -webkit-transition: opacity 200ms;
-          transition: opacity 200ms; }
-  .container.ballpit--run, .container.mode--device, .container.mode--browser, .container.mode--age, .container.mode--version, .container.flickity-enabled {
-    opacity: 1;
-    -webkit-transition: opacity 1000ms;
-            transition: opacity 1000ms;
-    -webkit-transition-delay: 500ms;
-            transition-delay: 500ms; }
+  height: 100%; }
+  .container__inner {
+    width: 100%;
+    padding-bottom: 35px;
+    opacity: 0.2;
+    -webkit-transition: opacity 200ms;
+            transition: opacity 200ms; }
+    .container__inner.flickity-enabled {
+      opacity: 1;
+      -webkit-transition: opacity 1000ms;
+              transition: opacity 1000ms;
+      -webkit-transition-delay: 500ms;
+              transition-delay: 500ms; }
 
 .result {
   display: block;
@@ -48,36 +51,56 @@ html, body {
     max-height: 999rem; }
   .flickity-enabled .result {
     max-height: 999rem; }
-  .result__device, .result__client, .result__figures, .result__total, .result__ua {
+  .result__device, .result__client, .result__figures, .result__total {
     max-width: calc(100vw - 10px);
     margin: 0; }
+  .result__device, .result__client, .result__figures {
+    font-size: 8vw; }
+    @media (orientation: landscape) {
+      .result__device, .result__client, .result__figures {
+        font-size: 4vw; } }
   .result__client {
     text-transform: uppercase; }
     .result__client:after {
       content: ': '; }
   .result__device {
-    color: #fff; }
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer; }
+    .result__device__check:checked ~ .result__device {
+      color: #666;
+      cursor: default; }
+    .result__device__check {
+      display: none !important; }
+    .result__device__ua {
+      max-height: 0;
+      max-width: 32em;
+      margin: 0 auto;
+      padding-bottom: 0.5em;
+      font-size: 4vw;
+      color: #fff;
+      text-decoration: none;
+      outline: none;
+      opacity: 0;
+      overflow: hidden;
+      cursor: pointer;
+      -webkit-transition: all 500ms;
+              transition: all 500ms; }
+      @media (orientation: landscape) {
+        .result__device__ua {
+          font-size: 2vw; } }
+      .result__device__check:checked ~ .result__device__ua {
+        max-height: 5.5em;
+        opacity: 1; }
   .result__total {
     font-size: 40vw;
     line-height: 1; }
     @media (orientation: landscape) {
       .result__total {
         font-size: 25vw; } }
-  .result__device, .result__client, .result__figures {
-    font-size: 8vw; }
-    @media (orientation: landscape) {
-      .result__device, .result__client, .result__figures {
-        font-size: 4vw; } }
   .result__figures {
+    display: inline;
     opacity: 0.5; }
-  .result__ua {
-    max-width: 32em;
-    margin: 0 auto;
-    font-size: 3vw;
-    color: #666; }
-    @media (orientation: landscape) {
-      .result__ua {
-        font-size: 2vw; } }
 
 .loader {
   position: absolute;
