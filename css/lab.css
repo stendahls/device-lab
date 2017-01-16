@@ -119,7 +119,8 @@ http://flickity.metafizzy.co
   width: 100%; }
 
 .flickity-page-dots {
-  left: 0; }
+  left: 0;
+  bottom: -35px; }
   .flickity-page-dots .dot {
     background-color: #999; }
 
