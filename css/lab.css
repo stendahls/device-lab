@@ -119,8 +119,7 @@ http://flickity.metafizzy.co
   width: 100%; }
 
 .flickity-page-dots {
-  left: 0;
-  bottom: 25px; }
+  left: 0; }
   .flickity-page-dots .dot {
     background-color: #999; }
 
@@ -154,7 +153,6 @@ html, body {
   height: 100%; }
   .container__inner {
     width: 100%;
-    padding-bottom: 35px;
     opacity: 0.2;
     -webkit-transition: opacity 200ms;
             transition: opacity 200ms; }
@@ -218,8 +216,7 @@ html, body {
         max-height: 5.5em;
         opacity: 1; }
   .result__total {
-    font-size: 40vw;
-    line-height: 1; }
+    font-size: 40vw; }
     @media (orientation: landscape) {
       .result__total {
         font-size: 25vw; } }
