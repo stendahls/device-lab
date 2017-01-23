@@ -12,7 +12,7 @@
   
   toolbox.router.get('(.*)', toolbox.fastest, {
     cache: {
-      name: 'deviceRadar09',
+      name: 'deviceRadar10',
       maxEntries: 10
     }
   });
