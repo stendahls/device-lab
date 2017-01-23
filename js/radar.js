@@ -10679,7 +10679,7 @@ var ballpit = function() {
   "use strict";
   
   var radius = viewConfig.radius;
-  var step = 3;
+  var step = 0;
   var go = false;
   var balls = {};
   var pitDims = [];
