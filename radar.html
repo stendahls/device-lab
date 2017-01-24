@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Breakdown of devices and browsers across Google Analytics accounts" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, max-scale=1" />
+  <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
+  
+  <meta name="msapplication-tap-highlight" content="no" />
+  
+  <title>D E V I C E R A D A R</title>
+
+  <link rel="stylesheet" href="css/radar.css"/>
+  
+  <link rel="manifest" href="manifest-radar.json" />
+  <meta name="theme-color" content="#0B4C59" />
+  <meta name="application-name" content="Device Radar" />
+  <link rel="icon" href="imgs/icon-radar-512.png" type="image/x-icon" />
+  <link rel="icon" sizes="192x192" href="imgs/icon-radar-192.png" />
+  <meta name="apple-mobile-web-app-title" content="Device radar" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon" href="imgs/icon-radar-120.png"/>
+  <link rel="apple-touch-icon" sizes="120x120" href="imgs/icon-radar-120.png"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="imgs/icon-radar-152.png"/>
+  <link rel="apple-touch-icon" sizes="512x512" href="imgs/icon-radar-512.png"/>
+  <link rel="mask-icon" href="imgs/icon-radar-pin.svg" color="#04BEB2">
+  <meta name="msapplication-TileImage" content="imgs/icon-radar-144.png" />
+  <meta name="msapplication-TileColor" content="#07E3D4" />
+  <script src="js/companion.js" data-service-worker="sw.js"></script>
+  
+  <script>
+    function onSuccess(googleUser) {
+      document.querySelector('.abcRioButtonContents').querySelectorAll('span')[1].innerHTML = '<span class="abcRioButtonLock">&#128273;</span> ' + googleUser.getBasicProfile().getName();
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      retrieve.queryAllReports();
+      document.querySelector('html').classList.add('logged-in');
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+  
+  <script src="https://apis.google.com/js/client:platform.js?onload=renderButton"></script>
+  
+  </head>
+  <body data-js-background-click>
+    
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <filter id="darkenSVG">
+      <feColorMatrix type="matrix" values=".3  0   0   0   0
+                                           0  .3   0   0   0
+                                           0   0  .3   0   0
+                                           0   0   0   1   0" />
+    </filter>
+  </svg>
+    
+  <input type="checkbox" id="control-close" class="control__check" style="display:none;" checked="checked" />
+  <nav class="control">
+  
+    <label class="control__close" for="control-close"></label>
+    <div class="control__inner">
+    
+      <h1 class="control__title">device radar</h1>
+      
+      <div class="control__row">
+        
+        <div class="control__cell">
+          
+          <h3>Google API</h3>
+      
+          <div id="my-signin2" data-onsuccess="retrieve.queryAllReports"></div>
+          <button class="control__manual" onclick="retrieve.queryAllReports()" data-js-control-manual>manual run</button>
+          <div class="control__manual abcRioButtonBlue" style="display:none" data-js-control-none>no data or connection</div>
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>Time period</h3>
+      
+          <select data-js-control-time>
+            <option value="0">Most recent full week</option>
+            <option value="-1">The week 1 month ago</option>
+            <option value="-3">The week 3 months ago</option>
+            <option value="-6">The week 6 months ago</option>
+            <option value="-12">The week 12 months ago</option>
+            <option value="week">This week so far</option>
+            <option value="7days">Last seven days</option>
+            <option value="today">Today</option>
+          </select>
+          
+        </div>
+          
+        <div class="control__cell">
+          
+          <h3>Numbers</h3>
+      
+          <label><input type="radio" name="values" value="0" data-js-control-value checked /> Sessions</label>
+          <label><input type="radio" name="values" value="1" data-js-control-value  /> Revenue</label>
+          
+        </div>
+        
+      </div>
+    
+    </div>
+    
+  </nav>
+  
+  <div class="container" data-js-container></div>
+  <script src="js/radar.js"></script>
+  </body>
+</html>

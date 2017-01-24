@@ -18,9 +18,10 @@
   });
   toolbox.precache([
     'index.html', 
+    'radar.html', 
     'css/radar.min.css', 
     'js/radar.js', 
-    'lab.html', 
+    'percent.html', 
     'css/lab.min.css', 
     'js/lab.js'
   ]);
