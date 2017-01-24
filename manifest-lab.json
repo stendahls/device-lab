@@ -14,8 +14,8 @@
       "type": "image/png"
     },
     {
-      "src": "imgs/icon-lab-128.png",
-      "sizes": "128x128",
+      "src": "imgs/icon-lab-144.png",
+      "sizes": "144x144",
       "type": "image/png"
     },
     {
@@ -30,6 +30,5 @@
     }
   ],
   "theme_color": "#8C8179",
-  "background_color": "#07E3D4",
-  "display": "standalone"
+  "background_color": "#07E3D4"
 }
