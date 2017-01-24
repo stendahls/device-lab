@@ -26,14 +26,42 @@
   <meta name="msapplication-TileColor" content="#07E3D4" />
   <script src="js/companion.js" data-service-worker="sw.js"></script>
   
+  <style>
+    div {
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    @media (orientation: portrait) {
+      div {
+        flex-direction: column;
+      }
+    }
+    a {
+      display:inline-block;
+      margin:1em;
+    }
+    img {
+      width: 128px;
+      height: 128px;
+    }
+    @media (min-width: 600px) {
+      img {
+        width: 192px;
+        height: 192px;
+      }
+    }
+  </style>
+  
   </head>
   <body>
     
-    <div style="height:100%;display:flex;align-items:center;justify-content:center;">
+    <div>
       
-      <a href="radar.html" style="display:inline-block;margin:1em;"><img src="imgs/icon-radar-384.png" width="192" height="192" alt="radar icon" /></a>
+      <a href="radar.html"><img src="imgs/icon-radar-384.png" width="192" height="192" alt="radar icon" /></a>
       
-      <a href="percent.html" style="display:inline-block;margin:1em;"><img src="imgs/icon-percent-384.png" width="192" height="192" alt="percent icon" /></a>
+      <a href="percent.html"><img src="imgs/icon-percent-384.png" width="192" height="192" alt="percent icon" /></a>
       
     </div>
     
