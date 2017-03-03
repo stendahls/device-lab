@@ -123,16 +123,16 @@ var ballpit = function() {
   var detectPitCollision = function(index) {
     var ballBox = balls[index].box;
     //console.log('ball:' + ballBox.right + ' | box:' + pitBox.right);
-    if (ballBox.top <= pitBox.top) {
+    if (ballBox.top < pitBox.top) {
       //console.warn('TOP!!');
       return 'top';
-    } else if (ballBox.left <= pitBox.left) {
+    } else if (ballBox.left < pitBox.left) {
       //console.warn('LEFT!!');
       return 'left';
-    } else if (ballBox.right >= pitBox.right) {
+    } else if (ballBox.right > pitBox.right) {
       //console.warn('RIGHT!!');
       return 'right';
-    } else if (ballBox.bottom >= pitBox.bottom) {
+    } else if (ballBox.bottom > pitBox.bottom) {
       //console.warn('BOTTOM!!');
       return 'bottom';
     }
