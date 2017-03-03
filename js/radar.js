@@ -10165,6 +10165,21 @@ var browsersConfig = [
     ]
   },
   {
+    "name": "Chrome in-app",
+    "gaName": "Android Webview",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 4,
+      },
+      {
+        "name": "Medium",
+        "last": 15,
+      }
+    ]
+  },
+  {
     "name": "Safari",
     "gaName": "Safari",
     "uaName": ["Safari","Mobile Safari"],
@@ -10209,7 +10224,7 @@ var browsersConfig = [
     ]
   },
   {
-    "name": "Safari (in-app)",
+    "name": "Safari in-app",
     "gaName": "Safari (in-app)",
     "type": "majorVersion"
   },
@@ -10256,6 +10271,22 @@ var browsersConfig = [
     "name": "Opera",
     "gaName": "Opera",
     "uaName": "Opera",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 4,
+      },
+      {
+        "name": "Medium",
+        "last": 10,
+      }
+    ]
+  },
+  {
+    "name": "Opera Mini",
+    "gaName": "Opera Mini",
+    "uaName": "Opera Mini",
     "type": "evergreen",
     "age": [
       {
