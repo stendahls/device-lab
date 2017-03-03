@@ -13,6 +13,10 @@ var processDataBrowserAll = function(radar, viewConfigNode) {
 // process all data looking for one browser type (eg Chrome), specified in the config node. the viewConfigNode is the config info about this view we're currently in (eg 777555 - Tingstad.se)
 var processDataBrowserSingle = function(radar, browserConfigNode,viewConfigNode) {
   
+  if (typeof(data.rows) === 'undefined') {
+    return;
+  }
+  
   var viewName            = viewConfigNode.abbr;
   var gaBrowserName       = browserConfigNode.gaName;
   //console.log('processing ' + gaBrowserName);
