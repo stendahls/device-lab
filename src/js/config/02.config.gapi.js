@@ -30,6 +30,15 @@ var gaConfig = {
       }
     },
     {
+      'name': 'ST',
+      'abbr': 'st',
+      'view': '2783821',
+      'colors': {
+        1: '#fff',
+        2: '#c26625'
+      }
+    },
+    {
       'name': 'R',
       'abbr': 'r',
       'view': '11560419',
@@ -42,6 +51,15 @@ var gaConfig = {
       'name': 'UJA',
       'abbr': 'uja',
       'view': '74801519',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
+      'name': 'UINT',
+      'abbr': 'uint',
+      'view': '63269926',
       'colors': {
         1: '#fff',
         2: '#c00'
@@ -74,15 +92,15 @@ var gaConfig = {
         2: '#c00'
       }
     },
-    {
-      'name': 'VHN',
-      'abbr': 'vhn',
-      'view': '91846327',
-      'colors': {
-        1: '#fff',
-        2: '#919296'
-      }
-    },
+    //{
+    //  'name': 'VHN',
+    //  'abbr': 'vhn',
+    //  'view': '91846327',
+    //  'colors': {
+    //    1: '#fff',
+    //    2: '#919296'
+    //  }
+    //},
     {
       'name': 'IV',
       'abbr': 'iv',
