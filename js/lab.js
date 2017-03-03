@@ -14975,6 +14975,15 @@ var gaConfig = {
       }
     },
     {
+      'name': 'UINT',
+      'abbr': 'uint',
+      'view': '63269926',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
       'name': 'UAU',
       'abbr': 'uau',
       'view': '74798055',
