@@ -10062,6 +10062,7 @@ function getMonday(d) {
   });
   
 })();
+/*jshint esversion: 6 */
 // test to see if local/session storage is enabled in the current client
 var testForLocalStorage = function() {
     try {
@@ -10094,6 +10095,38 @@ var storageRemove = function(key) {
     localStorage.removeItem(key + 'DateStamp');
     return localStorage.removeItem(key);
 };
+
+
+
+self.addEventListener('install', event => {
+  console.log('V1 installing…');
+
+  // cache a cat SVG
+  event.waitUntil(
+    caches.open('static-v1').then(cache => cache.add('/cat.svg'))
+  );
+});
+
+self.addEventListener('activate', event => {
+  console.log('V1 now ready to handle fetches!');
+});
+
+self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+
+  // serve the cat SVG from the cache if the request is
+  // same-origin and the path is '/dog.svg'
+  if (url.origin == location.origin && url.pathname == '/dog.svg') {
+    event.respondWith(caches.match('/cat.svg'));
+  }
+});
+
+
+
+
+
+
+
 /*
     Fonts are loaded through @font-face rules in the CSS whenever an element references them.
     FontFaceObserver creates a referencing element to trigger the font request, and lsisten for font load events.
@@ -10119,6 +10152,21 @@ var browsersConfig = [
     "name": "Chrome",
     "gaName": "Chrome",
     "uaName": "Chrome",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 4,
+      },
+      {
+        "name": "Medium",
+        "last": 15,
+      }
+    ]
+  },
+  {
+    "name": "Chrome in-app",
+    "gaName": "Android Webview",
     "type": "evergreen",
     "age": [
       {
@@ -10176,7 +10224,7 @@ var browsersConfig = [
     ]
   },
   {
-    "name": "Safari (in-app)",
+    "name": "Safari in-app",
     "gaName": "Safari (in-app)",
     "type": "majorVersion"
   },
@@ -10236,6 +10284,22 @@ var browsersConfig = [
     ]
   },
   {
+    "name": "Opera Mini",
+    "gaName": "Opera Mini",
+    "uaName": "Opera Mini",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 4,
+      },
+      {
+        "name": "Medium",
+        "last": 10,
+      }
+    ]
+  },
+  {
     "name": "Android Browser",
     "gaName": "Android Browser",
     "uaName": "Android Browser",
@@ -10282,6 +10346,15 @@ var gaConfig = {
       }
     },
     {
+      'name': 'ST',
+      'abbr': 'st',
+      'view': '2783821',
+      'colors': {
+        1: '#fff',
+        2: '#c26625'
+      }
+    },
+    {
       'name': 'R',
       'abbr': 'r',
       'view': '11560419',
@@ -10294,6 +10367,15 @@ var gaConfig = {
       'name': 'UJA',
       'abbr': 'uja',
       'view': '74801519',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
+      'name': 'UINT',
+      'abbr': 'uint',
+      'view': '63269926',
       'colors': {
         1: '#fff',
         2: '#c00'
@@ -10326,15 +10408,15 @@ var gaConfig = {
         2: '#c00'
       }
     },
-    {
-      'name': 'VHN',
-      'abbr': 'vhn',
-      'view': '91846327',
-      'colors': {
-        1: '#fff',
-        2: '#919296'
-      }
-    },
+    //{
+    //  'name': 'VHN',
+    //  'abbr': 'vhn',
+    //  'view': '91846327',
+    //  'colors': {
+    //    1: '#fff',
+    //    2: '#919296'
+    //  }
+    //},
     {
       'name': 'IV',
       'abbr': 'iv',
@@ -10800,16 +10882,16 @@ var ballpit = function() {
   var detectPitCollision = function(index) {
     var ballBox = balls[index].box;
     //console.log('ball:' + ballBox.right + ' | box:' + pitBox.right);
-    if (ballBox.top <= pitBox.top) {
+    if (ballBox.top < pitBox.top) {
       //console.warn('TOP!!');
       return 'top';
-    } else if (ballBox.left <= pitBox.left) {
+    } else if (ballBox.left < pitBox.left) {
       //console.warn('LEFT!!');
       return 'left';
-    } else if (ballBox.right >= pitBox.right) {
+    } else if (ballBox.right > pitBox.right) {
       //console.warn('RIGHT!!');
       return 'right';
-    } else if (ballBox.bottom >= pitBox.bottom) {
+    } else if (ballBox.bottom > pitBox.bottom) {
       //console.warn('BOTTOM!!');
       return 'bottom';
     }
@@ -11665,6 +11747,10 @@ var processDataBrowserAll = function(radar, viewConfigNode) {
 
 // process all data looking for one browser type (eg Chrome), specified in the config node. the viewConfigNode is the config info about this view we're currently in (eg 777555 - Tingstad.se)
 var processDataBrowserSingle = function(radar, browserConfigNode,viewConfigNode) {
+  
+  if (typeof(data.rows) === 'undefined') {
+    return;
+  }
   
   var viewName            = viewConfigNode.abbr;
   var gaBrowserName       = browserConfigNode.gaName;

@@ -14695,6 +14695,7 @@ function getMonday(d) {
   });
   
 })();
+/*jshint esversion: 6 */
 // test to see if local/session storage is enabled in the current client
 var testForLocalStorage = function() {
     try {
@@ -14727,6 +14728,38 @@ var storageRemove = function(key) {
     localStorage.removeItem(key + 'DateStamp');
     return localStorage.removeItem(key);
 };
+
+
+
+self.addEventListener('install', event => {
+  console.log('V1 installing…');
+
+  // cache a cat SVG
+  event.waitUntil(
+    caches.open('static-v1').then(cache => cache.add('/cat.svg'))
+  );
+});
+
+self.addEventListener('activate', event => {
+  console.log('V1 now ready to handle fetches!');
+});
+
+self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+
+  // serve the cat SVG from the cache if the request is
+  // same-origin and the path is '/dog.svg'
+  if (url.origin == location.origin && url.pathname == '/dog.svg') {
+    event.respondWith(caches.match('/cat.svg'));
+  }
+});
+
+
+
+
+
+
+
 /*
     Fonts are loaded through @font-face rules in the CSS whenever an element references them.
     FontFaceObserver creates a referencing element to trigger the font request, and lsisten for font load events.
@@ -14752,6 +14785,21 @@ var browsersConfig = [
     "name": "Chrome",
     "gaName": "Chrome",
     "uaName": "Chrome",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 4,
+      },
+      {
+        "name": "Medium",
+        "last": 15,
+      }
+    ]
+  },
+  {
+    "name": "Chrome in-app",
+    "gaName": "Android Webview",
     "type": "evergreen",
     "age": [
       {
@@ -14809,7 +14857,7 @@ var browsersConfig = [
     ]
   },
   {
-    "name": "Safari (in-app)",
+    "name": "Safari in-app",
     "gaName": "Safari (in-app)",
     "type": "majorVersion"
   },
@@ -14869,6 +14917,22 @@ var browsersConfig = [
     ]
   },
   {
+    "name": "Opera Mini",
+    "gaName": "Opera Mini",
+    "uaName": "Opera Mini",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 4,
+      },
+      {
+        "name": "Medium",
+        "last": 10,
+      }
+    ]
+  },
+  {
     "name": "Android Browser",
     "gaName": "Android Browser",
     "uaName": "Android Browser",
@@ -14915,6 +14979,15 @@ var gaConfig = {
       }
     },
     {
+      'name': 'ST',
+      'abbr': 'st',
+      'view': '2783821',
+      'colors': {
+        1: '#fff',
+        2: '#c26625'
+      }
+    },
+    {
       'name': 'R',
       'abbr': 'r',
       'view': '11560419',
@@ -14927,6 +15000,15 @@ var gaConfig = {
       'name': 'UJA',
       'abbr': 'uja',
       'view': '74801519',
+      'colors': {
+        1: '#fff',
+        2: '#c00'
+      }
+    },
+    {
+      'name': 'UINT',
+      'abbr': 'uint',
+      'view': '63269926',
       'colors': {
         1: '#fff',
         2: '#c00'
@@ -14959,15 +15041,15 @@ var gaConfig = {
         2: '#c00'
       }
     },
-    {
-      'name': 'VHN',
-      'abbr': 'vhn',
-      'view': '91846327',
-      'colors': {
-        1: '#fff',
-        2: '#919296'
-      }
-    },
+    //{
+    //  'name': 'VHN',
+    //  'abbr': 'vhn',
+    //  'view': '91846327',
+    //  'colors': {
+    //    1: '#fff',
+    //    2: '#919296'
+    //  }
+    //},
     {
       'name': 'IV',
       'abbr': 'iv',
@@ -15151,34 +15233,42 @@ var retrieve = function() {
   };
 
   var killAll = function() {
-    console.log('KILLALL');
-    if (typeof flkty.destroy === 'undefined') {
-      return;
-    }
-    var container = document.querySelector('[data-js-container]');
-    flkty.destroy();
-    container.classList.remove('flickity-enabled');
-    container.classList.remove('is-draggable');
-    container.innerHTML = '';
+    return new Promise(function(resolve, reject) {
+      
+      console.log('KILLALL');
+      var results = document.querySelector('[data-js-results]');
+      results.classList.remove('flickity-enabled');
+      results.classList.remove('is-draggable');
+      if (typeof flkty.destroy === 'undefined') {
+        resolve(true);
+        return;
+      }
+      flkty.destroy();
+      results.innerHTML = '';
+      
+      resolve(true);
+    });
   };
 
 
   // Query the API and print the results to the page.
   var queryLab = function () {
     
-    killAll();
-    
-    console.log('**** RUN ALL ****');
-    
-    setDateRange(); 
-    
-    queryLabLoop().then(function() {
+    killAll().then(function() {
       
-      console.log('**** COMPLETE: ****');
+      console.log('**** RUN ALL ****');
       
-      flkty = new Flickity( '.main-carousel', {
-        prevNextButtons: false
+      setDateRange(); 
+      
+      queryLabLoop().then(function() {
+        
+        console.log('**** COMPLETE: ****');
+        
+        flkty = new Flickity( '.main-carousel', {
+          prevNextButtons: false
+        });
       });
+      
     });
 
   };
@@ -15194,13 +15284,6 @@ var retrieve = function() {
         reportIndex = reportIndex || 0;
         var reportNode = gaConfig.views[reportIndex];
         queryReports(reportNode).then(function() {
-          
-          /* CAN'T BUILD A BALL AS SOON AS THE DATA IS HERE - we need to know the maximum amounts before we start resizing */
-          // build a ball and drop into the ballpit
-          //console.log(reportIndex)
-          //display.buildPie(reportIndex);
-          //console.log(reportNode.abbr)
-          //ballpit.addBall(reportNode.abbr);
           
           // run again?
           reportIndex++;
@@ -15235,13 +15318,18 @@ var retrieve = function() {
       var inputValue = input.value.trim();
       if (inputValue.length) {
         
+        var expressions = inputValue.split('|');
+        if (inputType === 'REGEXP') {
+          expressions = [inputValue];
+        }
+        
         outputDimensions.push({'name':inputName});
         outputFilters.push(
           {"filters": 
             [{
               "dimensionName": inputName,
               "operator": inputType,
-              "expressions": inputValue.split('|')
+              "expressions": expressions
             }]
           });
       }
@@ -15290,13 +15378,13 @@ var retrieve = function() {
         
         function(response) {
           
-          queryResponse(response,reportNode);
+          console.log(response);
+          
+          var toDisplay = queryResponse(response,reportNode);
+          display(toDisplay);
           resolve(true);
           
-        }, function() {
-          document.querySelector('[data-js-container]').innerHTML = response.result.error.message;
-          console.error.bind(console);
-        });
+        }, console.error.bind(console));
       
     });
     
@@ -15304,52 +15392,59 @@ var retrieve = function() {
 
   var queryResponse = function (response,reportNode) {
     
-    var slideOuter = document.createElement('div');
-    slideOuter.classList.add('result');
-    slideOuter.classList.add('carousel-cell');
-    slideOuter.style.color = reportNode.colors['2'];
-    var slideTitleClient = document.createElement('span');
-    slideTitleClient.classList.add('result__client');
-    slideTitleClient.innerText = reportNode.name;
-    var slideTitleDevice = document.createElement('span');
-    slideTitleDevice.classList.add('result__device');
-    slideTitleDevice.innerText = document.querySelector('[name="title"]').value;
-    var slideSubFigures = document.createElement('p');
-    slideSubFigures.classList.add('result__figures');
-    var slideTotal = document.createElement('p');
-    slideTotal.classList.add('result__total');
-    var slideSubUA = document.createElement('p');
-    slideSubUA.classList.add('result__ua');
-    slideSubUA.innerText = window.navigator.userAgent;
+    var output = {};
+    output.color = reportNode.colors['2'];
+    output.titleClient = reportNode.name;
+    output.titleDevice = document.querySelector('[name="title"]').value;
+    output.ua = window.navigator.userAgent;
     
-    if (typeof response.result.reports === 'undefined' || typeof response.result.reports[0].data.rows === 'undefined') {
-      slideTotal.innerText = '--';
+    if (typeof response.result.reports === 'undefined') {
+      output.hero = '&#10071;';
+    } else if (typeof response.result.reports[0].data.totals === 'undefined' || response.result.reports[0].data.totals[0].values[0] === '0') {
+      output.figures = '0/' + response.result.reports[1].data.totals[0].values[0];
+      output.hero = '--';
     } else {
-      var segment     = response.result.reports[0].data.rows[0].metrics[0].values[0];
-      var total       = response.result.reports[1].data.rows[0].metrics[0].values[0];
+      var segment     = parseInt(response.result.reports[0].data.totals[0].values[0]);
+      var total       = parseInt(response.result.reports[1].data.totals[0].values[0]);
       var percOfTotal = (segment/total)* 100;
       if (percOfTotal > 9) {
         percOfTotal   = Math.round(percOfTotal);
       } else {
         percOfTotal   = percOfTotal.toFixed(1);
       }
-      slideTotal.innerText = percOfTotal + '%';
-      slideSubFigures.innerText = segment + '/' + total;
+      output.hero = percOfTotal + '%';
+      output.figures = segment + '/' + total;
     }
+      
+    return output;
+  };
+  
+  var display = function(input) {
+    
+    var slideTitleDevice = document.querySelector('.result__device');
+    slideTitleDevice.innerText = input.titleDevice;
+    var slideSubUA = document.querySelector('.result__device__ua');
+    slideSubUA.innerText = input.ua;
+    
+    var slideOuter = document.createElement('div');
+    slideOuter.classList.add('result');
+    slideOuter.classList.add('carousel-cell');
+    slideOuter.style.color = input.color;
+    var slideTitleClient = document.createElement('span');
+    slideTitleClient.classList.add('result__client');
+    slideTitleClient.innerText = input.titleClient;
+    var slideSubFigures = document.createElement('p');
+    slideSubFigures.classList.add('result__figures');
+    slideSubFigures.innerText = input.figures;
+    var slideTotal = document.createElement('p');
+    slideTotal.classList.add('result__total');
+    slideTotal.innerHTML = input.hero;
     
     slideOuter.appendChild(slideTitleClient);
-    slideOuter.appendChild(slideTitleDevice);
     slideOuter.appendChild(slideSubFigures);
     slideOuter.appendChild(slideTotal);
-    slideOuter.appendChild(slideSubUA);
-    document.querySelector('[data-js-container]').appendChild(slideOuter);
-      
-    //processData(response,reportNode);
-    //// save the response to local storage
-    //if (localStorageTrue && !configNoStorage) {
-    //  var localStorageKey = storageKey(reportNode.abbr);
-    //  storageSet(localStorageKey,JSON.stringify(response));
-    //}
+    document.querySelector('[data-js-results]').appendChild(slideOuter);
+    
   };
   
   var storageKey = function(abbr) {

@@ -1,7 +1,7 @@
 {
   "short_name": "Device radar",
   "name": "Stendahls device radar",
-  "start_url": "index.html",
+  "start_url": "radar.html",
   "icons": [
     {
       "src": "imgs/icon-radar-48.png",
@@ -14,12 +14,22 @@
       "type": "image/png"
     },
     {
+      "src": "imgs/icon-radar-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
       "src": "imgs/icon-radar-192.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "imgs/icon-radar-384.png",
+      "sizes": "384x384",
       "type": "image/png"
     }
   ],
   "theme_color": "#0B4C59",
-  "background_color": "#0B4C59",
-  "display": "standalone"
+  "background_color": "#07E3D4",
+  "display": "browser"
 }
