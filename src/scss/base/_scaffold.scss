@@ -13,22 +13,20 @@ html,body {
 
 .container {
   display: flex;
-  height: 100%;
   flex-direction: column;
   align-items: center;
   align-content: center;
   justify-content: center;
-  opacity: 0.2;
-  transition: opacity 200ms;
-  &.ballpit--run,
-  &.mode--device,
-  &.mode--browser,
-  &.mode--age,
-  &.mode--version,
-  &.flickity-enabled {
-    opacity: 1;
-    transition: opacity 1000ms;
-    transition-delay: 500ms;
+  height: 100%;
+  &__inner {
+    width: 100%;
+    opacity: 0.2;
+    transition: opacity 200ms;
+    &.flickity-enabled {
+      opacity: 1;
+      transition: opacity 1000ms;
+      transition-delay: 500ms;
+    }
   }
 }
 
@@ -48,26 +46,9 @@ html,body {
   &__device,
   &__client,
   &__figures,
-  &__total,
-  &__ua {
+  &__total {
     max-width: calc(100vw - 10px);
     margin: 0;
-  }
-  &__client {
-    text-transform: uppercase;
-    &:after {
-      content: ': ';
-    }
-  }
-  &__device {
-    color: #fff;
-  }
-  &__total {
-    font-size: 40vw;
-    line-height: 1;
-    @media (orientation: landscape) {
-      font-size: 25vw;
-    }
   }
   &__device,
   &__client,
@@ -77,17 +58,54 @@ html,body {
       font-size: 4vw;
     }
   }
-  &__figures {
-    opacity: 0.5;
-  }
-  &__ua {
-    max-width: 32em;
-    margin: 0 auto;
-    font-size: 3vw;
-    color: #666;
-    @media (orientation: landscape) {
-      font-size: 2vw;
+  &__client {
+    text-transform: uppercase;
+    &:after {
+      content: ': ';
     }
+  }
+  &__device {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    .result__device__check:checked~& {
+      color: #666;
+      cursor: default;
+    }
+    &__check {
+      display: none !important;
+    }
+    &__ua {
+      max-height: 0;
+      max-width: 32em;
+      margin: 0 auto;
+      padding-bottom: 0.5em;
+      font-size: 4vw;
+      color: #fff;
+      text-decoration: none;
+      outline: none;
+      opacity: 0;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 500ms;
+      @media (orientation: landscape) {
+        font-size: 2vw;
+      }
+      .result__device__check:checked~& {
+        max-height: 5.5em;
+        opacity: 1;
+      }
+    }
+  }
+  &__total {
+    font-size: 40vw;
+    @media (orientation: landscape) {
+      font-size: 25vw;
+    }
+  }
+  &__figures {
+    display: inline;
+    opacity: 0.5;
   }
 }
 
