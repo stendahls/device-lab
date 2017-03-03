@@ -144,7 +144,7 @@ module.exports = function(grunt) {
             imgs: {
                 expand: true,
                 cwd: '<%= settings.src %>/imgs',
-                src: [ '*.png','*.jpg','*.gif','*.swf' ],
+                src: [ '*.png','*.jpg','*.gif','*.svg' ],
                 dest: '<%= settings.dist %>/imgs/'
             },
             rootjs: {
@@ -183,7 +183,7 @@ module.exports = function(grunt) {
             },
 
             img: {
-                files: ['<%= settings.src %>/img/**/*'],
+                files: ['<%= settings.src %>/imgs/*'],
                 tasks: ['copy:img']
             },
 
@@ -198,7 +198,7 @@ module.exports = function(grunt) {
             },
 
             views: {
-                files: ['<%= settings.src %>/views/**/*', '<%= settings.src %>/index.html', '<%= settings.src %>/oath.html'],
+                files: ['<%= settings.src %>/views/**/*', '<%= settings.src %>/index.html', '<%= settings.src %>/radar.html', '<%= settings.src %>/label.html'],
                 tasks: ['copy']
             }
 
