@@ -14731,20 +14731,21 @@ var storageRemove = function(key) {
 
 
 
-self.addEventListener('install', event => {
+self.addEventListener('install', function (event) {
   console.log('V1 installing…');
-
   // cache a cat SVG
   event.waitUntil(
-    caches.open('static-v1').then(cache => cache.add('/cat.svg'))
+    caches.open('static-v1').then(function(cache) {
+      cache.add('/cat.svg');
+    })
   );
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener('activate', function (event) {
   console.log('V1 now ready to handle fetches!');
 });
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', function (event) {
   const url = new URL(event.request.url);
 
   // serve the cat SVG from the cache if the request is
