@@ -94,6 +94,7 @@ html, body {
         max-height: 5.5em;
         opacity: 1; }
   .result__total {
+    font-size: 144px;
     font-size: 40vw; }
     @media (orientation: landscape) {
       .result__total {
