@@ -54,6 +54,7 @@ html, body {
     max-width: calc(100vw - 10px);
     margin: 0; }
   .result__device, .result__client, .result__figures {
+    font-size: 30px;
     font-size: 8vw; }
     @media (orientation: landscape) {
       .result__device, .result__client, .result__figures {
@@ -72,6 +73,7 @@ html, body {
     .result__device__check {
       display: none !important; }
     .result__device__ua {
+      display: block;
       max-height: 0;
       max-width: 32em;
       margin: 0 auto;
