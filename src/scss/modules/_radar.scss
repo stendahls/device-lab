@@ -16,7 +16,7 @@ $radius: 150px;
   }
   &--active {
     opacity: 1;
-    transform: translate(0px,0px) scale(2) !important;
+    transform: translate3d(0,0,0) scale3d(2,2,1) !important;
     transition: all 300ms cubic-bezier(.25,0,.25,1) !important;
     pointer-events: all;
   }
@@ -55,29 +55,29 @@ $radius: 150px;
     &__arcs {
         transition: all 300ms;
         .radar--active & {
-          transform: scale(1) !important;
+          transform: scale3d(1,1,1) !important;
           transition: all 300ms linear;
         }
         .mode--device .radar__grp--browser &,
         .mode--browser .radar__grp--age &,
         .mode--age .radar__grp--version &  {
           opacity: 0;
-          transform: scale(1.2) !important;
+          transform: scale3d(1.2,1.2,1) !important;
           transition: all 200ms linear;
         }
         .mode--browser .radar__grp--device &,
         .mode--age .radar__grp--browser &,
         .mode--version .radar__grp--age &  {
-          transform: scale(0.9) !important;
+          transform: scale3d(0.9,0.9,1) !important;
           transition: all 200ms linear;
         }
         .mode--age .radar__grp--device &,
         .mode--version .radar__grp--browser &  {
-          transform: scale(0.8) !important;
+          transform: scale3d(0.8,0.8,1) !important;
           transition: all 200ms linear;
         }
         .mode--version .radar__grp--device &  {
-          transform: scale(0.7) !important;
+          transform: scale3d(0.7,0.7,1) !important;
           transition: all 200ms linear;
         }
     }
@@ -85,7 +85,9 @@ $radius: 150px;
   &__arc {
     cursor: pointer;
     user-select: none;
+    transform: translate3d(0,0,0) !important;
     transition: all 800ms;
+    will-change: stroke-width;
     .radar__arc__grp:hover & {
       transition: all 100ms;
       stroke-width: 40px !important;
@@ -135,6 +137,15 @@ $radius: 150px;
   &__txt {
     fill: #fff;
     &__title {
+      fill: #fff;
+      transition: transform 300ms;
+      .mode--browser &,
+      .mode--age &,
+      .mode--version & {
+        transform: translateY(-25px);
+      }
+    }
+    &__sub {
       fill: #fff;
     }
     &__value {

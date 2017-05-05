@@ -53,6 +53,7 @@ html,body {
   &__device,
   &__client,
   &__figures {
+    font-size: 30px;
     font-size: 8vw;
     @media (orientation: landscape) {
       font-size: 4vw;
@@ -76,6 +77,7 @@ html,body {
       display: none !important;
     }
     &__ua {
+      display: block;
       max-height: 0;
       max-width: 32em;
       margin: 0 auto;
@@ -98,6 +100,7 @@ html,body {
     }
   }
   &__total {
+    font-size: 144px;
     font-size: 40vw;
     @media (orientation: landscape) {
       font-size: 25vw;
