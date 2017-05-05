@@ -10997,7 +10997,7 @@ var ballpit = function() {
         return;
       }
       //console.log('translate(' + balls[index].pos.x + 'px, ' + balls[index].pos.y + 'px)')
-      ballDOM.style.transform = 'translate(' + balls[index].pos.x + 'px, ' + balls[index].pos.y + 'px)';
+      ballDOM.style.transform = 'translate3d(' + balls[index].pos.x + 'px, ' + balls[index].pos.y + 'px,0)';
     }
   };
   
