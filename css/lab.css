@@ -686,6 +686,8 @@ input[type="radio"] {
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+            transform: translate3d(0, 0, 0) !important;
     -webkit-transition: all 800ms;
             transition: all 800ms;
     will-change: stroke-width; }

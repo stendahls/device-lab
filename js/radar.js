@@ -10484,6 +10484,7 @@ var drawSVG = function (viewId,totalAmount,maxAmount,config) {
   svg.setAttribute('data-js-radar-size',size);
   svg.setAttribute('viewBox','0 0 ' + svgSize + ' ' + svgSize);
   svg.setAttribute('width',svgSize);
+  svg.setAttributeNS(null,'style','transform: translate3d(0,0,0) scale3d(1,1,1);');
   svg.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
   
   var defs = document.createElementNS(svgNS, 'defs');
@@ -10494,7 +10495,7 @@ var drawSVG = function (viewId,totalAmount,maxAmount,config) {
   
   var grpDevicesArcs = document.createElementNS(svgNS, 'g');
   grpDevicesArcs.setAttributeNS(null,'data-js-radar-g-device-arcs','');
-  grpDevicesArcs.setAttributeNS(null,'style','transform: scale(' + size + ');transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
+  grpDevicesArcs.setAttributeNS(null,'style','transform: translate3d(0,0,0) scale3d(' + size + ',' + size + ',1); transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
   grpDevicesArcs.classList.add('radar__grp__arcs');
   
   var grpDevicesCircle = document.createElementNS(svgNS, 'circle');
@@ -10516,7 +10517,7 @@ var drawSVG = function (viewId,totalAmount,maxAmount,config) {
   
   var grpBrowsersArcs = document.createElementNS(svgNS, 'g');
   grpBrowsersArcs.setAttributeNS(null,'data-js-radar-g-browser-arcs','');
-  grpBrowsersArcs.setAttributeNS(null,'style','transform: scale(' + size + ');transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
+  grpBrowsersArcs.setAttributeNS(null,'style','transform: translate3d(0,0,0) scale3d(' + size + ',' + size + ',1);transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
   grpBrowsersArcs.classList.add('radar__grp__arcs');
   
   var grpBrowsersCircle = document.createElementNS(svgNS, 'circle');
@@ -10538,7 +10539,7 @@ var drawSVG = function (viewId,totalAmount,maxAmount,config) {
   
   var grpAgesArcs = document.createElementNS(svgNS, 'g');
   grpAgesArcs.setAttributeNS(null,'data-js-radar-g-age-arcs','');
-  grpAgesArcs.setAttributeNS(null,'style','transform: scale(' + size + ');transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
+  grpAgesArcs.setAttributeNS(null,'style','transform: translate3d(0,0,0) scale3d(' + size + ',' + size + ',1);transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
   grpAgesArcs.classList.add('radar__grp__arcs');
   
   var grpAgesCircle = document.createElementNS(svgNS, 'circle');
@@ -10560,7 +10561,7 @@ var drawSVG = function (viewId,totalAmount,maxAmount,config) {
   
   var grpVersionsArcs = document.createElementNS(svgNS, 'g');
   grpVersionsArcs.setAttributeNS(null,'data-js-radar-g-version-arcs','');
-  grpVersionsArcs.setAttributeNS(null,'style','transform: scale(' + size + ');transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
+  grpVersionsArcs.setAttributeNS(null,'style','transform: translate3d(0,0,0) scale3d(' + size + ',' + size + ',1);transform-origin: ' + radius + 'px ' + radius + 'px 0px;');
   grpVersionsArcs.classList.add('radar__grp__arcs');
   
   var grpVersionsCircle = document.createElementNS(svgNS, 'circle');
@@ -11256,12 +11257,12 @@ var display = function() {
         'arcThisMode'         : pathLevel,
         'arcNextMode'         : levels[levels.indexOf(pathLevel) + 1],
         'arcSelector'         : arc.key,
-        'arcAmount'         : arc.TOTAL,
-        'totalAmount'       : totalAmount,
+        'arcAmount'           : arc.TOTAL,
+        'totalAmount'         : totalAmount,
         'angleStart'          : degNew || angleAllStart,
         'angleArc'            : angleArc,
         'timeStart'           : 0,
-        'timeDuration'        : Math.round(arc.TOTAL/totalAmount * timeDuration),
+        'timeDuration'        : 0, //Math.round(arc.TOTAL/totalAmount * timeDuration),
         'color'               : ( !device ? colors[arc.key][0] : colors[device][i] ),
         'labelTitle'          : arc.key,
         'labelValTotal'       : arc.TOTAL,
