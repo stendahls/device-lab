@@ -111,6 +111,7 @@ var display = function() {
         // then start the build of the next mode
         .then(function() {
           segmentPath.push(segment);
+          pie.querySelector('[data-js-radar-txt-sub]').textContent = segment.toUpperCase();
           buildAllArcs(pie.id,nextMode,segmentPath);
         });
       }
@@ -225,12 +226,12 @@ var display = function() {
         'arcThisMode'         : pathLevel,
         'arcNextMode'         : levels[levels.indexOf(pathLevel) + 1],
         'arcSelector'         : arc.key,
-        'arcAmount'         : arc.TOTAL,
-        'totalAmount'       : totalAmount,
+        'arcAmount'           : arc.TOTAL,
+        'totalAmount'         : totalAmount,
         'angleStart'          : degNew || angleAllStart,
         'angleArc'            : angleArc,
         'timeStart'           : 0,
-        'timeDuration'        : Math.round(arc.TOTAL/totalAmount * timeDuration),
+        'timeDuration'        : 0, //Math.round(arc.TOTAL/totalAmount * timeDuration),
         'color'               : ( !device ? colors[arc.key][0] : colors[device][i] ),
         'labelTitle'          : arc.key,
         'labelValTotal'       : arc.TOTAL,
@@ -296,6 +297,7 @@ var display = function() {
     var viewId = view.abbr;
     
     drawSVGText(viewIndex,'title');
+    drawSVGText(viewIndex,'sub');
     drawSVGText(viewIndex,'value',radar[viewId].TOTAL[valueKey]);
     
   };
@@ -352,10 +354,14 @@ var display = function() {
   
   var killAllArcs = function(arcLevel) {
     
+    var arcActive = document.querySelectorAll('[radar__arc__grp--active]');
+    for(var i=0; i<arcActive.length; i++) {
+      arcActive[i].classList.remove('radar__arc__grp--active');
+    }
     var pie = document.querySelector('.radar--active');
     if (pie) {
       var arcGrps = pie.querySelectorAll('[data-js-radar-arc-grp-' + arcLevel + ']');
-      for(var i=0; i<arcGrps.length; i++) {
+      for(i=0; i<arcGrps.length; i++) {
         arcGrps[i].parentNode.removeChild(arcGrps[i]);
       }
       var arcDefs = pie.querySelectorAll('[data-js-radar-arcdef-' + arcLevel + ']');
