@@ -11,6 +11,10 @@ var retrieve = function() {
   var gaRequest = {};
 
   var init = function() {
+    
+    // clear everything
+    localStorage.clear();
+    
     localStorageTrue = testForLocalStorage();
     gaRequest = {
       path: '/v4/reports:batchGet',
