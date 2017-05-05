@@ -207,7 +207,7 @@ module.exports = function(grunt) {
         connect: {
           server: {
             options: {
-              port: 8000,
+              port: 3000,
               base: '<%= settings.dist %>/',
               middleware: function(connect, options, middlewares) {
                 middlewares.unshift(compression());
