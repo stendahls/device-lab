@@ -109,20 +109,6 @@ var lookUpView = function(viewId) {
   
 };
 
-Math.easeInOutQuad = function (t, b, c, d) {
-  t /= d/2;
-  if (t < 1) {
-    return c/2*t*t + b;
-  }
-  t--;
-  return -c/2 * (t*(t-2) - 1) + b;
-};
-
-Math.easeInCubic = function(t, b, c, d) {
-  var tc = (t/=d)*t*t;
-  return b+c*(tc);
-};
-
 // matches polyfill
 this.Element && function(ElementPrototype) {
     ElementPrototype.matches = ElementPrototype.matches ||

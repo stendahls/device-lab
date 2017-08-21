@@ -264,8 +264,8 @@ var display = function() {
       arcThisMode       = options.arcThisMode;
       arcNextMode       = options.arcNextMode;
       arcSelector       = options.arcSelector;
-      arcAmount       = options.arcAmount;
-      totalAmount     = options.totalAmount;
+      arcAmount         = options.arcAmount;
+      totalAmount       = options.totalAmount;
       timeStart         = options.timeStart;
       timeDuration      = options.timeDuration;
       angleStart        = options.angleStart || 0;
@@ -277,7 +277,6 @@ var display = function() {
         'arcId': arcId,
         'arcThisMode': arcThisMode,
         'arcNextMode': arcNextMode,
-        'arcSelector': arc.key,
         'arcSelector': arcSelector,
         'color': color,
         'angleStart': angleStart,

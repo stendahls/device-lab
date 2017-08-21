@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 (global => {
   'use strict';
 
@@ -21,7 +23,7 @@
     'radar.html', 
     'css/radar.min.css', 
     'js/radar.js', 
-    'percent.html', 
+    'slice.html', 
     'css/lab.min.css', 
     'js/lab.js'
   ]);
