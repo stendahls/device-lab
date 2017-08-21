@@ -1,5 +1,5 @@
 {
-  "name": "device-radar",
+  "name": "device-lab",
   "version": "0.1.0",
   "description": "Google analytics tool for visualising which devices and browsers are used to visit your websites.",
   "scripts": {
