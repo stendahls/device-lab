@@ -96,6 +96,15 @@ const configGapi = function() {
         }
       },
       {
+        'name': 'RS',
+        'abbr': 'rs',
+        'view': '118702555',
+        'colors': {
+          1: '#fff',
+          2: '#a82081'
+        }
+      },
+      {
         'name': 'VHN',
         'abbr': 'vhn',
         'view': '100568033',
