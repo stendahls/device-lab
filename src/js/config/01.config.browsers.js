@@ -87,6 +87,22 @@ var browsersConfig = [
     "age": 5
   },
   {
+    "name": "Samsung",
+    "gaName": "Samsung Internet",
+    "uaName": "SamsungBrowser",
+    "type": "evergreen",
+    "age": [
+      {
+        "name": "Latest",
+        "last": 1,
+      },
+      {
+        "name": "Medium",
+        "last": 2,
+      }
+    ]
+  },
+  {
     "name": "Firefox",
     "gaName": "Firefox",
     "uaName": "Firefox",
