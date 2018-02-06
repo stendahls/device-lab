@@ -48,15 +48,6 @@ var gaConfig = {
       }
     },
     {
-      'name': 'UJA',
-      'abbr': 'uja',
-      'view': '74801519',
-      'colors': {
-        1: '#fff',
-        2: '#c00'
-      }
-    },
-    {
       'name': 'UINT',
       'abbr': 'uint',
       'view': '63269926',
