@@ -10941,15 +10941,6 @@ var gaConfig = {
       }
     },
     {
-      'name': 'UAU',
-      'abbr': 'uau',
-      'view': '74798055',
-      'colors': {
-        1: '#fff',
-        2: '#c00'
-      }
-    },
-    {
       'name': 'UZA',
       'abbr': 'uza',
       'view': '74801518',
