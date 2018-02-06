@@ -9826,7 +9826,7 @@ return jQuery;
 }));
 
 /*!
- * Flickity PACKAGED v2.0.9
+ * Flickity PACKAGED v2.0.10
  * Touch, responsive, flickable carousels
  *
  * Licensed GPLv3 for open source use
@@ -11900,7 +11900,7 @@ proto._bindStartEvent = function( elem, isBind ) {
   isBind = isBind === undefined ? true : !!isBind;
   var bindMethod = isBind ? 'addEventListener' : 'removeEventListener';
 
-  if ( false ) {
+  if ( window.PointerEvent ) {
     // Pointer Events. Chrome 55, IE11, Edge 14
     elem[ bindMethod ]( 'pointerdown', this );
   } else {
@@ -12572,20 +12572,16 @@ proto.pointerDownFocus = function( event ) {
   }
 };
 
-var touchStartEvents = {
-  touchstart: true,
-  pointerdown: true,
-};
-
 var focusNodes = {
   INPUT: true,
   SELECT: true,
 };
 
 function getCanPointerDown( event ) {
-  var isTouchStart = touchStartEvents[ event.type ];
+  var isTouchStart = event.type == 'touchstart';
+  var isTouchPointer = event.pointerType == 'touch';
   var isFocusNode = focusNodes[ event.target.nodeName ];
-  return isTouchStart || isFocusNode;
+  return isTouchStart || isTouchPointer || isFocusNode;
 }
 
 proto.canPreventDefaultOnPointerDown = function( event ) {
@@ -13831,7 +13827,7 @@ return Flickity;
 }));
 
 /*!
- * Flickity v2.0.9
+ * Flickity v2.0.10
  * Touch, responsive, flickable carousels
  *
  * Licensed GPLv3 for open source use
@@ -15005,15 +15001,6 @@ var gaConfig = {
       'colors': {
         1: '#fff',
         2: '#0057a3'
-      }
-    },
-    {
-      'name': 'UJA',
-      'abbr': 'uja',
-      'view': '74801519',
-      'colors': {
-        1: '#fff',
-        2: '#c00'
       }
     },
     {
