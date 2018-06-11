@@ -23,7 +23,7 @@ var gaConfig = {
     {
       'name': 'GE',
       'abbr': 'ge',
-      'view': '24119751',
+      'view': '172855204',
       'colors': {
         1: '#fff',
         2: '#5CA1C4'
