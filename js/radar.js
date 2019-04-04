@@ -12280,7 +12280,9 @@ var processDataBrowserSingle = function(radar, browserConfigNode,viewConfigNode)
   
   if (typeof(data.rows) === 'undefined') {
     return;
-  }
+	}
+	
+	console.log(viewConfigNode, browserConfigNode, data.rows)
   
   var viewName            = viewConfigNode.abbr;
   var gaBrowserName       = browserConfigNode.gaName;
