@@ -15553,33 +15553,33 @@ var gaConfig = {
         2: '#0057a3'
       }
     },
-    {
-      'name': 'UINT',
-      'abbr': 'uint',
-      'view': '63269926',
-      'colors': {
-        1: '#fff',
-        2: '#c00'
-      }
-    },
-    {
-      'name': 'UZA',
-      'abbr': 'uza',
-      'view': '74801518',
-      'colors': {
-        1: '#fff',
-        2: '#c00'
-      }
-    },
-    {
-      'name': 'UTH',
-      'abbr': 'uth',
-      'view': '74790785',
-      'colors': {
-        1: '#fff',
-        2: '#c00'
-      }
-    },
+    //{
+    //  'name': 'UINT',
+    //  'abbr': 'uint',
+    //  'view': '63269926',
+    //  'colors': {
+    //    1: '#fff',
+    //    2: '#c00'
+    //  }
+    //},
+    //{
+    //  'name': 'UZA',
+    //  'abbr': 'uza',
+    //  'view': '74801518',
+    //  'colors': {
+    //    1: '#fff',
+    //    2: '#c00'
+    //  }
+    //},
+    //{
+    //  'name': 'UTH',
+    //  'abbr': 'uth',
+    //  'view': '74790785',
+    //  'colors': {
+    //    1: '#fff',
+    //    2: '#c00'
+    //  }
+    //},
     {
       'name': 'RS',
       'abbr': 'rs',
