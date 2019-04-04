@@ -10939,24 +10939,6 @@ var gaConfig = {
         1: '#fff',
         2: '#a82081'
       }
-    },
-    {
-      'name': 'VHN',
-      'abbr': 'vhn',
-      'view': '100568033',
-      'colors': {
-        1: '#fff',
-        2: '#919296'
-      }
-    },
-    {
-      'name': 'IV',
-      'abbr': 'iv',
-      'view': '125131939',
-      'colors': {
-        1: '#fff',
-        2: '#919296'
-      }
     }
   ],
   reportRequests: [
