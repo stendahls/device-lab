@@ -10958,33 +10958,33 @@ var gaConfig = {
     //    2: '#c00'
     //  }
     //},
-    {
-      'name': 'RS',
-      'abbr': 'rs',
-      'view': '118702555',
-      'colors': {
-        1: '#fff',
-        2: '#a82081'
-      }
-    },
-    {
-      'name': 'VHN',
-      'abbr': 'vhn',
-      'view': '100568033',
-      'colors': {
-        1: '#fff',
-        2: '#919296'
-      }
-    },
-    {
-      'name': 'IV',
-      'abbr': 'iv',
-      'view': '125131939',
-      'colors': {
-        1: '#fff',
-        2: '#919296'
-      }
-    }
+    // {
+    //   'name': 'RS',
+    //   'abbr': 'rs',
+    //   'view': '118702555',
+    //   'colors': {
+    //     1: '#fff',
+    //     2: '#a82081'
+    //   }
+    // },
+    // {
+    //   'name': 'VHN',
+    //   'abbr': 'vhn',
+    //   'view': '100568033',
+    //   'colors': {
+    //     1: '#fff',
+    //     2: '#919296'
+    //   }
+    // },
+    // {
+    //   'name': 'IV',
+    //   'abbr': 'iv',
+    //   'view': '125131939',
+    //   'colors': {
+    //     1: '#fff',
+    //     2: '#919296'
+    //   }
+    // }
   ],
   reportRequests: [
     {
@@ -11742,7 +11742,7 @@ var display = function() {
   var buildPie = function(viewIndex) {
     
     var view = gaConfig.views[viewIndex];
-    var viewId = view.abbr;
+	var viewId = view.abbr;
     var totalAmount = radar[viewId].TOTAL[valueKey];
     
     var svgEl = drawSVG(viewId,totalAmount,maxAmount);
@@ -12471,6 +12471,10 @@ var processDataBrowserSingle = function(radar, browserConfigNode,viewConfigNode)
 
 // once we have processed data for all browsers, look for any other browsers (eg YA, coc coc, Opera Mini)
 var processDataBrowserOthers = function(radar, knownBrowsers,viewConfigNode) {
+
+	if (!data.rows) {
+		return radar || {};
+	}
   
   //console.log('processing unknown browsers');
   
